@@ -28,7 +28,7 @@ function init(){
   map.addLayer(cartodb_leaflet);
   
   var bing_key = "Arc0Uekwc6xUCJJgDA6Kv__AL_rvEh4Hcpj4nkyUmGTIx-SxMd52PPmsqKbvI_ce";
-  satLayer = new L.TileLayer.Bing(bing_key, 'Imagery &copy; Bing Maps', {minZoom:10, maxZoom:19});
+  satLayer = new L.TileLayer.Bing(bing_key, 'AerialWithLabels', {minZoom:10, maxZoom:19});
 }
 function setMap(lyr){
   if(lyr == "street"){
