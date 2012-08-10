@@ -167,12 +167,14 @@ CartoDB.prototype.query = function(_sql, args) {
   var self = this;
   var sql =  tmpl(_sql, args);
   if(sql.length > 2048 || isWriteQuery(sql))
+    console.log(self.api_url);
     request
     .post(self.api_url)
     .type('form')
     .send({q: sql, api_key: self.api_key})
     .set('port', 443)
     .end(function(res){
+      console.log(res);
       if(res.ok) self.emit('data', res.body);
       else self.emit('error', res);
     });
