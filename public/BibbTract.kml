@@ -1,0 +1,812 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><Folder><name>BibbTract</name>
+<Schema name="BibbTract" id="BibbTract">
+	<SimpleField name="Name" type="string"></SimpleField>
+	<SimpleField name="Description" type="string"></SimpleField>
+	<SimpleField name="STATEFP10" type="string"></SimpleField>
+	<SimpleField name="COUNTYFP10" type="string"></SimpleField>
+	<SimpleField name="TRACTCE10" type="string"></SimpleField>
+	<SimpleField name="GEOID10" type="string"></SimpleField>
+	<SimpleField name="NAME10" type="string"></SimpleField>
+	<SimpleField name="NAMELSAD10" type="string"></SimpleField>
+	<SimpleField name="MTFCC10" type="string"></SimpleField>
+	<SimpleField name="FUNCSTAT10" type="string"></SimpleField>
+	<SimpleField name="ALAND10" type="float"></SimpleField>
+	<SimpleField name="AWATER10" type="float"></SimpleField>
+	<SimpleField name="INTPTLAT10" type="string"></SimpleField>
+	<SimpleField name="INTPTLON10" type="string"></SimpleField>
+</Schema>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#BibbTract">
+		<SimpleData name="STATEFP10">13</SimpleData>
+		<SimpleData name="COUNTYFP10">021</SimpleData>
+		<SimpleData name="TRACTCE10">013800</SimpleData>
+		<SimpleData name="GEOID10">13021013800</SimpleData>
+		<SimpleData name="NAME10">138</SimpleData>
+		<SimpleData name="NAMELSAD10">Census Tract 138</SimpleData>
+		<SimpleData name="MTFCC10">G5020</SimpleData>
+		<SimpleData name="FUNCSTAT10">S</SimpleData>
+		<SimpleData name="ALAND10">4402171</SimpleData>
+		<SimpleData name="AWATER10">241484</SimpleData>
+		<SimpleData name="INTPTLAT10">+32.8434805</SimpleData>
+		<SimpleData name="INTPTLON10">-083.6107791</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-83.605924,32.851771 -83.60591,32.848225 -83.600985,32.848675 -83.595166,32.84613 -83.597521,32.844025 -83.59651,32.840271 -83.599946,32.839419 -83.599557,32.836774 -83.604012,32.836762 -83.606934,32.83448 -83.603627,32.83267 -83.60504,32.832056 -83.603321,32.830008 -83.605501,32.827638 -83.613676,32.834896 -83.62398,32.84068 -83.62819,32.845827 -83.61947,32.852584 -83.615991,32.852553 -83.616001,32.853915 -83.605972,32.853879 -83.605924,32.851771</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#BibbTract">
+		<SimpleData name="STATEFP10">13</SimpleData>
+		<SimpleData name="COUNTYFP10">021</SimpleData>
+		<SimpleData name="TRACTCE10">013900</SimpleData>
+		<SimpleData name="GEOID10">13021013900</SimpleData>
+		<SimpleData name="NAME10">139</SimpleData>
+		<SimpleData name="NAMELSAD10">Census Tract 139</SimpleData>
+		<SimpleData name="MTFCC10">G5020</SimpleData>
+		<SimpleData name="FUNCSTAT10">S</SimpleData>
+		<SimpleData name="ALAND10">95858865</SimpleData>
+		<SimpleData name="AWATER10">2444995</SimpleData>
+		<SimpleData name="INTPTLAT10">+32.7865316</SimpleData>
+		<SimpleData name="INTPTLON10">-083.5968258</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-83.6613,32.762531 -83.660037,32.76897 -83.66604,32.77106 -83.666591,32.773744 -83.66471,32.775115 -83.665757,32.77838 -83.672685,32.784869 -83.668225,32.788238 -83.66408,32.780576 -83.65123,32.780262 -83.65226,32.78468 -83.651153,32.788536 -83.642325,32.794403 -83.64266,32.813789 -83.640085,32.813782 -83.64001,32.815592 -83.624444,32.833809 -83.624257,32.835825 -83.620354,32.838715 -83.605501,32.827638 -83.603321,32.830008 -83.60504,32.832056 -83.603627,32.83267 -83.606887,32.834538 -83.604012,32.836762 -83.599557,32.836774 -83.599901,32.839477 -83.596434,32.840398 -83.597529,32.843978 -83.595649,32.845914 -83.593387,32.845329 -83.585894,32.849266 -83.579059,32.846933 -83.57823,32.843722 -83.5749,32.841628 -83.575281,32.838572 -83.562926,32.833517 -83.56137,32.828668 -83.554504,32.820813 -83.54183,32.814304 -83.538238,32.806088 -83.532056,32.800173 -83.52277,32.79281 -83.516238,32.789896 -83.578715,32.738118 -83.585593,32.744836 -83.59295,32.738857 -83.59902,32.743442 -83.602186,32.741448 -83.598679,32.740367 -83.601879,32.738526 -83.597609,32.736685 -83.599945,32.733759 -83.595052,32.731797 -83.600125,32.729785 -83.596524,32.728524 -83.598063,32.725296 -83.60079,32.725144 -83.598417,32.722901 -83.600478,32.721021 -83.599271,32.718092 -83.603412,32.719973 -83.602032,32.722172 -83.604438,32.723813 -83.606721,32.733091 -83.60986,32.735328 -83.61477,32.735546 -83.618325,32.740905 -83.616594,32.744595 -83.612917,32.74565 -83.612097,32.750783 -83.616354,32.761617 -83.618793,32.763513 -83.628129,32.757357 -83.63142,32.759334 -83.646947,32.758526 -83.649443,32.760472 -83.6613,32.762531</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#BibbTract">
+		<SimpleData name="STATEFP10">13</SimpleData>
+		<SimpleData name="COUNTYFP10">021</SimpleData>
+		<SimpleData name="TRACTCE10">013411</SimpleData>
+		<SimpleData name="GEOID10">13021013411</SimpleData>
+		<SimpleData name="NAME10">134.11</SimpleData>
+		<SimpleData name="NAMELSAD10">Census Tract 134.11</SimpleData>
+		<SimpleData name="MTFCC10">G5020</SimpleData>
+		<SimpleData name="FUNCSTAT10">S</SimpleData>
+		<SimpleData name="ALAND10">17124579</SimpleData>
+		<SimpleData name="AWATER10">380236</SimpleData>
+		<SimpleData name="INTPTLAT10">+32.9279788</SimpleData>
+		<SimpleData name="INTPTLON10">-083.7238570</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-83.770896,32.916248 -83.724553,32.944831 -83.730613,32.945013 -83.730568,32.951017 -83.73415,32.951009 -83.734112,32.952393 -83.710685,32.952792 -83.70512,32.950218 -83.700551,32.943976 -83.701688,32.938883 -83.69585,32.91662 -83.674418,32.901865 -83.677155,32.90262 -83.678244,32.899628 -83.677101,32.898037 -83.680099,32.895656 -83.687007,32.903517 -83.705952,32.917859 -83.731353,32.928215 -83.73736,32.925977 -83.743369,32.920163 -83.745316,32.915542 -83.74554,32.907714 -83.762581,32.907867 -83.774408,32.91407 -83.770896,32.916248</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#BibbTract">
+		<SimpleData name="STATEFP10">13</SimpleData>
+		<SimpleData name="COUNTYFP10">021</SimpleData>
+		<SimpleData name="TRACTCE10">013700</SimpleData>
+		<SimpleData name="GEOID10">13021013700</SimpleData>
+		<SimpleData name="NAME10">137</SimpleData>
+		<SimpleData name="NAMELSAD10">Census Tract 137</SimpleData>
+		<SimpleData name="MTFCC10">G5020</SimpleData>
+		<SimpleData name="FUNCSTAT10">S</SimpleData>
+		<SimpleData name="ALAND10">3135513</SimpleData>
+		<SimpleData name="AWATER10">31659</SimpleData>
+		<SimpleData name="INTPTLAT10">+32.8338410</SimpleData>
+		<SimpleData name="INTPTLON10">-083.6359377</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-83.638127,32.822806 -83.645211,32.827111 -83.645536,32.830722 -83.650326,32.832794 -83.646,32.83796 -83.635399,32.834525 -83.63105,32.839657 -83.63263,32.840961 -83.62819,32.845827 -83.620354,32.838715 -83.624257,32.835825 -83.624444,32.833809 -83.6353,32.821095 -83.638127,32.822806</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#BibbTract">
+		<SimpleData name="STATEFP10">13</SimpleData>
+		<SimpleData name="COUNTYFP10">021</SimpleData>
+		<SimpleData name="TRACTCE10">013603</SimpleData>
+		<SimpleData name="GEOID10">13021013603</SimpleData>
+		<SimpleData name="NAME10">136.03</SimpleData>
+		<SimpleData name="NAMELSAD10">Census Tract 136.03</SimpleData>
+		<SimpleData name="MTFCC10">G5020</SimpleData>
+		<SimpleData name="FUNCSTAT10">S</SimpleData>
+		<SimpleData name="ALAND10">45324763</SimpleData>
+		<SimpleData name="AWATER10">145804</SimpleData>
+		<SimpleData name="INTPTLAT10">+32.7612456</SimpleData>
+		<SimpleData name="INTPTLON10">-083.7340550</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-83.763983,32.7484 -83.764394,32.752324 -83.759486,32.76206 -83.755091,32.777361 -83.758478,32.793557 -83.7503,32.801724 -83.74554,32.80977 -83.735287,32.813519 -83.72894,32.818025 -83.721053,32.80021 -83.719118,32.786848 -83.711246,32.77292 -83.711071,32.757415 -83.711801,32.752881 -83.721522,32.739554 -83.737495,32.694135 -83.744423,32.698942 -83.747208,32.705271 -83.75113,32.70404 -83.752807,32.70619 -83.7533,32.704858 -83.753738,32.707411 -83.755962,32.707162 -83.760587,32.71378 -83.763886,32.71496 -83.771823,32.714323 -83.776682,32.718356 -83.766403,32.72294 -83.765711,32.742182 -83.763983,32.7484</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#BibbTract">
+		<SimpleData name="STATEFP10">13</SimpleData>
+		<SimpleData name="COUNTYFP10">021</SimpleData>
+		<SimpleData name="TRACTCE10">013606</SimpleData>
+		<SimpleData name="GEOID10">13021013606</SimpleData>
+		<SimpleData name="NAME10">136.06</SimpleData>
+		<SimpleData name="NAMELSAD10">Census Tract 136.06</SimpleData>
+		<SimpleData name="MTFCC10">G5020</SimpleData>
+		<SimpleData name="FUNCSTAT10">S</SimpleData>
+		<SimpleData name="ALAND10">73296517</SimpleData>
+		<SimpleData name="AWATER10">6969828</SimpleData>
+		<SimpleData name="INTPTLAT10">+32.8310216</SimpleData>
+		<SimpleData name="INTPTLON10">-083.8204855</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-83.890927,32.818905 -83.89205,32.819558 -83.891391,32.848847 -83.866095,32.864718 -83.832867,32.866044 -83.808832,32.86385 -83.78388,32.851534 -83.76169,32.851267 -83.746026,32.834967 -83.733149,32.833191 -83.72894,32.818025 -83.742908,32.80997 -83.747888,32.809865 -83.753521,32.812528 -83.762247,32.806387 -83.768732,32.804252 -83.77926,32.808687 -83.807606,32.802282 -83.816655,32.806044 -83.831552,32.80894 -83.86512,32.799674 -83.869373,32.804101 -83.87326,32.803897 -83.876942,32.806944 -83.875902,32.81121 -83.87868,32.812786 -83.877444,32.81369 -83.878532,32.816356 -83.882201,32.818354 -83.886242,32.817175 -83.887879,32.819448 -83.890927,32.818905</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#BibbTract">
+		<SimpleData name="STATEFP10">13</SimpleData>
+		<SimpleData name="COUNTYFP10">021</SimpleData>
+		<SimpleData name="TRACTCE10">013604</SimpleData>
+		<SimpleData name="GEOID10">13021013604</SimpleData>
+		<SimpleData name="NAME10">136.04</SimpleData>
+		<SimpleData name="NAMELSAD10">Census Tract 136.04</SimpleData>
+		<SimpleData name="MTFCC10">G5020</SimpleData>
+		<SimpleData name="FUNCSTAT10">S</SimpleData>
+		<SimpleData name="ALAND10">67473373</SimpleData>
+		<SimpleData name="AWATER10">375925</SimpleData>
+		<SimpleData name="INTPTLAT10">+32.7729366</SimpleData>
+		<SimpleData name="INTPTLON10">-083.7972929</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-83.764238,32.750016 -83.766403,32.72294 -83.776874,32.718809 -83.78248,32.721814 -83.785923,32.720433 -83.791434,32.725921 -83.798958,32.724882 -83.801929,32.727629 -83.803621,32.726889 -83.802968,32.728046 -83.804721,32.72929 -83.808656,32.728716 -83.81028,32.729796 -83.809997,32.732756 -83.814137,32.733794 -83.818873,32.740386 -83.823069,32.740811 -83.8276,32.745342 -83.8285,32.749788 -83.831763,32.751986 -83.830124,32.754393 -83.834801,32.758001 -83.837666,32.764435 -83.83938,32.764639 -83.84119,32.768026 -83.845208,32.768704 -83.84691,32.772295 -83.850634,32.770142 -83.851387,32.771987 -83.847666,32.775312 -83.853344,32.781337 -83.851409,32.785465 -83.856561,32.787847 -83.856924,32.793743 -83.861825,32.79448 -83.86031,32.796811 -83.86512,32.799674 -83.831892,32.808916 -83.816655,32.806044 -83.807606,32.802282 -83.77926,32.808687 -83.768543,32.804279 -83.762247,32.806387 -83.753219,32.812569 -83.74554,32.80977 -83.7503,32.801724 -83.758584,32.793332 -83.755091,32.777361 -83.764238,32.750016</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#BibbTract">
+		<SimpleData name="STATEFP10">13</SimpleData>
+		<SimpleData name="COUNTYFP10">021</SimpleData>
+		<SimpleData name="TRACTCE10">013504</SimpleData>
+		<SimpleData name="GEOID10">13021013504</SimpleData>
+		<SimpleData name="NAME10">135.04</SimpleData>
+		<SimpleData name="NAMELSAD10">Census Tract 135.04</SimpleData>
+		<SimpleData name="MTFCC10">G5020</SimpleData>
+		<SimpleData name="FUNCSTAT10">S</SimpleData>
+		<SimpleData name="ALAND10">35040291</SimpleData>
+		<SimpleData name="AWATER10">259677</SimpleData>
+		<SimpleData name="INTPTLAT10">+32.7237679</SimpleData>
+		<SimpleData name="INTPTLON10">-083.6984238</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-83.67078,32.748928 -83.668704,32.752097 -83.661874,32.756725 -83.655479,32.746716 -83.66506,32.7303 -83.666098,32.709397 -83.670003,32.701752 -83.69018,32.686991 -83.692148,32.688674 -83.69778,32.689148 -83.69997,32.691935 -83.70681,32.691791 -83.70724,32.693289 -83.709767,32.691888 -83.714184,32.693337 -83.720415,32.69248 -83.722063,32.694665 -83.725429,32.693709 -83.726677,32.696241 -83.729571,32.697189 -83.735592,32.69368 -83.737495,32.694135 -83.721618,32.739312 -83.718513,32.744495 -83.711941,32.742146 -83.705364,32.744036 -83.69225,32.743662 -83.68246,32.747086 -83.672301,32.746288 -83.67078,32.748928</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#BibbTract">
+		<SimpleData name="STATEFP10">13</SimpleData>
+		<SimpleData name="COUNTYFP10">021</SimpleData>
+		<SimpleData name="TRACTCE10">013409</SimpleData>
+		<SimpleData name="GEOID10">13021013409</SimpleData>
+		<SimpleData name="NAME10">134.09</SimpleData>
+		<SimpleData name="NAMELSAD10">Census Tract 134.09</SimpleData>
+		<SimpleData name="MTFCC10">G5020</SimpleData>
+		<SimpleData name="FUNCSTAT10">S</SimpleData>
+		<SimpleData name="ALAND10">13431947</SimpleData>
+		<SimpleData name="AWATER10">573969</SimpleData>
+		<SimpleData name="INTPTLAT10">+32.8715658</SimpleData>
+		<SimpleData name="INTPTLON10">-083.7841555</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-83.762939,32.862864 -83.762593,32.864085 -83.77158,32.863622 -83.78865,32.867691 -83.7935,32.871691 -83.794519,32.874715 -83.797421,32.875 -83.806688,32.883178 -83.81001,32.88375 -83.811543,32.887186 -83.817282,32.890407 -83.818821,32.894031 -83.791989,32.907677 -83.77227,32.883294 -83.748666,32.861472 -83.755395,32.858502 -83.760034,32.859873 -83.762939,32.862864</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#BibbTract">
+		<SimpleData name="STATEFP10">13</SimpleData>
+		<SimpleData name="COUNTYFP10">021</SimpleData>
+		<SimpleData name="TRACTCE10">013605</SimpleData>
+		<SimpleData name="GEOID10">13021013605</SimpleData>
+		<SimpleData name="NAME10">136.05</SimpleData>
+		<SimpleData name="NAMELSAD10">Census Tract 136.05</SimpleData>
+		<SimpleData name="MTFCC10">G5020</SimpleData>
+		<SimpleData name="FUNCSTAT10">S</SimpleData>
+		<SimpleData name="ALAND10">20785916</SimpleData>
+		<SimpleData name="AWATER10">346682</SimpleData>
+		<SimpleData name="INTPTLAT10">+32.8712254</SimpleData>
+		<SimpleData name="INTPTLON10">-083.8094852</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-83.7624,32.86337 -83.76023,32.86 -83.755395,32.858502 -83.748666,32.861472 -83.745969,32.858941 -83.733149,32.833191 -83.746026,32.834967 -83.762024,32.851407 -83.78388,32.851534 -83.809297,32.863976 -83.832492,32.866041 -83.866095,32.864718 -83.818821,32.894031 -83.817282,32.890407 -83.811543,32.887186 -83.81001,32.88375 -83.806688,32.883178 -83.797421,32.875 -83.794519,32.874715 -83.7935,32.871691 -83.78865,32.867691 -83.77158,32.863622 -83.7624,32.86337</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#BibbTract">
+		<SimpleData name="STATEFP10">13</SimpleData>
+		<SimpleData name="COUNTYFP10">021</SimpleData>
+		<SimpleData name="TRACTCE10">013503</SimpleData>
+		<SimpleData name="GEOID10">13021013503</SimpleData>
+		<SimpleData name="NAME10">135.03</SimpleData>
+		<SimpleData name="NAMELSAD10">Census Tract 135.03</SimpleData>
+		<SimpleData name="MTFCC10">G5020</SimpleData>
+		<SimpleData name="FUNCSTAT10">S</SimpleData>
+		<SimpleData name="ALAND10">14019835</SimpleData>
+		<SimpleData name="AWATER10">52122</SimpleData>
+		<SimpleData name="INTPTLAT10">+32.7586569</SimpleData>
+		<SimpleData name="INTPTLON10">-083.6957206</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-83.665506,32.754206 -83.669414,32.751382 -83.672301,32.746288 -83.68246,32.747086 -83.691939,32.743691 -83.705364,32.744036 -83.711765,32.742148 -83.718513,32.744495 -83.700087,32.76697 -83.672685,32.784869 -83.665757,32.77838 -83.66471,32.775115 -83.666591,32.773744 -83.66604,32.77106 -83.660037,32.76897 -83.661874,32.756725 -83.665506,32.754206</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#BibbTract">
+		<SimpleData name="STATEFP10">13</SimpleData>
+		<SimpleData name="COUNTYFP10">021</SimpleData>
+		<SimpleData name="TRACTCE10">012101</SimpleData>
+		<SimpleData name="GEOID10">13021012101</SimpleData>
+		<SimpleData name="NAME10">121.01</SimpleData>
+		<SimpleData name="NAMELSAD10">Census Tract 121.01</SimpleData>
+		<SimpleData name="MTFCC10">G5020</SimpleData>
+		<SimpleData name="FUNCSTAT10">S</SimpleData>
+		<SimpleData name="ALAND10">4681791</SimpleData>
+		<SimpleData name="AWATER10">0</SimpleData>
+		<SimpleData name="INTPTLAT10">+32.8672458</SimpleData>
+		<SimpleData name="INTPTLON10">-083.7104158</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-83.693166,32.859061 -83.716721,32.858127 -83.731667,32.879621 -83.727319,32.875493 -83.724005,32.877091 -83.725005,32.878476 -83.72371,32.879768 -83.6969,32.867755 -83.688766,32.862661 -83.693166,32.859061</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#BibbTract">
+		<SimpleData name="STATEFP10">13</SimpleData>
+		<SimpleData name="COUNTYFP10">021</SimpleData>
+		<SimpleData name="TRACTCE10">013408</SimpleData>
+		<SimpleData name="GEOID10">13021013408</SimpleData>
+		<SimpleData name="NAME10">134.08</SimpleData>
+		<SimpleData name="NAMELSAD10">Census Tract 134.08</SimpleData>
+		<SimpleData name="MTFCC10">G5020</SimpleData>
+		<SimpleData name="FUNCSTAT10">S</SimpleData>
+		<SimpleData name="ALAND10">8971988</SimpleData>
+		<SimpleData name="AWATER10">17482</SimpleData>
+		<SimpleData name="INTPTLAT10">+32.9057405</SimpleData>
+		<SimpleData name="INTPTLON10">-083.7284704</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-83.717576,32.913291 -83.71719,32.878183 -83.722955,32.880163 -83.729969,32.887844 -83.732397,32.89844 -83.739881,32.905524 -83.74554,32.907714 -83.745316,32.915542 -83.743369,32.920163 -83.73736,32.925977 -83.731353,32.928215 -83.71879,32.923126 -83.720585,32.915413 -83.717576,32.913291</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#BibbTract">
+		<SimpleData name="STATEFP10">13</SimpleData>
+		<SimpleData name="COUNTYFP10">021</SimpleData>
+		<SimpleData name="TRACTCE10">012102</SimpleData>
+		<SimpleData name="GEOID10">13021012102</SimpleData>
+		<SimpleData name="NAME10">121.02</SimpleData>
+		<SimpleData name="NAMELSAD10">Census Tract 121.02</SimpleData>
+		<SimpleData name="MTFCC10">G5020</SimpleData>
+		<SimpleData name="FUNCSTAT10">S</SimpleData>
+		<SimpleData name="ALAND10">7419503</SimpleData>
+		<SimpleData name="AWATER10">0</SimpleData>
+		<SimpleData name="INTPTLAT10">+32.8826829</SimpleData>
+		<SimpleData name="INTPTLON10">-083.6958969</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-83.6902,32.872467 -83.68896,32.862789 -83.71621,32.876942 -83.718196,32.883293 -83.717393,32.887618 -83.712827,32.885198 -83.696016,32.886443 -83.703135,32.899088 -83.69258,32.897485 -83.682128,32.89327 -83.68063,32.895103 -83.673283,32.886169 -83.682129,32.88268 -83.6902,32.872467</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#BibbTract">
+		<SimpleData name="STATEFP10">13</SimpleData>
+		<SimpleData name="COUNTYFP10">021</SimpleData>
+		<SimpleData name="TRACTCE10">013410</SimpleData>
+		<SimpleData name="GEOID10">13021013410</SimpleData>
+		<SimpleData name="NAME10">134.10</SimpleData>
+		<SimpleData name="NAMELSAD10">Census Tract 134.10</SimpleData>
+		<SimpleData name="MTFCC10">G5020</SimpleData>
+		<SimpleData name="FUNCSTAT10">S</SimpleData>
+		<SimpleData name="ALAND10">25568061</SimpleData>
+		<SimpleData name="AWATER10">241056</SimpleData>
+		<SimpleData name="INTPTLAT10">+32.8826069</SimpleData>
+		<SimpleData name="INTPTLON10">-083.7480225</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-83.73034,32.890108 -83.730105,32.888026 -83.7237,32.880777 -83.716416,32.877791 -83.72371,32.879768 -83.725005,32.878476 -83.72411,32.87697 -83.727521,32.875507 -83.731667,32.879621 -83.718986,32.862969 -83.718625,32.860065 -83.71522,32.857152 -83.713589,32.853351 -83.714325,32.851031 -83.712066,32.851291 -83.71002,32.848352 -83.709101,32.839405 -83.71249,32.839288 -83.71724,32.842042 -83.718777,32.846504 -83.721893,32.848844 -83.723511,32.848053 -83.724915,32.850952 -83.733031,32.850105 -83.73635,32.854098 -83.74194,32.852241 -83.746135,32.859112 -83.77227,32.883294 -83.791989,32.907677 -83.774408,32.91407 -83.76222,32.907764 -83.745213,32.907668 -83.739881,32.905524 -83.73226,32.898291 -83.73034,32.890108</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#BibbTract">
+		<SimpleData name="STATEFP10">13</SimpleData>
+		<SimpleData name="COUNTYFP10">021</SimpleData>
+		<SimpleData name="TRACTCE10">013407</SimpleData>
+		<SimpleData name="GEOID10">13021013407</SimpleData>
+		<SimpleData name="NAME10">134.07</SimpleData>
+		<SimpleData name="NAMELSAD10">Census Tract 134.07</SimpleData>
+		<SimpleData name="MTFCC10">G5020</SimpleData>
+		<SimpleData name="FUNCSTAT10">S</SimpleData>
+		<SimpleData name="ALAND10">7870291</SimpleData>
+		<SimpleData name="AWATER10">17650</SimpleData>
+		<SimpleData name="INTPTLAT10">+32.9023329</SimpleData>
+		<SimpleData name="INTPTLON10">-083.7077240</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-83.682215,32.893304 -83.69258,32.897485 -83.703135,32.899088 -83.696016,32.886443 -83.712827,32.885198 -83.717393,32.887618 -83.716654,32.911101 -83.720599,32.915551 -83.71879,32.923126 -83.706331,32.918097 -83.687107,32.903602 -83.680099,32.895656 -83.682215,32.893304</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#BibbTract">
+		<SimpleData name="STATEFP10">13</SimpleData>
+		<SimpleData name="COUNTYFP10">021</SimpleData>
+		<SimpleData name="TRACTCE10">013302</SimpleData>
+		<SimpleData name="GEOID10">13021013302</SimpleData>
+		<SimpleData name="NAME10">133.02</SimpleData>
+		<SimpleData name="NAMELSAD10">Census Tract 133.02</SimpleData>
+		<SimpleData name="MTFCC10">G5020</SimpleData>
+		<SimpleData name="FUNCSTAT10">S</SimpleData>
+		<SimpleData name="ALAND10">31049991</SimpleData>
+		<SimpleData name="AWATER10">164970</SimpleData>
+		<SimpleData name="INTPTLAT10">+32.8311998</SimpleData>
+		<SimpleData name="INTPTLON10">-083.5255288</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-83.49799,32.800736 -83.502114,32.801416 -83.516238,32.789896 -83.52277,32.79281 -83.538238,32.806088 -83.54183,32.814304 -83.554504,32.820813 -83.56137,32.828668 -83.562926,32.833517 -83.575281,32.838572 -83.5749,32.841628 -83.57823,32.843722 -83.579059,32.846933 -83.573561,32.843738 -83.568673,32.844997 -83.55504,32.85494 -83.548693,32.863441 -83.52342,32.841291 -83.51636,32.847186 -83.48943,32.82406 -83.498364,32.815545 -83.496984,32.812672 -83.498821,32.810575 -83.49648,32.806949 -83.492938,32.805149 -83.49799,32.800736</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#BibbTract">
+		<SimpleData name="STATEFP10">13</SimpleData>
+		<SimpleData name="COUNTYFP10">021</SimpleData>
+		<SimpleData name="TRACTCE10">013502</SimpleData>
+		<SimpleData name="GEOID10">13021013502</SimpleData>
+		<SimpleData name="NAME10">135.02</SimpleData>
+		<SimpleData name="NAMELSAD10">Census Tract 135.02</SimpleData>
+		<SimpleData name="MTFCC10">G5020</SimpleData>
+		<SimpleData name="FUNCSTAT10">S</SimpleData>
+		<SimpleData name="ALAND10">56675867</SimpleData>
+		<SimpleData name="AWATER10">804518</SimpleData>
+		<SimpleData name="INTPTLAT10">+32.7160382</SimpleData>
+		<SimpleData name="INTPTLON10">-083.6181137</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-83.661636,32.762363 -83.649443,32.760472 -83.646947,32.758526 -83.63142,32.759334 -83.628129,32.757357 -83.620648,32.763054 -83.618793,32.763513 -83.616354,32.761617 -83.612473,32.752674 -83.613412,32.747875 -83.612345,32.746985 -83.616594,32.744595 -83.618325,32.740905 -83.61477,32.735546 -83.60986,32.735328 -83.606721,32.733091 -83.604438,32.723813 -83.601965,32.721819 -83.60418,32.717269 -83.600834,32.717736 -83.601392,32.714602 -83.596892,32.714033 -83.600507,32.708232 -83.599834,32.704023 -83.602683,32.701155 -83.60495,32.701746 -83.602373,32.699573 -83.606905,32.701542 -83.608167,32.697947 -83.610262,32.698836 -83.60963,32.696607 -83.611569,32.694879 -83.608586,32.692636 -83.608609,32.69099 -83.606428,32.690995 -83.60834,32.690112 -83.608468,32.688015 -83.611063,32.688543 -83.607771,32.686884 -83.608363,32.683601 -83.60583,32.682426 -83.607009,32.679051 -83.60526,32.674885 -83.606795,32.67373 -83.59985,32.671755 -83.601317,32.669663 -83.597172,32.666877 -83.597656,32.664338 -83.605546,32.660674 -83.607788,32.664453 -83.611802,32.665371 -83.617713,32.663447 -83.626522,32.669562 -83.63334,32.668249 -83.638756,32.66908 -83.64538,32.67423 -83.660211,32.673788 -83.661433,32.675173 -83.663242,32.673762 -83.670256,32.677501 -83.673942,32.676958 -83.678489,32.679844 -83.679899,32.682769 -83.685189,32.685307 -83.688361,32.684645 -83.688328,32.686709 -83.69018,32.686991 -83.670003,32.701752 -83.666699,32.706933 -83.66506,32.7303 -83.655479,32.746716 -83.662017,32.757053 -83.661636,32.762363</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#BibbTract">
+		<SimpleData name="STATEFP10">13</SimpleData>
+		<SimpleData name="COUNTYFP10">021</SimpleData>
+		<SimpleData name="TRACTCE10">013102</SimpleData>
+		<SimpleData name="GEOID10">13021013102</SimpleData>
+		<SimpleData name="NAME10">131.02</SimpleData>
+		<SimpleData name="NAMELSAD10">Census Tract 131.02</SimpleData>
+		<SimpleData name="MTFCC10">G5020</SimpleData>
+		<SimpleData name="FUNCSTAT10">S</SimpleData>
+		<SimpleData name="ALAND10">5085130</SimpleData>
+		<SimpleData name="AWATER10">4236</SimpleData>
+		<SimpleData name="INTPTLAT10">+32.7941834</SimpleData>
+		<SimpleData name="INTPTLON10">-083.6900122</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-83.681662,32.802194 -83.676894,32.789212 -83.673528,32.789111 -83.67592,32.786524 -83.68345,32.785368 -83.70768,32.787439 -83.707457,32.798219 -83.69913,32.79804 -83.700388,32.803278 -83.69204,32.805946 -83.6855,32.805992 -83.68462,32.803704 -83.681662,32.802194</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#BibbTract">
+		<SimpleData name="STATEFP10">13</SimpleData>
+		<SimpleData name="COUNTYFP10">021</SimpleData>
+		<SimpleData name="TRACTCE10">012900</SimpleData>
+		<SimpleData name="GEOID10">13021012900</SimpleData>
+		<SimpleData name="NAME10">129</SimpleData>
+		<SimpleData name="NAMELSAD10">Census Tract 129</SimpleData>
+		<SimpleData name="MTFCC10">G5020</SimpleData>
+		<SimpleData name="FUNCSTAT10">S</SimpleData>
+		<SimpleData name="ALAND10">2060501</SimpleData>
+		<SimpleData name="AWATER10">0</SimpleData>
+		<SimpleData name="INTPTLAT10">+32.7873204</SimpleData>
+		<SimpleData name="INTPTLON10">-083.6574683</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-83.66705,32.785674 -83.668225,32.788238 -83.666727,32.790909 -83.655949,32.791454 -83.654502,32.794282 -83.642514,32.795008 -83.651568,32.787861 -83.65123,32.780262 -83.66408,32.780576 -83.66705,32.785674</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#BibbTract">
+		<SimpleData name="STATEFP10">13</SimpleData>
+		<SimpleData name="COUNTYFP10">021</SimpleData>
+		<SimpleData name="TRACTCE10">012800</SimpleData>
+		<SimpleData name="GEOID10">13021012800</SimpleData>
+		<SimpleData name="NAME10">128</SimpleData>
+		<SimpleData name="NAMELSAD10">Census Tract 128</SimpleData>
+		<SimpleData name="MTFCC10">G5020</SimpleData>
+		<SimpleData name="FUNCSTAT10">S</SimpleData>
+		<SimpleData name="ALAND10">2067549</SimpleData>
+		<SimpleData name="AWATER10">0</SimpleData>
+		<SimpleData name="INTPTLAT10">+32.7977153</SimpleData>
+		<SimpleData name="INTPTLON10">-083.6533104</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-83.659059,32.801836 -83.654384,32.803466 -83.642707,32.803638 -83.64265,32.795512 -83.645061,32.793973 -83.654502,32.794282 -83.655949,32.791454 -83.666727,32.790909 -83.659059,32.801836</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#BibbTract">
+		<SimpleData name="STATEFP10">13</SimpleData>
+		<SimpleData name="COUNTYFP10">021</SimpleData>
+		<SimpleData name="TRACTCE10">012700</SimpleData>
+		<SimpleData name="GEOID10">13021012700</SimpleData>
+		<SimpleData name="NAME10">127</SimpleData>
+		<SimpleData name="NAMELSAD10">Census Tract 127</SimpleData>
+		<SimpleData name="MTFCC10">G5020</SimpleData>
+		<SimpleData name="FUNCSTAT10">S</SimpleData>
+		<SimpleData name="ALAND10">1929185</SimpleData>
+		<SimpleData name="AWATER10">0</SimpleData>
+		<SimpleData name="INTPTLAT10">+32.8102466</SimpleData>
+		<SimpleData name="INTPTLON10">-083.6504293</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-83.64935,32.819929 -83.649314,32.813893 -83.64266,32.813789 -83.642707,32.803638 -83.658651,32.802937 -83.655981,32.811014 -83.65578,32.82003 -83.64935,32.819929</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#BibbTract">
+		<SimpleData name="STATEFP10">13</SimpleData>
+		<SimpleData name="COUNTYFP10">021</SimpleData>
+		<SimpleData name="TRACTCE10">012600</SimpleData>
+		<SimpleData name="GEOID10">13021012600</SimpleData>
+		<SimpleData name="NAME10">126</SimpleData>
+		<SimpleData name="NAMELSAD10">Census Tract 126</SimpleData>
+		<SimpleData name="MTFCC10">G5020</SimpleData>
+		<SimpleData name="FUNCSTAT10">S</SimpleData>
+		<SimpleData name="ALAND10">6820467</SimpleData>
+		<SimpleData name="AWATER10">37118</SimpleData>
+		<SimpleData name="INTPTLAT10">+32.8050318</SimpleData>
+		<SimpleData name="INTPTLON10">-083.6711251</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-83.6855,32.805992 -83.687739,32.811329 -83.689638,32.81241 -83.688186,32.815271 -83.668023,32.81447 -83.667894,32.820208 -83.65578,32.82003 -83.655981,32.811014 -83.65948,32.800761 -83.668225,32.788238 -83.672685,32.784869 -83.673123,32.788964 -83.676894,32.789212 -83.681662,32.802263 -83.68462,32.803704 -83.6855,32.805992</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#BibbTract">
+		<SimpleData name="STATEFP10">13</SimpleData>
+		<SimpleData name="COUNTYFP10">021</SimpleData>
+		<SimpleData name="TRACTCE10">012500</SimpleData>
+		<SimpleData name="GEOID10">13021012500</SimpleData>
+		<SimpleData name="NAME10">125</SimpleData>
+		<SimpleData name="NAMELSAD10">Census Tract 125</SimpleData>
+		<SimpleData name="MTFCC10">G5020</SimpleData>
+		<SimpleData name="FUNCSTAT10">S</SimpleData>
+		<SimpleData name="ALAND10">3474869</SimpleData>
+		<SimpleData name="AWATER10">9283</SimpleData>
+		<SimpleData name="INTPTLAT10">+32.8185262</SimpleData>
+		<SimpleData name="INTPTLON10">-083.6824765</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-83.694355484878116,32.82623236300644 -83.687642,32.830264 -83.686962,32.833401 -83.67463,32.833152 -83.67426,32.828604 -83.675693,32.827655 -83.674332,32.826115 -83.67452,32.820203 -83.667894,32.820208 -83.668023,32.81447 -83.688186,32.815271 -83.692917,32.82049 -83.691793,32.821582 -83.694355484878116,32.82623236300644</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#BibbTract">
+		<SimpleData name="STATEFP10">13</SimpleData>
+		<SimpleData name="COUNTYFP10">021</SimpleData>
+		<SimpleData name="TRACTCE10">012300</SimpleData>
+		<SimpleData name="GEOID10">13021012300</SimpleData>
+		<SimpleData name="NAME10">123</SimpleData>
+		<SimpleData name="NAMELSAD10">Census Tract 123</SimpleData>
+		<SimpleData name="MTFCC10">G5020</SimpleData>
+		<SimpleData name="FUNCSTAT10">S</SimpleData>
+		<SimpleData name="ALAND10">3035783</SimpleData>
+		<SimpleData name="AWATER10">31903</SimpleData>
+		<SimpleData name="INTPTLAT10">+32.8425459</SimpleData>
+		<SimpleData name="INTPTLON10">-083.6741239</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-83.67999,32.850276 -83.681438,32.852775 -83.679528,32.853879 -83.663542,32.842094 -83.66408,32.831729 -83.67426,32.828604 -83.674744,32.836971 -83.687551,32.842881 -83.68793,32.848578 -83.678725,32.84713 -83.677356,32.848304 -83.67999,32.850276</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#BibbTract">
+		<SimpleData name="STATEFP10">13</SimpleData>
+		<SimpleData name="COUNTYFP10">021</SimpleData>
+		<SimpleData name="TRACTCE10">011900</SimpleData>
+		<SimpleData name="GEOID10">13021011900</SimpleData>
+		<SimpleData name="NAME10">119</SimpleData>
+		<SimpleData name="NAMELSAD10">Census Tract 119</SimpleData>
+		<SimpleData name="MTFCC10">G5020</SimpleData>
+		<SimpleData name="FUNCSTAT10">S</SimpleData>
+		<SimpleData name="ALAND10">3441259</SimpleData>
+		<SimpleData name="AWATER10">111018</SimpleData>
+		<SimpleData name="INTPTLAT10">+32.8588167</SimpleData>
+		<SimpleData name="INTPTLON10">-083.6542420</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-83.655904,32.868719 -83.653998,32.868981 -83.651295,32.86482 -83.637782,32.859584 -83.634476,32.853668 -83.638676,32.85432 -83.641634,32.85173 -83.647697,32.850499 -83.662429,32.850806 -83.662158,32.873965 -83.655904,32.868719</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#BibbTract">
+		<SimpleData name="STATEFP10">13</SimpleData>
+		<SimpleData name="COUNTYFP10">021</SimpleData>
+		<SimpleData name="TRACTCE10">011800</SimpleData>
+		<SimpleData name="GEOID10">13021011800</SimpleData>
+		<SimpleData name="NAME10">118</SimpleData>
+		<SimpleData name="NAMELSAD10">Census Tract 118</SimpleData>
+		<SimpleData name="MTFCC10">G5020</SimpleData>
+		<SimpleData name="FUNCSTAT10">S</SimpleData>
+		<SimpleData name="ALAND10">4527992</SimpleData>
+		<SimpleData name="AWATER10">9270</SimpleData>
+		<SimpleData name="INTPTLAT10">+32.8592889</SimpleData>
+		<SimpleData name="INTPTLON10">-083.6763210</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-83.690365,32.871805 -83.68611,32.872127 -83.685063,32.869703 -83.680402,32.871637 -83.679768,32.873311 -83.674987,32.874161 -83.675755,32.869389 -83.674081,32.865229 -83.679663,32.865969 -83.679875,32.864547 -83.663192,32.861331 -83.661377,32.863796 -83.662452,32.848878 -83.665624,32.848706 -83.665024,32.846049 -83.66761,32.844233 -83.68129,32.85511 -83.691033,32.860186 -83.688766,32.862661 -83.690365,32.871805</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#BibbTract">
+		<SimpleData name="STATEFP10">13</SimpleData>
+		<SimpleData name="COUNTYFP10">021</SimpleData>
+		<SimpleData name="TRACTCE10">011701</SimpleData>
+		<SimpleData name="GEOID10">13021011701</SimpleData>
+		<SimpleData name="NAME10">117.01</SimpleData>
+		<SimpleData name="NAMELSAD10">Census Tract 117.01</SimpleData>
+		<SimpleData name="MTFCC10">G5020</SimpleData>
+		<SimpleData name="FUNCSTAT10">S</SimpleData>
+		<SimpleData name="ALAND10">4217290</SimpleData>
+		<SimpleData name="AWATER10">5245</SimpleData>
+		<SimpleData name="INTPTLAT10">+32.8727164</SimpleData>
+		<SimpleData name="INTPTLON10">-083.5959332</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-83.599524,32.862766 -83.601718,32.867655 -83.606057,32.867797 -83.603926,32.874167 -83.60729,32.873738 -83.60955,32.875569 -83.607662,32.879649 -83.598187,32.887836 -83.579323,32.865781 -83.585379,32.865429 -83.596757,32.860402 -83.599524,32.862766</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#BibbTract">
+		<SimpleData name="STATEFP10">13</SimpleData>
+		<SimpleData name="COUNTYFP10">021</SimpleData>
+		<SimpleData name="TRACTCE10">011500</SimpleData>
+		<SimpleData name="GEOID10">13021011500</SimpleData>
+		<SimpleData name="NAME10">115</SimpleData>
+		<SimpleData name="NAMELSAD10">Census Tract 115</SimpleData>
+		<SimpleData name="MTFCC10">G5020</SimpleData>
+		<SimpleData name="FUNCSTAT10">S</SimpleData>
+		<SimpleData name="ALAND10">1087399</SimpleData>
+		<SimpleData name="AWATER10">0</SimpleData>
+		<SimpleData name="INTPTLAT10">+32.8188119</SimpleData>
+		<SimpleData name="INTPTLON10">-083.6430679</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-83.64936,32.819597 -83.642474,32.825435 -83.6353,32.821095 -83.640085,32.813782 -83.649314,32.813893 -83.64936,32.819597</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#BibbTract">
+		<SimpleData name="STATEFP10">13</SimpleData>
+		<SimpleData name="COUNTYFP10">021</SimpleData>
+		<SimpleData name="TRACTCE10">011100</SimpleData>
+		<SimpleData name="GEOID10">13021011100</SimpleData>
+		<SimpleData name="NAME10">111</SimpleData>
+		<SimpleData name="NAMELSAD10">Census Tract 111</SimpleData>
+		<SimpleData name="MTFCC10">G5020</SimpleData>
+		<SimpleData name="FUNCSTAT10">S</SimpleData>
+		<SimpleData name="ALAND10">3756972</SimpleData>
+		<SimpleData name="AWATER10">80674</SimpleData>
+		<SimpleData name="INTPTLAT10">+32.8591042</SimpleData>
+		<SimpleData name="INTPTLON10">-083.6043296</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-83.592665,32.85305 -83.59285,32.847465 -83.594703,32.846092 -83.600985,32.848675 -83.60591,32.848225 -83.605972,32.853879 -83.61947,32.852584 -83.612829,32.863374 -83.612859,32.870832 -83.609366,32.877189 -83.60896,32.87426 -83.603926,32.874167 -83.606057,32.867797 -83.602311,32.86798 -83.600239,32.866422 -83.599915,32.863132 -83.596727,32.860768 -83.597093,32.857923 -83.592665,32.85305</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#BibbTract">
+		<SimpleData name="STATEFP10">13</SimpleData>
+		<SimpleData name="COUNTYFP10">021</SimpleData>
+		<SimpleData name="TRACTCE10">010800</SimpleData>
+		<SimpleData name="GEOID10">13021010800</SimpleData>
+		<SimpleData name="NAME10">108</SimpleData>
+		<SimpleData name="NAMELSAD10">Census Tract 108</SimpleData>
+		<SimpleData name="MTFCC10">G5020</SimpleData>
+		<SimpleData name="FUNCSTAT10">S</SimpleData>
+		<SimpleData name="ALAND10">1638483</SimpleData>
+		<SimpleData name="AWATER10">50810</SimpleData>
+		<SimpleData name="INTPTLAT10">+32.8441758</SimpleData>
+		<SimpleData name="INTPTLON10">-083.6361825</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-83.635399,32.834525 -83.643585,32.837727 -83.641753,32.84183 -83.640035,32.841321 -83.63743,32.847229 -83.641634,32.85173 -83.638164,32.85443 -83.634476,32.853668 -83.62819,32.845827 -83.63263,32.840961 -83.63105,32.839657 -83.635399,32.834525</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#BibbTract">
+		<SimpleData name="STATEFP10">13</SimpleData>
+		<SimpleData name="COUNTYFP10">021</SimpleData>
+		<SimpleData name="TRACTCE10">010500</SimpleData>
+		<SimpleData name="GEOID10">13021010500</SimpleData>
+		<SimpleData name="NAME10">105</SimpleData>
+		<SimpleData name="NAMELSAD10">Census Tract 105</SimpleData>
+		<SimpleData name="MTFCC10">G5020</SimpleData>
+		<SimpleData name="FUNCSTAT10">S</SimpleData>
+		<SimpleData name="ALAND10">1352910</SimpleData>
+		<SimpleData name="AWATER10">0</SimpleData>
+		<SimpleData name="INTPTLAT10">+32.8259203</SimpleData>
+		<SimpleData name="INTPTLON10">-083.6505852</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-83.656968,32.825834 -83.65244,32.832737 -83.64935,32.832986 -83.645536,32.830722 -83.6458,32.827838 -83.642369,32.825545 -83.648751,32.819949 -83.65508,32.820014 -83.656968,32.825834</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#BibbTract">
+		<SimpleData name="STATEFP10">13</SimpleData>
+		<SimpleData name="COUNTYFP10">021</SimpleData>
+		<SimpleData name="TRACTCE10">010400</SimpleData>
+		<SimpleData name="GEOID10">13021010400</SimpleData>
+		<SimpleData name="NAME10">104</SimpleData>
+		<SimpleData name="NAMELSAD10">Census Tract 104</SimpleData>
+		<SimpleData name="MTFCC10">G5020</SimpleData>
+		<SimpleData name="FUNCSTAT10">S</SimpleData>
+		<SimpleData name="ALAND10">2176792</SimpleData>
+		<SimpleData name="AWATER10">0</SimpleData>
+		<SimpleData name="INTPTLAT10">+32.8260118</SimpleData>
+		<SimpleData name="INTPTLON10">-083.6644986</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-83.66791,32.830685 -83.65244,32.832737 -83.656829,32.826546 -83.65578,32.82003 -83.67452,32.820203 -83.674332,32.826115 -83.675693,32.827655 -83.66791,32.830685</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#BibbTract">
+		<SimpleData name="STATEFP10">13</SimpleData>
+		<SimpleData name="COUNTYFP10">021</SimpleData>
+		<SimpleData name="TRACTCE10">010300</SimpleData>
+		<SimpleData name="GEOID10">13021010300</SimpleData>
+		<SimpleData name="NAME10">103</SimpleData>
+		<SimpleData name="NAMELSAD10">Census Tract 103</SimpleData>
+		<SimpleData name="MTFCC10">G5020</SimpleData>
+		<SimpleData name="FUNCSTAT10">S</SimpleData>
+		<SimpleData name="ALAND10">1343270</SimpleData>
+		<SimpleData name="AWATER10">0</SimpleData>
+		<SimpleData name="INTPTLAT10">+32.8368044</SimpleData>
+		<SimpleData name="INTPTLON10">-083.6565470</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-83.653602,32.840624 -83.646,32.83796 -83.650326,32.832794 -83.66408,32.831729 -83.663549,32.841974 -83.653602,32.840624</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#BibbTract">
+		<SimpleData name="STATEFP10">13</SimpleData>
+		<SimpleData name="COUNTYFP10">021</SimpleData>
+		<SimpleData name="TRACTCE10">010200</SimpleData>
+		<SimpleData name="GEOID10">13021010200</SimpleData>
+		<SimpleData name="NAME10">102</SimpleData>
+		<SimpleData name="NAMELSAD10">Census Tract 102</SimpleData>
+		<SimpleData name="MTFCC10">G5020</SimpleData>
+		<SimpleData name="FUNCSTAT10">S</SimpleData>
+		<SimpleData name="ALAND10">1571394</SimpleData>
+		<SimpleData name="AWATER10">0</SimpleData>
+		<SimpleData name="INTPTLAT10">+32.8446915</SimpleData>
+		<SimpleData name="INTPTLON10">-083.6564658</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-83.649973,32.842022 -83.642313,32.840632 -83.643961,32.8367 -83.66761,32.844233 -83.665024,32.846049 -83.665624,32.848706 -83.662452,32.848878 -83.662429,32.850806 -83.655193,32.851174 -83.65528,32.848919 -83.649592,32.847202 -83.652032,32.84331 -83.649973,32.842022</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#BibbTract">
+		<SimpleData name="STATEFP10">13</SimpleData>
+		<SimpleData name="COUNTYFP10">021</SimpleData>
+		<SimpleData name="TRACTCE10">010100</SimpleData>
+		<SimpleData name="GEOID10">13021010100</SimpleData>
+		<SimpleData name="NAME10">101</SimpleData>
+		<SimpleData name="NAMELSAD10">Census Tract 101</SimpleData>
+		<SimpleData name="MTFCC10">G5020</SimpleData>
+		<SimpleData name="FUNCSTAT10">S</SimpleData>
+		<SimpleData name="ALAND10">1361500</SimpleData>
+		<SimpleData name="AWATER10">0</SimpleData>
+		<SimpleData name="INTPTLAT10">+32.8465208</SimpleData>
+		<SimpleData name="INTPTLON10">-083.6454864</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-83.649533,32.84176 -83.652032,32.84331 -83.649592,32.847202 -83.65528,32.848919 -83.655193,32.851174 -83.647697,32.850499 -83.642155,32.85239 -83.63743,32.847229 -83.640035,32.841321 -83.649533,32.84176</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#BibbTract">
+		<SimpleData name="STATEFP10">13</SimpleData>
+		<SimpleData name="COUNTYFP10">021</SimpleData>
+		<SimpleData name="TRACTCE10">013202</SimpleData>
+		<SimpleData name="GEOID10">13021013202</SimpleData>
+		<SimpleData name="NAME10">132.02</SimpleData>
+		<SimpleData name="NAMELSAD10">Census Tract 132.02</SimpleData>
+		<SimpleData name="MTFCC10">G5020</SimpleData>
+		<SimpleData name="FUNCSTAT10">S</SimpleData>
+		<SimpleData name="ALAND10">4704264</SimpleData>
+		<SimpleData name="AWATER10">17723</SimpleData>
+		<SimpleData name="INTPTLAT10">+32.8067378</SimpleData>
+		<SimpleData name="INTPTLON10">-083.7033874</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-83.714285,32.800331 -83.714446,32.80637 -83.723994,32.806606 -83.725488,32.809682 -83.711957,32.816172 -83.688186,32.815271 -83.689638,32.81241 -83.687739,32.811329 -83.6855,32.805992 -83.69204,32.805946 -83.700388,32.803278 -83.69913,32.79804 -83.71119,32.79866 -83.714318,32.797418 -83.714285,32.800331</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#BibbTract">
+		<SimpleData name="STATEFP10">13</SimpleData>
+		<SimpleData name="COUNTYFP10">021</SimpleData>
+		<SimpleData name="TRACTCE10">013201</SimpleData>
+		<SimpleData name="GEOID10">13021013201</SimpleData>
+		<SimpleData name="NAME10">132.01</SimpleData>
+		<SimpleData name="NAMELSAD10">Census Tract 132.01</SimpleData>
+		<SimpleData name="MTFCC10">G5020</SimpleData>
+		<SimpleData name="FUNCSTAT10">S</SimpleData>
+		<SimpleData name="ALAND10">11222800</SimpleData>
+		<SimpleData name="AWATER10">155888</SimpleData>
+		<SimpleData name="INTPTLAT10">+32.8287995</SimpleData>
+		<SimpleData name="INTPTLON10">-083.7188326</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-83.692917,32.82049 -83.688186,32.815271 -83.711957,32.816172 -83.725488,32.809682 -83.732746,32.832203 -83.74194,32.852241 -83.73635,32.854098 -83.733031,32.850105 -83.727719,32.851591 -83.723547,32.850154 -83.723511,32.848053 -83.721893,32.848844 -83.718777,32.846504 -83.71724,32.842042 -83.707249,32.838424 -83.7066,32.836078 -83.703369,32.834854 -83.702277,32.83159 -83.699897,32.831321 -83.69819,32.82817 -83.69559,32.82828 -83.691793,32.821582 -83.692917,32.82049</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#BibbTract">
+		<SimpleData name="STATEFP10">13</SimpleData>
+		<SimpleData name="COUNTYFP10">021</SimpleData>
+		<SimpleData name="TRACTCE10">013101</SimpleData>
+		<SimpleData name="GEOID10">13021013101</SimpleData>
+		<SimpleData name="NAME10">131.01</SimpleData>
+		<SimpleData name="NAMELSAD10">Census Tract 131.01</SimpleData>
+		<SimpleData name="MTFCC10">G5020</SimpleData>
+		<SimpleData name="FUNCSTAT10">S</SimpleData>
+		<SimpleData name="ALAND10">8499486</SimpleData>
+		<SimpleData name="AWATER10">24975</SimpleData>
+		<SimpleData name="INTPTLAT10">+32.7815564</SimpleData>
+		<SimpleData name="INTPTLON10">-083.7040959</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-83.71486,32.801385 -83.714318,32.797418 -83.70746,32.798605 -83.707076,32.786959 -83.679233,32.785261 -83.673528,32.789111 -83.672727,32.787384 -83.672685,32.784869 -83.700087,32.76697 -83.711801,32.752881 -83.711133,32.772534 -83.719118,32.786848 -83.720729,32.799045 -83.723994,32.806606 -83.714446,32.80637 -83.71486,32.801385</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#BibbTract">
+		<SimpleData name="STATEFP10">13</SimpleData>
+		<SimpleData name="COUNTYFP10">021</SimpleData>
+		<SimpleData name="TRACTCE10">012400</SimpleData>
+		<SimpleData name="GEOID10">13021012400</SimpleData>
+		<SimpleData name="NAME10">124</SimpleData>
+		<SimpleData name="NAMELSAD10">Census Tract 124</SimpleData>
+		<SimpleData name="MTFCC10">G5020</SimpleData>
+		<SimpleData name="FUNCSTAT10">S</SimpleData>
+		<SimpleData name="ALAND10">4471881</SimpleData>
+		<SimpleData name="AWATER10">34934</SimpleData>
+		<SimpleData name="INTPTLAT10">+32.8384200</SimpleData>
+		<SimpleData name="INTPTLON10">-083.6940133</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-83.709763,32.842545 -83.710247,32.847324 -83.707951,32.848315 -83.68808,32.847043 -83.687551,32.842881 -83.674744,32.836971 -83.67463,32.833152 -83.686962,32.833401 -83.687642,32.830264 -83.694359,32.826231 -83.695983,32.828581 -83.69819,32.82817 -83.699947,32.831356 -83.702277,32.83159 -83.703369,32.834854 -83.7066,32.836078 -83.707249,32.838424 -83.70919,32.838515 -83.709763,32.842545</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#BibbTract">
+		<SimpleData name="STATEFP10">13</SimpleData>
+		<SimpleData name="COUNTYFP10">021</SimpleData>
+		<SimpleData name="TRACTCE10">012200</SimpleData>
+		<SimpleData name="GEOID10">13021012200</SimpleData>
+		<SimpleData name="NAME10">122</SimpleData>
+		<SimpleData name="NAMELSAD10">Census Tract 122</SimpleData>
+		<SimpleData name="MTFCC10">G5020</SimpleData>
+		<SimpleData name="FUNCSTAT10">S</SimpleData>
+		<SimpleData name="ALAND10">3729591</SimpleData>
+		<SimpleData name="AWATER10">37628</SimpleData>
+		<SimpleData name="INTPTLAT10">+32.8537205</SimpleData>
+		<SimpleData name="INTPTLON10">-083.7049207</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-83.68003,32.850323 -83.677356,32.848304 -83.678725,32.84713 -83.68793,32.848578 -83.68808,32.847043 -83.706934,32.848402 -83.710247,32.847324 -83.712015,32.851255 -83.714359,32.851087 -83.713639,32.85358 -83.716721,32.858127 -83.692103,32.859023 -83.691033,32.860186 -83.679528,32.853879 -83.681438,32.852775 -83.68003,32.850323</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#BibbTract">
+		<SimpleData name="STATEFP10">13</SimpleData>
+		<SimpleData name="COUNTYFP10">021</SimpleData>
+		<SimpleData name="TRACTCE10">012000</SimpleData>
+		<SimpleData name="GEOID10">13021012000</SimpleData>
+		<SimpleData name="NAME10">120</SimpleData>
+		<SimpleData name="NAMELSAD10">Census Tract 120</SimpleData>
+		<SimpleData name="MTFCC10">G5020</SimpleData>
+		<SimpleData name="FUNCSTAT10">S</SimpleData>
+		<SimpleData name="ALAND10">8520349</SimpleData>
+		<SimpleData name="AWATER10">232604</SimpleData>
+		<SimpleData name="INTPTLAT10">+32.8801073</SimpleData>
+		<SimpleData name="INTPTLON10">-083.6679269</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-83.6586,32.887836 -83.655863,32.877519 -83.64798,32.879191 -83.644735,32.875235 -83.650335,32.873402 -83.653998,32.868981 -83.656669,32.868212 -83.662158,32.873965 -83.662402,32.861438 -83.679875,32.864547 -83.679663,32.865969 -83.674081,32.865229 -83.675755,32.869389 -83.674987,32.874161 -83.679768,32.873311 -83.680402,32.871637 -83.685063,32.869703 -83.68611,32.872127 -83.6902,32.872467 -83.682129,32.88268 -83.673283,32.886169 -83.68063,32.895103 -83.677101,32.898037 -83.678244,32.899628 -83.677155,32.90262 -83.674616,32.901747 -83.674501,32.902937 -83.663301,32.898736 -83.66069,32.896053 -83.6586,32.887836</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#BibbTract">
+		<SimpleData name="STATEFP10">13</SimpleData>
+		<SimpleData name="COUNTYFP10">021</SimpleData>
+		<SimpleData name="TRACTCE10">011702</SimpleData>
+		<SimpleData name="GEOID10">13021011702</SimpleData>
+		<SimpleData name="NAME10">117.02</SimpleData>
+		<SimpleData name="NAMELSAD10">Census Tract 117.02</SimpleData>
+		<SimpleData name="MTFCC10">G5020</SimpleData>
+		<SimpleData name="FUNCSTAT10">S</SimpleData>
+		<SimpleData name="ALAND10">8791706</SimpleData>
+		<SimpleData name="AWATER10">236641</SimpleData>
+		<SimpleData name="INTPTLAT10">+32.8600140</SimpleData>
+		<SimpleData name="INTPTLON10">-083.5665916</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-83.56543,32.876832 -83.548693,32.863441 -83.55504,32.85494 -83.571968,32.843789 -83.576401,32.844603 -83.583943,32.849347 -83.593387,32.845329 -83.595166,32.84613 -83.592863,32.847422 -83.5923,32.853648 -83.597093,32.857923 -83.596757,32.860402 -83.58515,32.865496 -83.578632,32.865142 -83.56543,32.876832</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#BibbTract">
+		<SimpleData name="STATEFP10">13</SimpleData>
+		<SimpleData name="COUNTYFP10">021</SimpleData>
+		<SimpleData name="TRACTCE10">011000</SimpleData>
+		<SimpleData name="GEOID10">13021011000</SimpleData>
+		<SimpleData name="NAME10">110</SimpleData>
+		<SimpleData name="NAMELSAD10">Census Tract 110</SimpleData>
+		<SimpleData name="MTFCC10">G5020</SimpleData>
+		<SimpleData name="FUNCSTAT10">S</SimpleData>
+		<SimpleData name="ALAND10">13859553</SimpleData>
+		<SimpleData name="AWATER10">366051</SimpleData>
+		<SimpleData name="INTPTLAT10">+32.8740448</SimpleData>
+		<SimpleData name="INTPTLON10">-083.6313081</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-83.655863,32.877519 -83.6586,32.887836 -83.599257,32.887839 -83.607822,32.879464 -83.612105,32.872746 -83.612829,32.863374 -83.619694,32.852241 -83.62819,32.845827 -83.6329,32.850535 -83.637782,32.859584 -83.64404,32.861256 -83.654001,32.867235 -83.651077,32.872893 -83.645169,32.874661 -83.645244,32.877315 -83.649273,32.879351 -83.655863,32.877519</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder></Document></kml>

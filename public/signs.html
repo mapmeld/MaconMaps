@@ -1,0 +1,1801 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Sign Calculator</title>
+		<link href="/stylesheets/bootstrap-mini.css" type="text/css" rel="stylesheet"/>
+		<script type="text/javascript">
+var myZone;
+var myZoneLaws;
+function selectZone(e){
+	myZone = e.target.value;
+	if(e.target.id == "sale_zone_selected"){
+		// for sale signs
+		$("sale_signdeets").style.display = "block";
+		for(var i=0;i<quickForms.length;i++){
+			if(quickForms[i].zoneNames.indexOf(myZone) > -1){
+				myZoneLaws = quickForms[i];
+				break;
+			}
+		}
+		if(myZoneLaws.sale.warning){
+			$("sale_zoneWarning").innerHTML = myZoneLaws.sale.warning;
+		}
+		$("sale_fyard").innerHTML = myZoneLaws.sale.frontyard;
+		$("sale_maxheight").innerHTML = myZoneLaws.sale.maxheight;
+		$("sale_maxsigns").innerHTML = myZoneLaws.sale.maxsigns;
+		$("sale_maxarea").innerHTML = myZoneLaws.sale.maxsize;
+	}
+	else if(e.target.id == "construction_zone_selected"){
+		// for sale signs
+		$("construction_signdeets").style.display = "block";
+		for(var i=0;i<quickForms.length;i++){
+			if(quickForms[i].zoneNames.indexOf(myZone) > -1){
+				myZoneLaws = quickForms[i];
+				break;
+			}
+		}
+		if(myZoneLaws.construction.warning){
+			$("construction_zoneWarning").innerHTML = myZoneLaws.construction.warning;
+		}
+		$("construction_fyard").innerHTML = myZoneLaws.construction.frontyard;
+		$("construction_maxheight").innerHTML = myZoneLaws.construction.maxheight;
+		$("construction_maxsigns").innerHTML = myZoneLaws.construction.maxsigns;
+		$("construction_maxarea").innerHTML = myZoneLaws.construction.maxsize;
+	}
+	else if(e.target.id == "subdivision_zone_selected"){
+		// for sale signs
+		$("subdivision_signdeets").style.display = "block";
+		for(var i=0;i<quickForms.length;i++){
+			if(quickForms[i].zoneNames.indexOf(myZone) > -1){
+				myZoneLaws = quickForms[i];
+				break;
+			}
+		}
+		if(!myZoneLaws.subdivision){
+			// non-residential, does not allow subdivision signs
+			$("subdivision_zoneWarning").innerHTML = "This zone is not residential and does not have subdivision signs.";
+			return;
+		}
+		if(myZoneLaws.subdivision.warning){
+			$("subdivision_zoneWarning").innerHTML = myZoneLaws.subdivision.warning;
+		}
+		$("subdivision_fyard").innerHTML = myZoneLaws.subdivision.frontyard;
+		$("subdivision_maxheight").innerHTML = myZoneLaws.subdivision.maxheight;
+		$("subdivision_maxsigns").innerHTML = myZoneLaws.subdivision.maxsigns;
+		$("subdivision_maxarea").innerHTML = myZoneLaws.subdivision.maxsize;
+	}
+	else{
+		if(myZone == "none"){
+			return;
+		}
+		loadZone();
+	}
+}
+var quickForms = [
+	{
+		zoneNames: [ "residential1" ],
+		sale: {
+			frontyard: 2,
+			maxheight: 6,
+			maxsigns: 3,
+			maxsize: 5
+		},
+		construction: {
+			frontyard: 2,
+			maxheight: 2.5,
+			maxsigns: 2,
+			maxsize: 4
+		},
+		subdivision: {
+			frontyard: 2,
+			maxheight: 5,
+			maxsigns: 1,
+			maxsize: 32
+		}
+	},
+	{
+		// residential2 differs from residential 1 in for sale sign size
+		zoneNames: [ "residential2" ],
+		sale: {
+			frontyard: 2,
+			maxheight: 6,
+			maxsigns: 3,
+			maxsize: 20
+		},
+		construction: {
+			frontyard: 2,
+			maxheight: 2.5,
+			maxsigns: 2,
+			maxsize: 4
+		},
+		subdivision: {
+			frontyard: 2,
+			maxheight: 5,
+			maxsigns: 1,
+			maxsize: 32
+		}
+	},
+	{
+		zoneNames: [ "commercial", "industrial", "pde", "agricultural" ],
+		sale: {
+			warning: "1 sign per 300 feet of parcel frontage.<br/>Along interstate highways, maximum area raised to 64 square feet.",
+			frontyard: 2,
+			maxheight: 12,
+			maxsigns: 3,
+			maxsize: 32
+		},
+		construction: {
+			frontyard: 2,
+			maxheight: 12,
+			maxsigns: 2,
+			maxsize: 32
+		}
+	}
+]
+var zonePermissions = [
+	{
+		zoneNames: [ "RR", "R-1AAA", "R-1AAAA", "R-1AA", "R-1A", "R-1", "MHR" ],
+		categories: [
+			{
+				name: "Single-family residential",
+				locations: [ "Freestanding", "Wall" ],
+				maxsigns: 1,
+				maxfreestanding: 1,
+				maxsize: 2,
+				maxtotal: 2,
+				maxheight: 2
+			},
+			{
+				name: "Institutional uses, banks, places of assembly",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxsigns: 3,
+				maxfreestanding: 1,
+				maxsize: 50,
+				maxtotal: 50,
+				maxheight: 5
+			},
+			{
+				name: "Multi-family development",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxsigns: 1,
+				maxfreestanding: 1,
+				maxsize: 32,
+				maxtotal: 32,
+				maxheight: 5
+			},
+			{
+				name: "Guest quarter enterprise",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxsigns: 1,
+				maxfreestanding: 1,
+				maxsize: 8,
+				maxtotal: 8,
+				maxheight: 5
+			},
+			{
+				name: "Business ( for each use on a property )",
+				locations: [ "Freestanding", "Wall" ],
+				maxsigns: 2,
+				maxfreestanding: 1,
+				maxsize: {
+					wall: 4,
+					freestanding: 8
+				},
+				maxtotal: 12
+			}
+		]
+	},
+	{
+		zoneNames: [ "R-2A", "R-2" ],
+		categories: [
+			// differ from other residential by adding professional offices
+			// dependent on whether office is on busy street
+			{
+				name: "Professional office on arterial or collector street",
+				locations: [ "Wall", "Freestanding" ],
+				maxsigns: 2,
+				maxfreestanding: 1,
+				maxsize: {
+					wall: 4,
+					freestanding: 8
+				},
+				maxtotal: 12,
+				maxheight: 5
+			},
+			{
+				name: "Professional office NOT on arterial or collector street",
+				locations: [ "Wall" ],
+				maxsigns: 1,
+				maxsize: 4,
+				maxtotal: 4,
+				maxheight: 5
+			},
+			{
+				name: "Single-family residential",
+				locations: [ "Freestanding", "Wall" ],
+				maxsigns: 1,
+				maxfreestanding: 1,
+				maxsize: 2,
+				maxtotal: 2,
+				maxheight: 2
+			},
+			{
+				name: "Institutional uses, banks, places of assembly",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxsigns: 3,
+				maxfreestanding: 1,
+				maxsize: 50,
+				maxtotal: 50
+			},
+			{
+				name: "Multi-family development",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxsigns: 1,
+				maxfreestanding: 1,
+				maxsize: 32,
+				maxtotal: 32,
+				maxheight: 5
+			},
+			{
+				name: "Guest quarter enterprise",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxsigns: 1,
+				maxfreestanding: 1,
+				maxsize: 8,
+				maxtotal: 8,
+				maxheight: 5
+			},
+			{
+				name: "Business ( for each use on a property )",
+				locations: [ "Freestanding", "Wall" ],
+				maxsigns: 2,
+				maxfreestanding: 1,
+				maxsize: {
+					wall: 4,
+					freestanding: 8
+				},
+				maxtotal: 12
+			}
+		]
+	},
+	{
+		zoneNames: [ "R-3" ],
+		categories: [
+			// differ from other residential by adding professional office
+			// unlike R-2*, not dependent on street type
+			{
+				name: "Professional office",
+				locations: [ "Wall", "Freestanding" ],
+				maxsigns: 2,
+				maxfreestanding: 1,
+				maxsize: {
+					wall: 4,
+					freestanding: 8
+				},
+				maxtotal: 12,
+				maxheight: 5
+			},
+			{
+				name: "Single-family residential",
+				locations: [ "Freestanding", "Wall" ],
+				maxsigns: 1,
+				maxfreestanding: 1,
+				maxsize: 2,
+				maxtotal: 2,
+				maxheight: 2
+			},
+			{
+				name: "Institutional uses, banks, places of assembly",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxsigns: 3,
+				maxfreestanding: 1,
+				maxsize: 50,
+				maxtotal: 50,
+				maxheight: 5
+			},
+			{
+				name: "Multi-family development",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxsigns: 1,
+				maxfreestanding: 1,
+				maxsize: 32,
+				maxtotal: 32,
+				maxheight: 5
+			},
+			{
+				name: "Guest quarter enterprise",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxsigns: 1,
+				maxfreestanding: 1,
+				maxsize: 8,
+				maxtotal: 8,
+				maxheight: 5
+			},
+			{
+				name: "Business ( per property )",
+				locations: [ "Freestanding", "Wall" ],
+				maxsigns: 2,
+				maxfreestanding: 1,
+				maxsize: {
+					wall: 4,
+					freestanding: 8
+				},
+				maxtotal: 12
+			}
+		]
+	},
+	{
+		zoneNames: [ "A", "C-1", "C-5" ],
+		categories: [
+			{
+				name: "Single-family residential",
+				locations: [ "Freestanding", "Wall" ],
+				maxsigns: 1,
+				maxfreestanding: 1,
+				maxsize: 2,
+				maxtotal: 2,
+				maxheight: 2
+			},
+			{
+				name: "Institutional uses, places of assembly",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxsigns: 3,
+				maxfreestanding: 1,
+				maxsize: 50,
+				maxtotal: 150,
+				maxheight: {
+					"2 lanes": 8,
+					"3 lanes": 10,
+					"4 lanes": 14
+				}
+			},
+			{
+				name: "Multi-family development",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxsigns: 1,
+				maxfreestanding: 1,
+				maxsize: 32,
+				maxtotal: 32,
+				maxheight: 8
+			},
+			{
+				name: "Guest quarter enterprise",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxsigns: 1,
+				maxfreestanding: 1,
+				maxsize: 8,
+				maxtotal: 8,
+				maxheight: 8
+			},
+			{
+				name: "Professional office ",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxfreestanding: 1,
+				maxsize: 120,
+				maxtotal: "2 sq ft per foot of lot frontage",
+				maxheight: {
+					"2 lanes" : 8,
+					"3 lanes" : 10,
+					"4 lanes" : 14
+				}
+			},
+			{
+				name: "Business (including banks) (per property)",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxfreestanding: 1,
+				maxsize: 120,
+				maxtotal: "2 sq ft per foot of lot frontage",
+				maxheight: {
+					"2 lanes" : 8,
+					"3 lanes" : 10,
+					"4 lanes" : 14
+				}
+			},
+			{
+				name: "Business (including banks) in shopping center (per property)",
+				locations: [ "Canopy", "Wall" ],
+				maxsize: 120,
+				maxtotal: "2 sq ft per foot of building frontage",
+				maxheight: {
+					"2 lanes" : 8,
+					"3 lanes" : 10,
+					"4 lanes" : 14
+				}
+			},
+			{
+				name: "Shopping center, office park, or warehouse park",
+				locations: [ "Freestanding" ],
+				maxsigns: "1 sign per street frontage",
+				maxfreestanding: 1,
+				maxsize: 200,
+				maxtotal: 320,
+				maxheight: {
+					"2 lanes" : 10,
+					"3 lanes" : 20,
+					"4 lanes" : 35
+				}
+			}
+		]
+	},
+	{
+		zoneNames: [ "C-2", "C-4" ],
+		categories: [
+			{
+				name: "Single-family residential",
+				locations: [ "Freestanding", "Wall" ],
+				maxsigns: 1,
+				maxfreestanding: 1,
+				maxsize: 2,
+				maxtotal: 2,
+				maxheight: 2
+			},
+			{
+				name: "Institutional uses, banks, places of assembly",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxsigns: 3,
+				maxfreestanding: 1,
+				maxsize: 50,
+				maxtotal: 150,
+				maxheight: {
+					"2 lanes": 10,
+					"3 lanes": 20,
+					"4 lanes": 35
+				}
+			},
+			{
+				name: "Multi-family development",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxsigns: 1,
+				maxfreestanding: 1,
+				maxsize: 32,
+				maxtotal: 32,
+				maxheight: 10
+			},
+			{
+				name: "Guest quarter enterprise",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxsigns: 1,
+				maxfreestanding: 1,
+				maxsize: 8,
+				maxtotal: 8,
+				maxheight: 10
+			},
+			{
+				name: "Professional office ",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxfreestanding: 1,
+				maxsize: 200,
+				maxtotal: "2 sq ft per foot of lot frontage",
+				maxheight: {
+					"2 lanes" : 10,
+					"3 lanes" : 20,
+					"4 lanes" : 35
+				}
+			},
+			{
+				name: "New car dealer",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxfreestanding: "1 per each 250 feet of lot frontage",
+				maxsize: 200,
+				maxtotal: "2 sq ft per foot of lot frontage",
+				maxheight: {
+					"2 lanes" : 10,
+					"3 lanes" : 20,
+					"4 lanes" : 35
+				}
+			},
+			{
+				name: "Used car lots",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxfreestanding: 1,
+				maxsize: 200,
+				maxtotal: "2 sq ft per foot of lot frontage",
+				maxheight: {
+					"2 lanes" : 10,
+					"3 lanes" : 20,
+					"4 lanes" : 35
+				}
+			},
+			{
+				name: "Business (per property)",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxfreestanding: 1,
+				maxsize: 200,
+				maxtotal: "2 sq ft per foot of lot frontage",
+				maxheight: {
+					"2 lanes" : 10,
+					"3 lanes" : 20,
+					"4 lanes" : 35
+				}
+			},
+			{
+				name: "Business in shopping center (per property)",
+				locations: [ "Canopy", "Wall" ],
+				maxsize: 200,
+				maxtotal: "2 sq ft per foot of building frontage",
+				maxheight: {
+					"2 lanes" : 10,
+					"3 lanes" : 20,
+					"4 lanes" : 35
+				}
+			},
+			{
+				name: "Shopping center, office park, or warehouse park",
+				locations: [ "Freestanding" ],
+				maxsigns: "1 sign per street frontage",
+				maxfreestanding: 1,
+				maxsize: 200,
+				maxtotal: 320,
+				maxheight: {
+					"2 lanes" : 10,
+					"3 lanes" : 20,
+					"4 lanes" : 35
+				}
+			}
+		]
+	},
+	{
+		// CBD-1 has stricter sign regulations than CBD-2
+		zoneNames: [ "CBD-1" ],
+		warning: "Certificate of appropriateness required from P&Z",
+		categories: [
+			{
+				name: "Single-family residential",
+				locations: [ "Freestanding", "Wall" ],
+				maxsigns: 1,
+				maxfreestanding: 1,
+				maxsize: 2,
+				maxtotal: 2,
+				maxheight: 2
+			},
+			{
+				name: "Institutional uses, places of assembly",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxsigns: 3,
+				maxfreestanding: 1,
+				maxsize: 50,
+				maxtotal: 150,
+				maxheight: {
+					"2 lanes" : 8,
+					"3 lanes" : 10,
+					"4 lanes" : 14
+				}
+			},
+			{
+				name: "Multi-family development",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxsigns: 1,
+				maxfreestanding: 1,
+				maxsize: 8,
+				maxtotal: 8,
+				maxheight: 8
+			},
+			{
+				name: "Guest quarter enterprise",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxsigns: 1,
+				maxfreestanding: 1,
+				maxsize: 8,
+				maxtotal: 8,
+				maxheight: 8
+			},
+			{
+				name: "Professional office ",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxfreestanding: 1,
+				maxsize: 120,
+				maxtotal: "2 sq ft per foot of lot frontage",
+				maxheight: {
+					"2 lanes" : 8,
+					"3 lanes" : 10,
+					"4 lanes" : 14
+				}
+			},
+			{
+				name: "New car dealer",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxfreestanding: "1 per each 250 feet of lot frontage",
+				maxsize: 120,
+				maxtotal: "2 sq ft per foot of lot frontage",
+				maxheight: {
+					"2 lanes" : 8,
+					"3 lanes" : 10,
+					"4 lanes" : 14
+				}
+			},
+			{
+				name: "Used car lots",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxfreestanding: 1,
+				maxsize: 120,
+				maxtotal: "2 sq ft per foot of lot frontage",
+				maxheight: {
+					"2 lanes" : 8,
+					"3 lanes" : 10,
+					"4 lanes" : 14
+				}
+			},
+			{
+				name: "Business (per property)",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxfreestanding: 1,
+				maxsize: 120,
+				maxtotal: "2 sq ft per foot of frontage",
+				maxheight: {
+					"2 lanes" : 8,
+					"3 lanes" : 10,
+					"4 lanes" : 14
+				}
+			},
+			{
+				name: "Business in shopping center (per property)",
+				locations: [ "Canopy", "Wall" ],
+				maxsize: 120,
+				maxtotal: "2 sq ft per foot of building frontage",
+				maxheight: {
+					"2 lanes" : 8,
+					"3 lanes" : 10,
+					"4 lanes" : 14
+				}
+			},
+			{
+				name: "Shopping center, office park, or warehouse park",
+				locations: [ "Freestanding" ],
+				maxsigns: "1 sign per street frontage",
+				maxfreestanding: 1,
+				maxsize: 200,
+				maxtotal: 320,
+				maxheight: {
+					"2 lanes" : 8,
+					"3 lanes" : 10,
+					"4 lanes" : 14
+				}
+			}
+		]
+	},
+	{
+		// CBD-1 has stricter sign regulations than CBD-2
+		zoneNames: [ "CBD-2" ],
+		warning: "Certificate of appropriateness required from P&Z",
+		categories: [
+			{
+				name: "Single-family residential",
+				locations: [ "Freestanding", "Wall" ],
+				maxsigns: 1,
+				maxfreestanding: 1,
+				maxsize: 2,
+				maxtotal: 2,
+				maxheight: 2
+			},
+			{
+				name: "Institutional uses, places of assembly",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxsigns: 3,
+				maxfreestanding: 1,
+				maxsize: 50,
+				maxtotal: 150,
+				maxheight: {
+					"2 lanes" : 8,
+					"3 lanes" : 10,
+					"4 lanes" : 14
+				}
+			},
+			{
+				name: "Multi-family development",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxsigns: 1,
+				maxfreestanding: 1,
+				maxsize: 8,
+				maxtotal: 8,
+				maxheight: 8
+			},
+			{
+				name: "Guest quarter enterprise",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxsigns: 1,
+				maxfreestanding: 1,
+				maxsize: 8,
+				maxtotal: 8,
+				maxheight: 8
+			},
+			{
+				name: "Professional office ",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxfreestanding: 1,
+				maxsize: 200,
+				maxtotal: "2 sq ft per foot of lot frontage",
+				maxheight: {
+					"2 lanes" : 8,
+					"3 lanes" : 10,
+					"4 lanes" : 14
+				}
+			},
+			{
+				name: "New car dealer",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxfreestanding: "1 per each 250 feet of lot frontage",
+				maxsize: 200,
+				maxtotal: "2 sq ft per foot of lot frontage",
+				maxheight: {
+					"2 lanes" : 8,
+					"3 lanes" : 10,
+					"4 lanes" : 14
+				}
+			},
+			{
+				name: "Used car lots",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxfreestanding: 1,
+				maxsize: 200,
+				maxtotal: "2 sq ft per foot of lot frontage",
+				maxheight: {
+					"2 lanes" : 8,
+					"3 lanes" : 10,
+					"4 lanes" : 14
+				}
+			},
+			{
+				name: "Business (per property)",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxfreestanding: 1,
+				maxsize: 200,
+				maxtotal: "2 sq ft per foot of frontage",
+				maxheight: {
+					"2 lanes" : 8,
+					"3 lanes" : 10,
+					"4 lanes" : 14
+				}
+			},
+			{
+				name: "Business in shopping center (per property)",
+				locations: [ "Canopy", "Wall" ],
+				maxsize: 200,
+				maxtotal: "2 sq ft per foot of building frontage",
+				maxheight: {
+					"2 lanes" : 8,
+					"3 lanes" : 10,
+					"4 lanes" : 14
+				}
+			},
+			{
+				name: "Shopping center, office park, or warehouse park",
+				locations: [ "Freestanding" ],
+				maxsigns: "1 sign per street frontage",
+				maxfreestanding: 1,
+				maxsize: 200,
+				maxtotal: 320,
+				maxheight: {
+					"2 lanes" : 8,
+					"3 lanes" : 10,
+					"4 lanes" : 14
+				}
+			}
+		]
+	},
+	{
+		zoneNames: [ "PDI", "PDC", "PDE" ],
+		// PROBLEM: regulation says professional offices follow PDR guidelines, which are another zone?
+		categories: [
+			{
+				name: "Single-family residential",
+				locations: [ "Freestanding", "Wall" ],
+				maxsigns: 1,
+				maxfreestanding: 1,
+				maxsize: 2,
+				maxtotal: 2,
+				maxheight: 2
+			},
+			{
+				name: "Institutional uses, places of assembly",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxsigns: 3,
+				maxfreestanding: 1,
+				maxsize: 50,
+				maxtotal: 50,
+				maxheight: {
+					"2 lanes" : 8,
+					"3 lanes" : 10,
+					"4 lanes" : 14
+				}
+			},
+			{
+				name: "Multi-family development",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxsigns: 1,
+				maxfreestanding: 1,
+				maxsize: 32,
+				maxtotal: 32
+			},
+			{
+				name: "Guest quarter enterprise",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxsigns: 1,
+				maxfreestanding: 1,
+				maxsize: 8,
+				maxtotal: 8
+			},
+			{
+				name: "Professional office",
+				locations: [ "Wall" ],
+				maxsigns: 2,
+				maxfreestanding: 1,
+				maxsize: {
+					wall: 4,
+					freestanding: 8
+				},
+				maxtotal: 12,
+				maxheight: {
+					"2 lanes" : 8,
+					"3 lanes" : 10,
+					"4 lanes" : 14
+				}
+			},
+			{
+				name: "New car dealer",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxfreestanding: "1 per each 250 feet of lot frontage",
+				maxsize: 200,
+				maxtotal: "2 sq ft per foot of lot frontage",
+				maxheight: {
+					"2 lanes" : 8,
+					"3 lanes" : 10,
+					"4 lanes" : 14
+				}
+			},
+			{
+				name: "Used car lots",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxfreestanding: 1,
+				maxsize: 200,
+				maxtotal: "2 sq ft per foot of lot frontage",
+				maxheight: {
+					"2 lanes" : 8,
+					"3 lanes" : 10,
+					"4 lanes" : 14
+				}
+			},
+			{
+				name: "Business (per property)",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxfreestanding: 1,
+				maxsize: 200,
+				maxtotal: "2 sq ft per foot of frontage",
+				maxheight: {
+					"2 lanes" : 8,
+					"3 lanes" : 10,
+					"4 lanes" : 14
+				}
+			},
+			{
+				name: "Business in shopping center (per property)",
+				locations: [ "Canopy", "Wall" ],
+				maxsize: 200,
+				maxtotal: "2 sq ft per foot of building frontage",
+				maxheight: {
+					"2 lanes" : 8,
+					"3 lanes" : 10,
+					"4 lanes" : 14
+				}
+			},
+			{
+				name: "Shopping center, office park, or warehouse park",
+				locations: [ "Freestanding" ],
+				maxsigns: "1 sign per street frontage",
+				maxfreestanding: 1,
+				maxsize: 200,
+				maxtotal: 320,
+				maxheight: {
+					"2 lanes" : 10,
+					"3 lanes" : 20,
+					"4 lanes" : 35
+				}
+			}
+		]
+	},
+	{
+		// HR-3 and PDR are stricter on professional offices' signs, have different max heights
+		zoneNames: [ "PDR" ],
+		categories: [
+			{
+				name: "Single-family residential",
+				locations: [ "Freestanding", "Wall" ],
+				maxsigns: 1,
+				maxfreestanding: 1,
+				maxsize: 2,
+				maxtotal: 2,
+				maxheight: 2
+			},
+			{
+				name: "Institutional uses, places of assembly",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxsigns: 3,
+				maxfreestanding: 1,
+				maxsize: 10,
+				maxtotal: 30,
+				maxheight: 5
+			},
+			{
+				name: "Multi-family development",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxsigns: 3,
+				maxfreestanding: 1,
+				maxsize: 10,
+				maxtotal: 30,
+				maxheight: 5
+			},
+			{
+				name: "Guest quarter enterprise",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxsigns: 1,
+				maxfreestanding: 1,
+				maxsize: 8,
+				maxtotal: 8,
+				maxheight: 5
+			},
+			{
+				name: "Professional office",
+				locations: [ "Freestanding", "Wall" ],
+				maxsigns: 2,
+				maxfreestanding: 1,
+				maxsize: {
+					wall: 4,
+					freestanding: 8
+				},
+				maxtotal: 12,
+				maxheight: 5
+			},
+			{
+				name: "Business (per property)",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxfreestanding: 1,
+				maxsize: 16,
+				maxtotal: 16,
+				maxheight: 5
+			},
+			{
+				name: "Business in shopping center (per property)",
+				locations: [ "Canopy", "Wall" ],
+				maxsize: 16,
+				maxtotal: 16,
+				maxheight: 5
+			},
+			{
+				name: "Shopping center, office park, or warehouse park",
+				locations: [ "Freestanding" ],
+				maxsigns: "1 sign per street frontage",
+				maxfreestanding: 1,
+				maxsize: 200,
+				maxtotal: 320,
+				maxheight: 10
+			}
+		]
+	},
+	{
+		zoneNames: [ "M-1", "M-2", "M-3" ],
+		categories: [
+			{
+				name: "Single-family residential",
+				locations: [ "Freestanding", "Wall" ],
+				maxsigns: 1,
+				maxfreestanding: 1,
+				maxsize: 2,
+				maxtotal: 2,
+				maxheight: 2
+			},
+			{
+				name: "Institutional uses, places of assembly",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxsigns: 3,
+				maxfreestanding: 1,
+				maxsize: 50,
+				maxtotal: 150,
+				maxheight: {
+					"2 lanes": 10,
+					"3 lanes": 20,
+					"4 lanes": 35
+				}
+			},
+			{
+				name: "Multi-family development",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxsigns: 1,
+				maxfreestanding: 1,
+				maxsize: 32,
+				maxtotal: 32,
+				maxheight: 8
+			},
+			{
+				name: "Guest quarter enterprise",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxsigns: 1,
+				maxfreestanding: 1,
+				maxsize: 8,
+				maxtotal: 8,
+				maxheight: 8
+			},
+			{
+				name: "Professional office",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxfreestanding: 1,
+				maxsize: 120,
+				maxtotal: "2 sq ft per foot of lot frontage",
+				maxheight: {
+					"2 lanes": 10,
+					"3 lanes": 20,
+					"4 lanes": 35
+				}
+			},
+			{
+				name: "New car dealer",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxfreestanding: "1 per each 250 feet of lot frontage",
+				maxsize: 200,
+				maxtotal: "2 sq ft per foot of lot frontage",
+				maxheight: {
+					"2 lanes": 10,
+					"3 lanes": 20,
+					"4 lanes": 35
+				}
+			},
+			{
+				name: "Used car lots",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxfreestanding: 1,
+				maxsize: 200,
+				maxtotal: "2 sq ft per foot of lot frontage",
+				maxheight: {
+					"2 lanes": 10,
+					"3 lanes": 20,
+					"4 lanes": 35
+				}
+			},
+			{
+				name: "Business (per property)",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxfreestanding: 1,
+				maxsize: 120,
+				maxtotal: "2 sq ft per foot of frontage",
+				maxheight: {
+					"2 lanes": 10,
+					"3 lanes": 20,
+					"4 lanes": 35
+				}
+			},
+			{
+				name: "Business in shopping center (per property)",
+				locations: [ "Canopy", "Wall" ],
+				maxsize: 120,
+				maxtotal: "2 sq ft per foot of building frontage",
+				maxheight: {
+					"2 lanes": 10,
+					"3 lanes": 20,
+					"4 lanes": 35
+				}
+			},
+			{
+				name: "Shopping center, office park, or warehouse park",
+				locations: [ "Freestanding" ],
+				maxsigns: "1 sign per street frontage",
+				maxfreestanding: 1,
+				maxsize: 200,
+				maxtotal: 320,
+				maxheight: {
+					"2 lanes": 10,
+					"3 lanes": 20,
+					"4 lanes": 35
+				}
+			}
+		]
+	},
+	{
+		// HR-3 and PDR are stricter on professional offices' signs
+		// HR-3 has same maxheight as these
+		zoneNames: [ "HR-1", "HR-2", "HC", "HPD" ],
+		categories: [
+			{
+				name: "Single-family residential",
+				locations: [ "Freestanding", "Wall" ],
+				maxsigns: 1,
+				maxfreestanding: 1,
+				maxsize: 2,
+				maxtotal: 2,
+				maxheight: 2
+			},
+			{
+				name: "Institutional uses, places of assembly",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxsigns: 3,
+				maxfreestanding: 1,
+				maxsize: 10,
+				maxtotal: 30,
+				maxheight: {
+					"2 lanes": 8,
+					"3 lanes": 10,
+					"4 lanes": 14
+				}
+			},
+			{
+				name: "Multi-family development",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxsigns: 3,
+				maxfreestanding: 1,
+				maxsize: 10,
+				maxtotal: 30,
+				maxheight: 10
+			},
+			{
+				name: "Guest quarter enterprise",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxsigns: 1,
+				maxfreestanding: 1,
+				maxsize: 8,
+				maxtotal: 8,
+				maxheight: 10
+			},
+			{
+				name: "Professional office",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxfreestanding: 1,
+				maxsize: 16,
+				maxtotal: 16,
+				maxheight: {
+					"2 lanes": 8,
+					"3 lanes": 10,
+					"4 lanes": 14
+				}
+			},
+			{
+				name: "Business (per property)",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxfreestanding: 1,
+				maxsize: 16,
+				maxtotal: 16,
+				maxheight: {
+					"2 lanes": 8,
+					"3 lanes": 10,
+					"4 lanes": 14
+				}
+			},
+			{
+				name: "Business in shopping center (per property)",
+				locations: [ "Canopy", "Wall" ],
+				maxsize: 16,
+				maxtotal: 16,
+				maxheight: {
+					"2 lanes": 8,
+					"3 lanes": 10,
+					"4 lanes": 14
+				}
+			},
+			{
+				name: "Shopping center, office park, or warehouse park",
+				locations: [ "Freestanding" ],
+				maxsigns: "1 sign per street frontage",
+				maxfreestanding: 1,
+				maxsize: 200,
+				maxtotal: 320,
+				maxheight: {
+					"2 lanes": 10,
+					"3 lanes": 20,
+					"4 lanes": 35
+				}
+			}
+		]
+	},	
+	{
+		zoneNames: [ "HR-3" ],
+		categories: [
+			{
+				name: "Single-family residential",
+				locations: [ "Freestanding", "Wall" ],
+				maxsigns: 1,
+				maxfreestanding: 1,
+				maxsize: 2,
+				maxtotal: 2,
+				maxheight: 2
+			},
+			{
+				name: "Institutional uses, places of assembly",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxsigns: 3,
+				maxfreestanding: 1,
+				maxsize: 10,
+				maxtotal: 30,
+				maxheight: {
+					"2 lanes": 8,
+					"3 lanes": 10,
+					"4 lanes": 14
+				}
+			},
+			{
+				name: "Multi-family development",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxsigns: 3,
+				maxfreestanding: 1,
+				maxsize: 10,
+				maxtotal: 30,
+				maxheight: 10
+			},
+			{
+				name: "Guest quarter enterprise",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxsigns: 1,
+				maxfreestanding: 1,
+				maxsize: 8,
+				maxtotal: 8,
+				maxheight: 10
+			},
+			{
+				name: "Professional office",
+				locations: [ "Freestanding", "Wall" ],
+				maxsigns: 2,
+				maxfreestanding: 1,
+				maxsize: {
+					wall: 4,
+					freestanding: 8
+				},
+				maxtotal: 12,
+				maxheight: {
+					"2 lanes": 8,
+					"3 lanes": 10,
+					"4 lanes": 14
+				}
+			},
+			{
+				name: "Business (per property)",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxfreestanding: 1,
+				maxsize: 16,
+				maxtotal: 16,
+				maxheight: {
+					"2 lanes": 8,
+					"3 lanes": 10,
+					"4 lanes": 14
+				}
+			},
+			{
+				name: "Business in shopping center (per property)",
+				locations: [ "Canopy", "Wall" ],
+				maxsize: 16,
+				maxtotal: 16,
+				maxheight: {
+					"2 lanes": 8,
+					"3 lanes": 10,
+					"4 lanes": 14
+				}
+			},
+			{
+				name: "Shopping center, office park, or warehouse park",
+				locations: [ "Freestanding" ],
+				maxsigns: "1 sign per street frontage",
+				maxfreestanding: 1,
+				maxsize: 200,
+				maxtotal: 320,
+				maxheight: {
+					"2 lanes": 10,
+					"3 lanes": 20,
+					"4 lanes": 35
+				}
+			}
+		]
+	},
+	{
+		zoneNames: [ "SC" ],
+		categories: [
+			{
+				name: "Single-family residential",
+				locations: [ "Freestanding", "Wall" ],
+				maxsigns: 1,
+				maxfreestanding: 1,
+				maxsize: 2,
+				maxtotal: 2,
+				maxheight: 2
+			},
+			{
+				name: "Institutional uses, places of assembly",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxsigns: 3,
+				maxfreestanding: 1,
+				maxsize: 50,
+				maxtotal: 150,
+				maxheight: {
+					"2 lanes": 8,
+					"3 lanes": 10,
+					"4 lanes": 14
+				}
+			},
+			{
+				name: "Multi-family development",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxsigns: 1,
+				maxfreestanding: 1,
+				maxsize: 32,
+				maxtotal: 32,
+				maxheight: 8
+			},
+			{
+				name: "Guest quarter enterprise",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxsigns: 1,
+				maxfreestanding: 1,
+				maxsize: 8,
+				maxtotal: 8,
+				maxheight: 8
+			},
+			{
+				name: "Professional office",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxfreestanding: 1,
+				maxsize: 120,
+				maxtotal: "2 sq ft per foot of lot frontage",
+				maxheight: {
+					"2 lanes": 8,
+					"3 lanes": 10,
+					"4 lanes": 14
+				}
+			},
+			{
+				name: "Business (per property)",
+				locations: [ "Freestanding", "Canopy", "Wall" ],
+				maxfreestanding: 1,
+				maxsize: 120,
+				maxtotal: "2 sq ft per foot of lot frontage",
+				maxheight: {
+					"2 lanes": 8,
+					"3 lanes": 10,
+					"4 lanes": 14
+				}
+			},
+			{
+				name: "Business in shopping center (per property)",
+				locations: [ "Canopy", "Wall" ],
+				maxsize: 120,
+				maxtotal: "2 sq ft per foot of building frontage",
+				maxheight: {
+					"2 lanes": 8,
+					"3 lanes": 10,
+					"4 lanes": 14
+				}
+			},
+			{
+				name: "Shopping center, office park, or warehouse park",
+				locations: [ "Freestanding" ],
+				maxsigns: "1 sign per street frontage",
+				maxfreestanding: 1,
+				maxsize: 200,
+				maxtotal: 320,
+				maxheight: {
+					"2 lanes": 8,
+					"3 lanes": 10,
+					"4 lanes": 14
+				}
+			}
+		]
+	}
+];
+function loadZone(){
+	for(var i=0;i<zonePermissions.length;i++){
+		if(zonePermissions[i].zoneNames.indexOf(myZone) > -1){
+			myZoneLaws = zonePermissions[i];
+			break;
+		}
+	}
+	if(myZoneLaws.warning){
+		// special circumstances for any sign in this zoning area
+		$("zoneWarning").innerHTML = myZoneLaws.warning;
+	}
+	$("propertyTypes").innerHTML = "";
+	var none_option = document.createElement("option");
+	none_option.value = "none";
+	none_option.innerHTML = "- Select Property Type -";
+	none_option.selected = "selected";
+	$("propertyTypes").appendChild(none_option);
+	for(var p=0;p<myZoneLaws.categories.length;p++){
+		var prop_option = document.createElement("option");
+		prop_option.value = p;
+		prop_option.innerHTML = myZoneLaws.categories[p].name;
+		$("propertyTypes").appendChild(prop_option);
+	}
+	$("signdeets").style.display = "none";
+}
+
+function calculate(){
+	if( $("propertyTypes").value == "none" ){
+		return;
+	}
+
+	var myUsageLaws = myZoneLaws.categories[ $("propertyTypes").value ];
+
+	$("permittedLocations").innerHTML = "";
+	for(var i=0;i<myUsageLaws.locations.length;i++){
+		var location_li = document.createElement("li");
+		location_li.innerHTML = myUsageLaws.locations[i];
+		$("permittedLocations").appendChild(location_li);
+	}
+	
+	var maxsigntext = "";
+	if(myUsageLaws.maxfreestanding && myUsageLaws.maxsigns){
+		// maxsigns and maxfreestanding regulations exist
+		if(isNaN(myUsageLaws.maxsigns)){
+			if(isNaN(myUsageLaws.maxfreestanding)){
+				// comple maxsigns and complex maxfreestanding
+				maxsigntext = "You can have at most " + myUsageLaws.maxsigns + ". Your freestanding signs cannot include more than " + myUsageLaws.maxfreestanding;
+			}
+			else{
+				// complex maxsigns and numeric maxfreestanding. Check for plural
+				if(myUsageLaws.maxfreestanding == 1){
+					maxsigntext = "You can have at most " + myUsageLaws.maxsigns + ", including 1 freestanding sign.";				
+				}
+				else{
+					maxsigntext = "You can have at most " + myUsageLaws.maxsigns + ", including " + myUsageLaws.maxfreestanding + " freestanding signs.";
+				}
+			}
+		}
+		else{
+			if(isNaN(myUsageLaws.maxfreestanding)){
+				// numeric maxsigns and complex maxfreestanding. Check for plural.
+				if(myUsageLaws.maxsigns == 1){
+					maxsigntext = "You can have at most 1 sign.";
+				}
+				else{
+					maxsigntext = "You can have at most " + myUsageLaws.maxsigns + " signs. Your freestanding signs cannot include more than " + myUsageLaws.maxfreestanding;
+				}
+			}
+			else{
+				// numeric maxsigns and numeric maxfreestanding. Check for plural
+				if(myUsageLaws.maxsigns == 1){
+					maxsigntext = "You can have at most 1 sign.";				
+				}
+				else{
+					maxsigntext = "You can have at most " + myUsageLaws.maxsigns + " signs.";
+				}
+				if(myUsageLaws.maxfreestanding == 1){
+					if(myUsageLaws.maxsigns != 1){
+						maxsigntext += " You are limited to 1 freestanding sign.";					
+					}
+				}
+				else{
+					maxsigntext += " You are limited to " + myUsageLaws.maxfreestanding + " freestanding signs.";
+				}
+			}
+		}
+	}
+	else if(myUsageLaws.maxfreestanding){
+		// there is a max freestanding signs but no max on signs
+		if(isNaN(myUsageLaws.maxfreestanding)){
+			// complex freestanding signs
+			maxsigntext = "Your signs cannot include more than " + myUsageLaws.maxfreestanding + ".";
+		}
+		else{
+			// numeric freestanding signs, no known maxsigns. Check for plural
+			if(myUsageLaws.maxfreestanding == 1){
+				maxsigntext = "Your signs cannot include more than 1 freestanding sign.";
+			}
+			else{
+				maxsigntext = "Your signs cannot include more than " + myUsageLaws.maxfreestanding + " freestanding signs.";
+			}
+		}
+	}
+	else if(myUsageLaws.maxsigns){
+		// maxsigns but no specified number of freestanding signs
+		if(isNaN(myUsageLaws.maxsigns)){
+			// complex maxsigns
+			maxsigntext = "You are limited to " + myUsageLaws.maxsigns + ".";	
+		}
+		else{
+			// numeric maxsigns. Check for plural
+			if(myUsageLaws.maxsigns == 1){
+				maxsigntext = "You are limited to 1 sign.";			
+			}
+			else{
+				maxsigntext = "You are limited to " + myUsageLaws.maxsigns + " signs.";
+			}
+		}
+	}
+	else{
+		// there is no known maxsigns or maxfreestanding
+		// based on max area instead
+		maxsigntext = "Signs for this property are limited by area.";
+	}
+	$("maxsigninfo").innerHTML = maxsigntext;
+	
+	var maxheighttext = "";
+	if(myUsageLaws.maxheight){
+		if(isNaN(myUsageLaws.maxheight)){
+			// divide by lane
+			maxheighttext = "<p>The height of your sign is limited based on the width of the road:</p><ul>";
+			for(lanes in myUsageLaws.maxheight){
+				maxheighttext += "<li>" + lanes + ": your sign must be less than " + myUsageLaws.maxheight[lanes] + " feet tall.</li>";
+			}
+			maxheighttext += "</ul>";
+		}
+		else{
+			maxheighttext = "Your sign must be less than " + myUsageLaws.maxheight + " feet tall.";
+		}
+	}
+	$("maxheightinfo").innerHTML = maxheighttext;
+	
+	var maxsizetext = "";
+	if(myUsageLaws.maxsize){
+		// there is a maxsize (per sign)
+		if(isNaN(myUsageLaws.maxsize)){
+			// the maxsize (per sign) is complex
+			if(myUsageLaws.maxtotal){
+				// there is a maxtotal
+				if(isNaN(myUsageLaws.maxtotal)){
+					// there is a complex maxsize and a complex maxtotal
+					maxsizetext = "Each sign is limited to " + myUsageLaws.maxsize.wall + " square feet for wall signs and " + myUsageLaws.maxsize.freestanding + " square feet for freestanding signs. The total area of your signs is limited to " + myUsageLaws.maxtotal + ".";
+				}
+				else{
+					// there is a complex maxsize and a numeric maxtotal
+					maxsizetext = "Each sign is limited to " + myUsageLaws.maxsize.wall + " square feet for wall signs and " + myUsageLaws.maxsize.freestanding + " square feet for freestanding signs. The total area of your signs is limited to " + myUsageLaws.maxtotal + " square feet.";
+				}
+			}
+			else{
+				// there is a complex maxsize (per sign) but no maxtotal
+				maxsizetext = "Each sign is limited to " + myUsageLaws.maxsize.wall + " square feet for wall signs and " + myUsageLaws.maxsize.freestanding + " square feet for freestanding signs.";
+			}
+		}
+		else{
+			// the maxsize (per sign) is numeric
+			if(myUsageLaws.maxtotal){
+				// there is a maxtotal
+				if(isNaN(myUsageLaws.maxtotal)){
+					// there is a numeric maxsize and a complex maxtotal
+					maxsizetext = "Each sign is limited to " + myUsageLaws.maxsize + " square feet. The total area of your signs is limited to " + myUsageLaws.maxtotal + ".";
+				}
+				else{
+					// there is a numeric maxsize and a numeric maxtotal
+					maxsizetext = "Each sign is limited to " + myUsageLaws.maxsize + " square feet. The total area of your signs is limited to " + myUsageLaws.maxtotal + " square feet.";
+				}
+			}
+			else{
+				// there is a numeric maxsize (per sign) but no maxtotal
+				maxsizetext = "Each sign is limited to " + myUsageLaws.maxsize + " square feet.";
+			}
+		}
+	}
+	else{
+		// there is no maxsize (per sign)
+		if(myUsageLaws.maxtotal){
+			// there is a maxtotal
+			if(isNaN(myUsageLaws.maxtotal)){
+				// there is a complex maxtotal but no maxsize (per sign)
+				maxsizetext = "The total area of your signs is limited to " + myUsageLaws.maxtotal + ".";
+			}
+			else{
+				// there is a numeric maxtotal but no maxsize
+				maxsizetext = "The total area of your signs is limited to " + myUsageLaws.maxtotal + " square feet.";
+			}
+		}
+		else{
+			// there is no maxtotal or maxsize (per sign)
+			maxsizetext = "Check with Planning and Zoning.";
+		}
+	}
+	$("maxareainfo").innerHTML = maxsizetext;
+	
+	$("signdeets").style.display = "block";
+}
+function quickForm(signType){
+	$("other_signs").style.display = "none";
+	$("quick_signs").style.display = "none";
+	if(signType == "forsale"){
+		$("sale_signs").style.display = "block";
+	}
+	else if(signType == "construction"){
+		$("construction_signs").style.display = "block";	
+	}
+	else if(signType == "subdivision"){
+		$("subdivision_signs").style.display = "block";	
+	}
+}
+function $(id){
+	return document.getElementById(id);
+}
+		</script>
+		<style type="text/css">
+html, body{
+	padding: 0;
+	margin: 0;
+}
+body{
+	margin-left: auto;
+	margin-right: auto;
+	width: 450px;
+}
+		</style>
+	</head>
+	<body>
+		<h1>Sign Calculator</h1>
+		<form class="well">
+			<label>You should skip this form...</label>
+			<ul>
+				<li>
+					if your sign is
+					<a href="http://library.municode.com/HTML/11190/level1/CH25SI.html#CH25SI_S25.04EXSI">
+						inside a window.
+					</a>
+					These signs are forbidden in residential and special commercial districts, and permitted in other commercial, manufacturing, or industrial buildings.
+				</li>
+				<br/>
+				<li>
+					if you are setting up a banner. These have
+					<a href="http://library.municode.com/HTML/11190/level1/CH25SI.html#CH25SI_S25.14ADSI">different standards</a>.
+				</li>
+				<br/>
+				<li>
+					if you are in
+					<a href="http://library.municode.com/HTML/11190/level1/CH25SI.html#CH25SI_S25.15MASIPL">
+						a planned development district
+					</a>. You need a <a href="http://library.municode.com/index.aspx?clientId=11190">master signage plan</a>.
+				</li>
+				<br/>
+			</ul>
+		</form>
+		<form id="quick_signs" class="well">
+			<h3>Common signs</h3>
+			<a href="#" class="btn btn-primary" onclick="quickForm('forsale')">For Sale &rarr;</a>
+			<a href="#" class="btn btn-primary" onclick="quickForm('construction')">Under Construction &rarr;</a>
+			<br/><br/>
+			<a href="#" class="btn btn-primary" onclick="quickForm('subdivision')">Residential Subdivision &rarr;</a>
+			<a href="http://library.municode.com/HTML/11190/level1/CH25SI.html#CH25SI_S25.08SPREPECOUSBI" class="btn btn-primary">Billboard &rarr;</a>
+		</form>
+		<form id="other_signs" class="well form-vertical">
+			<h3>Other Signs</h3>
+			<!-- TODO: MAP TOOL -->
+			<label>What zone is your sign in?</label>
+			<input id="address" class="input" onkeydown="checkForEnter(event)" type="text" name="textfield" placeholder="Enter an address" />
+			<a class="btn btn-info" href="#" onclick="getZoneFromAddress()" style="vertical-align:top;">Get Zone</a>
+			<br/>
+			<select id="zone_selected" onchange="selectZone(event)">
+				<option value="none" selected="selected">Choose your zone</option>
+				<option value="A">A: Agricultural</option>
+				<!-- <option value="AH1">AH1: Airport Hazard - Herbert</option>
+				<option value="AH2">AH2: Airport Hazard - Middle Georgia</option>
+				<option value="AH3">AH3: Airport Hazard - Robins</option> -->
+				<option value="C-1">C-1: Neighborhood Commercial</option>
+				<option value="C-2">C-2: General Commercial</option>
+				<option value="C-4">C-4: Highway Commercial</option>
+				<option value="C-5">C-5: Neighborhood Convenience Center</option>
+				<option value="CBD-1">CBD-1: Central Business District</option>
+				<option value="CBD-2">CBD-2: Central Business District</option>
+				<option value="HPD-BH">HPD-BH: Historic Planned Development - Beall's Hill</option>
+				<option value="HR-1">HR-1, HR-2, HR-3, HC, & HPD: Historic Zoning</option>
+				<option value="M-1">M-1: Wholesale and Light Industrial</option>
+				<option value="M-2">M-2: Heavy Industrial</option>
+				<option value="M-3">M-3: Heavy Industrial</option>
+				<option value="MHR">MHR: Manufactured Home Residential</option>
+				<option value="PDR">PDR, PDC, PDI, & PDE: Planned Development</option>
+				<option value="R-1AAA">R-1AAA & R-1AAAA: Single-Family Residential</option>
+				<option value="R-1AA">R-1AA, R-1A, & R-1: Single-Family Residential</option>
+				<option value="R-2A">R-2A & R-2: Two-Family Residential</option>
+				<option value="R-3">R-3: Multifamily Residential</option>
+				<!-- <option value="RP">RP: River Protection</option>
+				<option value="RR">RR: Rural Residential</option> -->
+				<option value="SC">SC: Special Commercial</option>
+			</select>
+			
+			<select id="propertyTypes" onchange="calculate()">
+			</select>
+			
+			<div id="signdeets" style="display:none;">
+				<label id="zoneWarning" class="warning"></label>
+
+				<h4>Permitted sign types</h4>
+				<ul id="permittedLocations">
+				</ul>
+				<br/>
+				<h4>Maximum number of signs</h4>
+				<div id="maxsigninfo"></div>
+				<br/>
+				<h4>Maximum sign height</h4>
+				<div id="maxheightinfo"></div>
+				<br/>
+				<h4>Maximum sign area</h4>
+				<div id="maxareainfo"></div>
+			</div>
+		</form>
+		<form id="sale_signs" class="well form-vertical" style="display:none">
+			<h3>For Sale Signs</h3>
+			<!-- TODO: MAP TOOL -->
+			<label>What zone is your sign in?</label>
+			<input id="address" class="input" onkeydown="checkForEnter(event)" type="text" name="textfield" placeholder="Enter an address" />
+			<a class="btn btn-info" href="#" onclick="getZoneFromAddress()" style="vertical-align:top;">Get Zone</a>
+			<br/>
+			<select id="sale_zone_selected" onchange="selectZone(event)">
+				<option value="none" selected="selected">Choose your zone</option>
+				<option value="residential1">Rural, Single-Family, Historic, or Planned Dev. Residential</option>
+				<option value="residential2">2-Family and Multi-Family Residential</option>
+				<option value="commercial">Commercial</option>
+				<option value="industrial">Industrial</option>
+				<option value="pde">PDE</option>
+				<option value="agricultural">Agricultural</option>
+			</select>
+
+			<div id="sale_signdeets" style="display:none;">
+				<label id="sale_zoneWarning" class="warning"></label>
+
+				<h4>Front Yard Set Back</h4>
+				<span id="sale_fyard"></span> feet
+				<br/>
+				<h4>Maximum Height</h4>
+				<span id="sale_maxheight"></span> feet
+				<br/>
+				<h4>Maximum Signs per Lot</h4>
+				<span id="sale_maxsigns"></span>
+				<br/>
+				<h4>Maximum Total Signage</h4>
+				<span id="sale_maxarea"></span> square feet
+			</div>
+		</form>
+
+		<form id="construction_signs" class="well form-vertical" style="display:none">			
+			<h3>Under Construction Signs</h3>
+			<!-- TODO: MAP TOOL -->
+			<label>What zone is your sign in?</label>
+			<input id="address" class="input" onkeydown="checkForEnter(event)" type="text" name="textfield" placeholder="Enter an address" />
+			<a class="btn btn-info" href="#" onclick="getZoneFromAddress()" style="vertical-align:top;">Get Zone</a>
+			<br/>
+			<select id="construction_zone_selected" onchange="selectZone(event)">
+				<option value="none" selected="selected">Choose your zone</option>
+				<option value="residential1">Rural, Single-Family, Historic, or Planned Dev. Residential</option>
+				<option value="residential2">2-Family and Multi-Family Residential</option>
+				<option value="commercial">Commercial</option>
+				<option value="industrial">Industrial</option>
+				<option value="pde">PDE</option>
+				<option value="agricultural">Agricultural</option>
+			</select>
+
+			<div id="construction_signdeets" style="display:none;">
+				<label id="construction_zoneWarning" class="warning"></label>
+
+				<h4>Front Yard Set Back</h4>
+				<span id="construction_fyard"></span> feet
+				<br/>
+				<h4>Maximum Height</h4>
+				<span id="construction_maxheight"></span> feet
+				<br/>
+				<h4>Maximum Signs per Lot</h4>
+				<span id="construction_maxsigns"></span>
+				<br/>
+				<h4>Maximum Total Signage</h4>
+				<span id="construction_maxarea"></span> square feet
+			</div>
+		</form>
+		
+		<form id="subdivision_signs" class="well form-vertical" style="display:none">			
+			<h3>Subdivision Signs</h3>
+			<!-- TODO: MAP TOOL -->
+			<label>What zone is your sign in?</label>
+			<input id="address" class="input" onkeydown="checkForEnter(event)" type="text" name="textfield" placeholder="Enter an address" />
+			<a class="btn btn-info" href="#" onclick="getZoneFromAddress()" style="vertical-align:top;">Get Zone</a>
+			<br/>
+			<select id="subdivision_zone_selected" onchange="selectZone(event)">
+				<option value="none" selected="selected">Choose your zone</option>
+				<option value="residential1">Rural, Single-Family, Historic, or Planned Dev. Residential</option>
+				<option value="residential2">2-Family and Multi-Family Residential</option>
+				<option value="commercial">Commercial</option>
+				<option value="industrial">Industrial</option>
+				<option value="pde">PDE</option>
+				<option value="agricultural">Agricultural</option>
+			</select>
+
+			<div id="subdivision_signdeets" style="display:none;">
+				<label id="subdivision_zoneWarning" class="warning"></label>
+
+				<h4>Front Yard Set Back</h4>
+				<span id="subdivision_fyard"></span> feet
+				<br/>
+				<h4>Maximum Height</h4>
+				<span id="subdivision_maxheight"></span> feet
+				<br/>
+				<h4>Maximum Signs per Lot</h4>
+				<span id="subdivision_maxsigns"></span>
+				<br/>
+				<h4>Maximum Total Signage</h4>
+				<span id="subdivision_maxarea"></span> square feet
+			</div>
+		</form>
+	</body>
+</html>

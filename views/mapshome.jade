@@ -1,0 +1,24 @@
+head
+  title Macon Maps
+  script(src='/scripts/mapshome2.js', type='text/javascript')
+  link(href='/stylesheets/bootstrap-mini.css', rel='stylesheet', type='text/css')
+  link(href='/stylesheets/mapshome.css', rel='stylesheet', type='text/css')
+body(onload='init()')
+  h2 Macon Neighborhood Maps v0.1
+  br
+  form#frm(action='/mapbyaddress', method='GET')
+    h4 Enter an address:
+    input.x-large(type='text', name='address')
+    a.btn.btn-info(onclick='formSubmit()', style='vertical-align:top') Map It!
+    br
+    h4 Example:
+    a(href='/houses?address=975%20Inverness%20Ave&latlng=32.83827,-83.668503') 975 Inverness Ave
+
+  h2 SeeClickFix Experiment
+  form#frm(action='/scfbyaddress', method='GET')
+    h4 Enter an address:
+    input.x-large(type='text', name='address')
+    a.btn.btn-info(onclick='formSubmit()', style='vertical-align:top') Map It!
+    br
+    h4 Example:
+    a(href='/scf?address=975%20Inverness%20Ave&latlng=32.83827,-83.668503') 975 Inverness Ave

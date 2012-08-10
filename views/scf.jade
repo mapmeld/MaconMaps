@@ -1,0 +1,11 @@
+head
+  title Macon Houses Map
+  script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js', type='text/javascript')
+  script(src='/scripts/leaflet.js', type='text/javascript')
+  script(src='/scripts/mapscf.js', type='text/javascript')
+  link(href='/stylesheets/leaflet.css', rel='stylesheet', type='text/css')
+  link(href='/stylesheets/scf.css', rel='stylesheet', type='text/css')
+body(onload='init()')
+  br
+  h2#address(style='margin-left:10%;') Address loading...
+  div#map

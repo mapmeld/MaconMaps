@@ -1,0 +1,19 @@
+head
+  meta(name="viewport", content="initial-scale=1.0, user-scalable=no")
+  title Macon-Bibb Zoning Map
+  script(src='http://maps.googleapis.com/maps/api/js?sensor=false', type='text/javascript')
+  script(src='/scripts/zoningmap.js', type='text/javascript')
+  link(href='/stylesheets/zoningmap.css', rel='stylesheet', type='text/css')
+  link(href='/stylesheets/bootstrap-mini.css', rel='stylesheet', type='text/css')
+body(onload='init()', style='padding:6px')
+  div.container(style="height:100%;")
+    .row
+      .span12
+        h3 Macon-Bibb Zoning Map
+        strong Enter an address or drag the marker to see parcel information
+        div(style='float:right')
+          input#placesearch.span4(type='text', placeholder='617 Mulberry St')
+          a.btn.btn-info(onclick='searchAddress()', style='vertical-align:top') Search
+
+    .row(style="height:85%;")
+      #map.span12(style="height:100%;")

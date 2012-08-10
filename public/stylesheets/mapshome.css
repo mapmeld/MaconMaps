@@ -1,0 +1,30 @@
+html{
+	background-color: #000;
+	font-family: arial;
+}
+body{
+	background-color: #fff;
+	height: 842px;
+	width: 595px;
+	margin-left: auto;
+	margin-right: auto;
+}
+form{
+	margin-left: 20px;
+	padding-top: 20px;
+}
+.center{
+	margin-top: 58px;
+	margin-left: 58px;
+	margin-right: 58px;
+}
+h3{
+	margin-left: 58px;
+}
+#map{
+	height: 400px;
+	width: 480px;
+}
+.leaflet-control-zoom{
+	display: none;
+}
