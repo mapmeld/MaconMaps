@@ -10,7 +10,7 @@ var auth = require('./auth')
     , mongoStore = require('connect-mongo')(express)
     , routes = require('./routes')
     , middleware = require('./middleware')
-    , CartoDB = require('./node_modules/cartodb/lib/cartodb')
+    , CartoDB = require('./cartodb/lib/cartodb')
     ;
 
 var HOUR_IN_MILLISECONDS = 3600000;
