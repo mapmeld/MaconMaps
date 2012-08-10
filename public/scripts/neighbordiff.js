@@ -34,21 +34,24 @@ function setMap(lyr){
   if(lyr == "street"){
     map.addLayer(terrainLayer);
     map.removeLayer(satLayer);
-    document.getElementById("streetlayer").className = "active";
-    document.getElementById("satlayer").className = "";
+    $("#streetlayer").addClass("active");
+    $("#satlayer").removeClass("active");
   }
   else if(lyr == "sat"){
     map.addLayer(satLayer);
     map.removeLayer(terrainLayer);
-    document.getElementById("satlayer").className = "active";
-    document.getElementById("streetlayer").className = "";
+    $("#streetlayer").removeClass("active");
+    $("#satlayer").addClass("active");
   }
 }
 function addDropdown(givendata){
-  var full = '<select onchange="setStatus("' + givendata.cartodb_id + '",this.value)"><option>Unchanged</option><option>Demolished</option><option>Renovated</option><option>Moved</option></select><br/>';
+  var full = '<select onchange="setStatus(\'' + givendata.cartodb_id + '\',this.value);"><option>Unchanged</option><option>Demolished</option><option>Renovated</option><option>Moved</option></select><br/>';
   full = full.replace('<option>' + 'Unchanged','<option selected="selected">' + 'Unchanged');
   return full;
 }
 function setStatus(id, status){
   console.log(id + " set to " + status);
+  $.getJSON("http://mapmeld.cartodb.com/api/v2/sql?q=INSERT INTO collegeplusintown (name, descriptio) VALUES ('Named','test')&api_key=9d0714868c51936503f1ee1f9ec27306e2030660", function(data){
+    console.log(data);
+  });
 }
