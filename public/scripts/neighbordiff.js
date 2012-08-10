@@ -14,7 +14,7 @@ function init(){
     user_name:'mapmeld',
     table_name: 'collegeplusintown',
     query: "SELECT * FROM collegeplusintown",
-    tile_style: "#collegeplusintown{polygon-fill:orange;opacity:0.4;}",
+    tile_style: "#collegeplusintown{polygon-fill:orange;polygon-opacity:0.3;}",
     interactivity: "cartodb_id",
     featureClick: function(ev, latlng, pos, data){
       console.log(data);
