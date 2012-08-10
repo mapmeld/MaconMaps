@@ -165,9 +165,9 @@ CartoDB.prototype.close = function() {
 
 CartoDB.prototype.query = function(_sql, args) {
   var self = this;
+  console.log(self.api_url);
   var sql =  tmpl(_sql, args);
   if(sql.length > 2048 || isWriteQuery(sql))
-    console.log(self.api_url);
     request
     .post(self.api_url)
     .type('form')
