@@ -18,7 +18,7 @@ function init(){
     interactivity: "cartodb_id",
     featureClick: function(ev, latlng, pos, data){
       console.log(data);
-      building_pop.setLatLng(latlng).setContent("ID: " + data.cartodb_id);
+      building_pop.setLatLng(latlng).setContent("<h3>ID: " + data.cartodb_id + "</h3>" + addDropdown(data));
       map.openPopup(building_pop);
     },
     //featureOver: function(){},
@@ -43,4 +43,12 @@ function setMap(lyr){
     document.getElementById("satlayer").className = "active";
     document.getElementById("streetlayer").className = "";
   }
+}
+function addDropdown(givendata){
+  var full = '<select onchange="setStatus("' + givendata.cartodb_id + '",this.value)"><option>Unchanged</option><option>Demolished</option><option>Renovated</option><option>Moved</option></select><br/>';
+  full = full.replace('<option>' + 'Unchanged','<option selected="selected">' + 'Unchanged');
+  return full;
+}
+function setStatus(id, status){
+  console.log(id + " set to " + status);
 }
