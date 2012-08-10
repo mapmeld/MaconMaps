@@ -12,8 +12,8 @@
     , "connect-mongo": "0.1.9"
     , "connect": ">= 1.8.5 < 2"
 
-    , "underscore"  : "1.1.x",
-    , "oauth": "0.9.5",
+    , "underscore"  : "1.1.x"
+    , "oauth": "0.9.5"
     , "superagent": "0.4.x"
   },
   "engines": {
