@@ -53,7 +53,7 @@ function setStatus(id, status){
   console.log(id + " set to " + status);
   $.ajax({
     type: "PUT",
-    url: "https://mapmeld.cartodb.com/api/v1/tables/collegeplusintown/records/" + id
+    url: "https://mapmeld.cartodb.com/api/v1/tables/collegeplusintown/records/" + id,
     data: {
       column_id: "descriptio",
       row_id: id,
@@ -70,8 +70,5 @@ function setStatus(id, status){
       api_key: "9d0714868c51936503f1ee1f9ec27306e2030660"
     },
     dataType: "application/x-www-form-urlencoded"
-  });
-  function(data){
-    console.log(data);
   });
 }
