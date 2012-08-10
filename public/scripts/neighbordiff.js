@@ -1,9 +1,10 @@
 function init(){
   var map = new L.Map('map');
-  var toner = 'http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png',
-  var tonerAttrib = 'Map data &copy; 2012 OpenStreetMap contributors, Tiles &copy; 2012 Stamen Design',
+  var toner = 'http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png';
+  var tonerAttrib = 'Map data &copy; 2012 OpenStreetMap contributors, Tiles &copy; 2012 Stamen Design';
   var tonerLayer = new L.TileLayer(toner, {maxZoom: 18, attribution: tonerAttrib});
   map.addLayer(tonerLayer);
+  map.setView(new L.LatLng(32.83895, -83.62913), 15);
   
   var cartodb_leaflet = new L.CartoDBLayer({
     map: map,
