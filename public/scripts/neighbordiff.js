@@ -12,7 +12,7 @@ function init(){
     table_name: 'collegeplusintown',
     query: "SELECT * FROM collegeplusintown",
     tile_style: "#collegeplusintown{polygon-fill:orange}",
-    interactivity: "cartodb_id, magnitude",
+    interactivity: "cartodb_id",
     featureClick: function(ev, latlng, pos, data){
       console.log(data)
     },
