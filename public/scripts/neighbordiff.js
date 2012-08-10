@@ -64,10 +64,10 @@ function setStatus(id, status){
   });
   $.ajax({
     type: "PUT",
-    url: "https://mapmeld.cartodb.com/api/v2/sql?q=" + encodeURIComponent("UPDATE collegeplusintown SET descriptio = 'test' WHERE cartodb_id = ") + id + "&api_key=9d0714868c51936503f1ee1f9ec27306e2030660",
+    url: "https://mapmeld.cartodb.com/api/v2/sql?q=" + encodeURIComponent("UPDATE collegeplusintown SET descriptio = 'test' WHERE cartodb_id = ") + id + "&api_key=adb5827e4edcbffeac2de4fa7ba520e70b5332da",
     data: {
       q: encodeURIComponent("UPDATE collegeplusintown SET descriptio = 'test' WHERE cartodb_id = " + id),
-      api_key: "9d0714868c51936503f1ee1f9ec27306e2030660"
+      api_key: "adb5827e4edcbffeac2de4fa7ba520e70b5332da"
     },
     dataType: "application/x-www-form-urlencoded"
   });
