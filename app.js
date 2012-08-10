@@ -55,7 +55,7 @@ var init = exports.init = function (config) {
     res.render('neighbordiff');
   });
 
-  client = new CartoDB({ user: mapmeld, api_key: "adb5827e4edcbffeac2de4fa7ba520e70b5332da" });
+  client = new CartoDB({ user: "mapmeld", api_key: "adb5827e4edcbffeac2de4fa7ba520e70b5332da" });
   app.get('/changetable', function(req, res){
     console.log(
       client.query("update collegeplusintown SET descriptio = '" + req.query['status'] + "' WHERE cartodb_id = " + req.query['id'])
