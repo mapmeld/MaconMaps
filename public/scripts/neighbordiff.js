@@ -51,7 +51,7 @@ function addDropdown(givendata){
 }
 function setStatus(id, status){
   console.log(id + " set to " + status);
-  $.getJSON("http://mapmeld.cartodb.com/api/v2/sql?q=INSERT INTO collegeplusintown (name, descriptio) VALUES ('Named','test')&api_key=9d0714868c51936503f1ee1f9ec27306e2030660", function(data){
+  $.getJSON("http://mapmeld.cartodb.com/api/v2/sql?q=" + encodeUriComponent("UPDATE collegeplusintown SET descriptio = 'test' WHERE cartodb_id = 1301") + "&api_key=9d0714868c51936503f1ee1f9ec27306e2030660", function(data){
     console.log(data);
   });
 }
