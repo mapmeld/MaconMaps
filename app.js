@@ -10,7 +10,7 @@ var auth = require('./auth')
     , mongoStore = require('connect-mongo')(express)
     , routes = require('./routes')
     , middleware = require('./middleware')
-    , CartoDB = require('cartodb')
+    , CartoDB = require('./node_modules/cartodb/lib/cartodb')
     ;
 
 var HOUR_IN_MILLISECONDS = 3600000;
@@ -55,12 +55,7 @@ var init = exports.init = function (config) {
     res.render('neighbordiff');
   });
 
-client = new CartoDB.CartoDBClient({
-  user: "mapmeld",
-  password: "mapmeld",
-  consumer_key: "X9pOPd9YZoHQtDPc0KRmjoCowuO1O4v8R56jSko9", 
-  consumer_secret: "vpRM02C78JpoRe4uitjF0kmejAYs77l2IH9fgCpN"
-});
+client = new CartoDB({ user: "mapmeld", api_key: "adb5827e4edcbffeac2de4fa7ba520e70b5332da" });
 
   app.get('/changetable', function(req, res){
     console.log(
