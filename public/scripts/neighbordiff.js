@@ -51,24 +51,7 @@ function addDropdown(givendata){
 }
 function setStatus(id, status){
   console.log(id + " set to " + status);
-  $.ajax({
-    type: "PUT",
-    url: "https://mapmeld.cartodb.com/api/v1/tables/collegeplusintown/records/" + id,
-    data: {
-      column_id: "descriptio",
-      row_id: id,
-      descriptio: "fixed",
-      api_key: "adb5827e4edcbffeac2de4fa7ba520e70b5332da"
-    },
-    dataType: "application/x-www-form-urlencoded"
-  });
-  $.ajax({
-    type: "PUT",
-    url: "https://mapmeld.cartodb.com/api/v2/sql?q=" + encodeURIComponent("UPDATE collegeplusintown SET descriptio = 'test' WHERE cartodb_id = ") + id + "&api_key=adb5827e4edcbffeac2de4fa7ba520e70b5332da",
-    data: {
-      q: encodeURIComponent("UPDATE collegeplusintown SET descriptio = 'test' WHERE cartodb_id = " + id),
-      api_key: "adb5827e4edcbffeac2de4fa7ba520e70b5332da"
-    },
-    dataType: "application/x-www-form-urlencoded"
+  $.getJSON("/changetable?id=" + id + "&status=" + status, function(data){
+    console.log(data);
   });
 }
