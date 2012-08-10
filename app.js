@@ -6,7 +6,7 @@
 var auth = require('./auth')
     , express = require('express')
     , mongoose = require('mongoose')
-    //, mongoose_auth = require('mongoose-auth')
+    , mongoose_auth = require('mongoose-auth')
     , mongoStore = require('connect-mongo')(express)
     , routes = require('./routes')
     , middleware = require('./middleware')
@@ -34,7 +34,7 @@ var init = exports.init = function (config) {
     app.use(express.methodOverride());
     app.use(express.session({secret: 'top secret', store: session_store,
       cookie: {maxAge: HOUR_IN_MILLISECONDS}}));
-    //app.use(mongoose_auth.middleware());
+    app.use(mongoose_auth.middleware());
     app.use(express.static(__dirname + '/public'));
     app.use(app.router);
 
@@ -195,7 +195,7 @@ var init = exports.init = function (config) {
     res.render('doesnotexist',404);
   });
 
-  //mongoose_auth.helpExpress(app);
+  mongoose_auth.helpExpress(app);
 
   return app;
 };
