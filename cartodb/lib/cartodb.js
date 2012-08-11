@@ -112,6 +112,7 @@ CartoDB.prototype.queryOAuth = function(_sql, args) {
   var sql = tmpl(_sql, args);
 
   function _response(error, data, response) {
+    console.log(error);
     if(error) self.emit('error', error);
     else self.emit('data', JSON.parse(data), response);
   }
