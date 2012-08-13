@@ -39,7 +39,7 @@ function init(){
   });
   
   var bing_key = "Arc0Uekwc6xUCJJgDA6Kv__AL_rvEh4Hcpj4nkyUmGTIx-SxMd52PPmsqKbvI_ce";
-  satLayer = new L.TileLayer.Bing(bing_key, 'AerialWithLabels', {minZoom:10, maxZoom:19});
+  satLayer = new L.TileLayer.Bing(bing_key, 'Aerial', {minZoom:10, maxZoom:19});
 }
 function setMap(lyr){
   if(lyr == "street"){
@@ -92,8 +92,8 @@ function setStatus(id, status){
 function dragstarted(e){
   console.log("dragstarted");
   dragtype = e.target.id;
-  console.log(e);
-  e.target.style.opacity = "0.4"; // dim source element
+  //console.log(e);
+  //e.target.style.opacity = "0.4"; // dim source element
 }
 function allowDrop(e){
   e.preventDefault();
@@ -102,11 +102,10 @@ function dragended(e){
   e.target.style.opacity = "1";
 }
 function dropped(e){
-  console.log("dropped");
-  console.log(e);
+  //console.log("dropped");
+  //console.log(e);
   var dropPoint = map.mouseEventToLatLng(e);
-  console.log(dropPoint);
-  // fake a click at that point
+  // fake a status change at that point
   cartodb.interaction.click(e, { x: e.clientX || e.pageX, y: e.clientY || e.pageY });
   cartodb.interaction.screen_feature({ x: e.clientX || e.pageX, y: e.clientY || e.pageY }, function(f){
     var id = f.cartodb_id;
