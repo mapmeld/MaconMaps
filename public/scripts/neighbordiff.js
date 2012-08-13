@@ -64,5 +64,5 @@ function searchForAddress(){
   var address = $("#placesearch").val();
   $.getJSON("/placesearch?address=" + address, function(data){
     map.setView(new L.LatLng(data.split(',')[0], data.split(',')[1]), 17);
-  };
+  });
 }
