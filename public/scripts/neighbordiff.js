@@ -38,7 +38,7 @@ function init(){
     zoomLayers = [];
   });
 
-  satLayer = new L.BingLayer("Arc0Uekwc6xUCJJgDA6Kv__AL_rvEh4Hcpj4nkyUmGTIx");  
+  satLayer = new L.BingLayer("Arc0Uekwc6xUCJJgDA6Kv__AL_rvEh4Hcpj4nkyUmGTIx-SxMd52PPmsqKbvI_ce");  
 }
 function setMap(lyr){
   if(lyr == "street"){
