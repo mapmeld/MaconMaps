@@ -67,16 +67,16 @@ function setStatus(id, status){
     L.geoJson(JSON.parse(poly.rows[0].st_asgeojson), {
       style: function (feature) {
         if(status == "Demolished"){
-          return {fill: "#f00"};
+          return {color: "#f00", opacity: 1};
         }
         else if(status == "Renovated"){
-          return {fill: "#0f0"};
+          return {color: "#0f0", opacity: 1};
         }
         else if(status == "Moved"){
-          return {fill: "#00f"};      
+          return {color: "#00f", opacity: 1};      
         }
         else{
-          return {fill: "orange"};
+          return {color: "orange", opacity: 1};
         }
       },
       onEachFeature: function(feature, layer){
