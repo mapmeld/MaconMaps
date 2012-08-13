@@ -55,12 +55,7 @@ var init = exports.init = function (config) {
     res.render('neighbordiff');
   });
 
-client = new CartoDB({
-  user: "mapmeld",
-  password: "edition",
-  consumer_key: "X9pOPd9YZoHQtDPc0KRmjoCowuO1O4v8R56jSko9", 
-  consumer_secret: "vpRM02C78JpoRe4uitjF0kmejAYs77l2IH9fgCpN"
-});
+client = new CartoDB({ user: "mapmeld", api_key: "a7f9c9a3ca871072545cc433be20c76aee0f9994"});
 
   app.get('/changetable', function(req, res){
     client.on('connect', function(){
