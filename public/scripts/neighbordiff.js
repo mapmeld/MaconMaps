@@ -36,7 +36,7 @@ function init(){
   });
   
   var bing_key = "Arc0Uekwc6xUCJJgDA6Kv__AL_rvEh4Hcpj4nkyUmGTIx-SxMd52PPmsqKbvI_ce";
-  satLayer = new L.TileLayer.Bing(bing_key, 'Aerial', {minZoom:10, maxZoom:19});
+  satLayer = new L.TileLayer.Bing(bing_key, 'AerialWithLabels', {minZoom:10, maxZoom:19});
 }
 function setMap(lyr){
   if(lyr == "street"){
@@ -85,6 +85,12 @@ function setStatus(id, status){
       }
     }).addTo(map);
   });
+}
+function dragstarted(e){
+  console.log("dragstarted: " + e);
+}
+function dropped(e){
+  console.log("dropped: " + e);
 }
 function checkForEnter(e){
   if(e.keyCode == 13){
