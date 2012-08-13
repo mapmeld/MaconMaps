@@ -54,7 +54,7 @@ function setStatus(id, status){
   $.getJSON("/changetable?id=" + id + "&status=" + status, function(data){
     console.log(data);
   });
-  $.getJSON("http://mapmeld.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT%20ST_AsGeoJSON(the_geom_webmercator)%20FROM%20collegeplusintown%20WHERE%20cartodb_id=" + id, function(poly){
+  $.getJSON("http://mapmeld.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT%20ST_AsGeoJSON(the_geom_webmercator)%20FROM%20collegeplusintown%20WHERE%20cartodb_id=" + id).done(function(poly){
     // until zoom changes and tiles are refreshed, show polygon
     L.geoJson(JSON.parse(poly.rows[0].st_asgeojson), {
       style: function (feature) {
