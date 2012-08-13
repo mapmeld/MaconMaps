@@ -13,11 +13,11 @@ function init(){
     map: map,
     user_name:'mapmeld',
     table_name: 'collegeplusintown',
-    query: "SELECT * FROM collegeplusintown",
+    query: "SELECT cartodb_id, status FROM collegeplusintown",
     tile_style: "collegeplusintown{polygon-fill:orange;polygon-opacity:0.3;} collegeplusintown[status='Demolished']{polygon-fill:red;} collegeplusintown[status='Renovated']{polygon-fill:green;} collegeplusintown[status='Moved']{polygon-fill:blue;}",
     interactivity: "cartodb_id",
     featureClick: function(ev, latlng, pos, data){
-      console.log(data);
+      //console.log(data);
       building_pop.setLatLng(latlng).setContent("<h3>ID: " + data.cartodb_id + "</h3>" + addDropdown(data));
       map.openPopup(building_pop);
     },
@@ -46,13 +46,35 @@ function setMap(lyr){
 }
 function addDropdown(givendata){
   var full = '<select onchange="setStatus(\'' + givendata.cartodb_id + '\',this.value);"><option>Unchanged</option><option>Demolished</option><option>Renovated</option><option>Moved</option></select><br/>';
-  full = full.replace('<option>' + 'Unchanged','<option selected="selected">' + 'Unchanged');
+  full = full.replace('<option>' + givendata.status,'<option selected="selected">' + givendata.status);
   return full;
 }
 function setStatus(id, status){
   console.log(id + " set to " + status);
   $.getJSON("/changetable?id=" + id + "&status=" + status, function(data){
     console.log(data);
+  });
+  $.getJSON("http://mapmeld.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT%20ST_AsGeoJSON(the_geom_webmercator)%20FROM%20collegeplusintown%20WHERE%20cartodb_id=" + id, function(poly){
+    // until zoom changes and tiles are refreshed, show polygon
+    var polygon = new L.geoJson(JSON.parse(poly.rows[0].st_asgeojson), {
+      style: function (feature) {
+        if(status == "Demolished"){
+          return {color: "#f00"};
+        }
+        else if(status == "Renovated"){
+          return {color: "#0f0"};
+        }
+        else if(status == "Moved"){
+          return {color: "#00f"};      
+        }
+        else{
+          return {color: "orange"};
+        }
+      },
+      onEachFeature: function(feature, layer){
+        layer.bindPopup("You updated this.<br/>Zoom map to update.");
+      }
+    });
   });
 }
 function checkForEnter(e){
