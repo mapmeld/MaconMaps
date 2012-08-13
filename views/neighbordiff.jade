@@ -21,7 +21,7 @@ body(onload='init()', style='padding:6px;')
         h3 NeighborDiff
         strong Click a building to add a note or change its status
         div(style='float:right')
-          input#placesearch.span4(type='text', placeholder='1400 Coleman Ave')
+          input#placesearch.span4(type='text', placeholder='1400 Coleman Ave' onkeyup='checkForEnter(event)')
           a.btn.btn-info(onclick='searchAddress()', style='vertical-align:top') Search
 
     .row(style="height:85%;")

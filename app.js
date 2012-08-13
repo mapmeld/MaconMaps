@@ -11,6 +11,7 @@ var auth = require('./auth')
     , routes = require('./routes')
     , middleware = require('./middleware')
     , CartoDB = require('./cartodb/lib/cartodb')
+    , http = require('http')
     ;
 
 var HOUR_IN_MILLISECONDS = 3600000;
@@ -55,7 +56,7 @@ var init = exports.init = function (config) {
     res.render('neighbordiff');
   });
 
-client = new CartoDB({ user: "mapmeld", api_key: "a7f9c9a3ca871072545cc433be20c76aee0f9994"});
+  client = new CartoDB({ user: "mapmeld", api_key: "a7f9c9a3ca871072545cc433be20c76aee0f9994"});
 
   app.get('/changetable', function(req, res){
     client.on('data', function(data){
@@ -65,6 +66,17 @@ client = new CartoDB({ user: "mapmeld", api_key: "a7f9c9a3ca871072545cc433be20c7
       catch(e){ /* catch extra-header errors? */ }
     });
     client.query("update collegeplusintown SET status = '" + req.query['status'] + "' WHERE cartodb_id = " + req.query['id']);
+  });
+  
+  app.get('/placesearch', function(req, res){
+    var address = req.query['address'];
+    if(req.query['address'].toLowerCase.indexOf("macon") == -1){
+      address += ",Macon,GA";
+    }
+    http.get('http://geocoder.us/service/csv/geocode?address=' + encodeURIComponent(address), function(res){
+      res.setHeader('Content-Type', 'application/json');
+      res.send('"' + res.body + '"');
+    });
   });
   
   app.get('/event', function(req, res){

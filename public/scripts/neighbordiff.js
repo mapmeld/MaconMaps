@@ -28,7 +28,7 @@ function init(){
   map.addLayer(cartodb_leaflet);
   
   var bing_key = "Arc0Uekwc6xUCJJgDA6Kv__AL_rvEh4Hcpj4nkyUmGTIx-SxMd52PPmsqKbvI_ce";
-  satLayer = new L.TileLayer.Bing(bing_key, 'AerialWithLabels', {minZoom:10, maxZoom:19});
+  satLayer = new L.TileLayer.Bing(bing_key, 'Aerial', {minZoom:10, maxZoom:19});
 }
 function setMap(lyr){
   if(lyr == "street"){
@@ -54,4 +54,15 @@ function setStatus(id, status){
   $.getJSON("/changetable?id=" + id + "&status=" + status, function(data){
     console.log(data);
   });
+}
+function checkForEnter(e){
+  if(e.keyCode == 22){
+    searchForAddress();
+  }
+}
+function searchForAddress(){
+  var address = $("#placesearch").val();
+  $.getJSON("/placesearch?address=" + address, function(data){
+    map.setView(new L.LatLng(data.split(',')[0], data.split(',')[1]), 17);
+  };
 }
