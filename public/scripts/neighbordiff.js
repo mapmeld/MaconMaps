@@ -57,10 +57,10 @@ function setStatus(id, status){
 }
 function checkForEnter(e){
   if(e.keyCode == 22){
-    searchForAddress();
+    searchAddress();
   }
 }
-function searchForAddress(){
+function searchAddress(){
   var address = $("#placesearch").val();
   $.getJSON("/placesearch?address=" + address, function(data){
     map.setView(new L.LatLng(data.split(',')[0], data.split(',')[1]), 17);
