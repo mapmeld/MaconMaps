@@ -56,13 +56,13 @@ function setStatus(id, status){
   });
 }
 function checkForEnter(e){
-  if(e.keyCode == 22){
+  if(e.keyCode == 13){
     searchAddress();
   }
 }
 function searchAddress(){
   var address = $("#placesearch").val();
   $.getJSON("/placesearch?address=" + address, function(data){
-    map.setView(new L.LatLng(data.split(',')[0], data.split(',')[1]), 17);
+    map.setView(new L.LatLng(data.position.split(',')[0], data.position.split(',')[1]), 17);
   });
 }
