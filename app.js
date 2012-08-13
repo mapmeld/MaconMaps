@@ -78,7 +78,7 @@ var init = exports.init = function (config) {
     };
     
     request(requestOptions, function (err, response, body) {
-      res.send(JSON.parse('"' + body + '"'));
+      res.send(body);
     });
   });
   
