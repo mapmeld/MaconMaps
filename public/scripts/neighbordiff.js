@@ -56,7 +56,7 @@ function setStatus(id, status){
   });
   $.getJSON("http://mapmeld.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT%20ST_AsGeoJSON(the_geom_webmercator)%20FROM%20collegeplusintown%20WHERE%20cartodb_id=" + id, function(poly){
     // until zoom changes and tiles are refreshed, show polygon
-    var polygon = new L.geoJson(JSON.parse(poly.rows[0].st_asgeojson), {
+    L.geoJson(JSON.parse(poly.rows[0].st_asgeojson), {
       style: function (feature) {
         if(status == "Demolished"){
           return {color: "#f00"};
@@ -74,7 +74,7 @@ function setStatus(id, status){
       onEachFeature: function(feature, layer){
         layer.bindPopup("You updated this.<br/>Zoom map to update.");
       }
-    });
+    }).addTo(map);
   });
 }
 function checkForEnter(e){
