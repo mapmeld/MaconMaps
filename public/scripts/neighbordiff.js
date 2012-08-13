@@ -37,9 +37,8 @@ function init(){
     }
     zoomLayers = [];
   });
-  
-  var bing_key = "Arc0Uekwc6xUCJJgDA6Kv__AL_rvEh4Hcpj4nkyUmGTIx-SxMd52PPmsqKbvI_ce";
-  satLayer = new L.TileLayer.Bing(bing_key, 'Aerial', {minZoom:10, maxZoom:19});
+
+  satLayer = new L.BingLayer("Arc0Uekwc6xUCJJgDA6Kv__AL_rvEh4Hcpj4nkyUmGTIx");  
 }
 function setMap(lyr){
   if(lyr == "street"){
@@ -100,6 +99,7 @@ function allowDrop(e){
 }
 function dragended(e){
   e.target.style.opacity = "1";
+  allowDrop(e);
 }
 function dropped(e){
   //console.log("dropped");
@@ -113,6 +113,7 @@ function dropped(e){
     setStatus(id, dragtype);
     dragtype = null;
   });
+  allowDrop(e);
 }
 function checkForEnter(e){
   if(e.keyCode == 13){
