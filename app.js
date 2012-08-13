@@ -78,7 +78,7 @@ var init = exports.init = function (config) {
     };
     
     request(requestOptions, function (err, response, body) {
-      res.send(body);
+      res.send({ position: body });
     });
   });
   
@@ -146,7 +146,7 @@ var init = exports.init = function (config) {
       'uri': sendurl,
     };
     request(requestOptions, function (err, response, body) {
-      res.send({ position: body });
+      res.send(body);
     });
   });
   
