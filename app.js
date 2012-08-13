@@ -62,11 +62,9 @@ client = new CartoDB({ user: "mapmeld", api_key: "a7f9c9a3ca871072545cc433be20c7
       console.log('connected');
     });
     client.on('data', function(data){
-      console.log(data);
+      res.send(data);
     });
-    console.log(
-      client.query("update collegeplusintown SET descriptio = '" + req.query['status'] + "' WHERE cartodb_id = " + req.query['id'])
-    );
+    client.query("update collegeplusintown SET descriptio = '" + req.query['status'] + "' WHERE cartodb_id = " + req.query['id']);
   });
   
   app.get('/event', function(req, res){
