@@ -20,7 +20,7 @@ body(onload='init()', style='padding:6px;')
       .span12
         h3 NeighborDiff
         strong Click a building to change its status or make a note
-        img#dragmarker(src='http://www.roche.com/blue-dot.gif', draggable='true', dragstart='dragstarted(event)', style='vertical-align:middle')
+        img#dragmarker(src='http://www.roche.com/blue-dot.gif', draggable='true', ondragstart='dragstarted(event)', style='vertical-align:middle')
         div(style='float:right')
           input#placesearch.span4(type='text', placeholder='1400 Coleman Ave', onkeyup='checkForEnter(event)')
           a.btn.btn-info(onclick='searchAddress()', style='vertical-align:top') Search
@@ -31,4 +31,4 @@ body(onload='init()', style='padding:6px;')
           a(href="#", onclick="setMap('street')") Streets
         li#satlayer
           a(href="#", onclick="setMap('sat')") Satellite
-      #map.span12(style="height:85%;", ondrop="dropped(event)")
+      #map.span12(style="height:85%;", ondragend="dragended(event)", ondrop="dropped(event)")
