@@ -14,7 +14,7 @@ function init(){
     user_name:'mapmeld',
     table_name: 'collegeplusintown',
     query: "SELECT * FROM collegeplusintown",
-    tile_style: "collegeplusintown{polygon-fill:orange;polygon-opacity:0.3;} collegeplusintown[status='demolished']{polygon-fill:red;} collegeplusintown[status='renovated']{polygon-fill:green;} collegeplusintown[status='moved']{polygon-fill:blue;}",
+    tile_style: "collegeplusintown{polygon-fill:orange;polygon-opacity:0.3;} collegeplusintown[status='Demolished']{polygon-fill:red;} collegeplusintown[status='Renovated']{polygon-fill:green;} collegeplusintown[status='Moved']{polygon-fill:blue;}",
     interactivity: "cartodb_id",
     featureClick: function(ev, latlng, pos, data){
       console.log(data);
