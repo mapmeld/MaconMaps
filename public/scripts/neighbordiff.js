@@ -1,4 +1,4 @@
-var map, building_pop, terrainLayer, satLayer, cartodb;
+var map, building_pop, terrainLayer, satLayer, cartodb, dragtype;
 var zoomLayers = [];
 if(!console || !console.log){
   console = { log: function(e){ } };
@@ -91,6 +91,7 @@ function setStatus(id, status){
 }
 function dragstarted(e){
   console.log("dragstarted");
+  dragtype = e.target.id;
   console.log(e);
   e.target.style.opacity = "0.4"; // dim source element
 }
@@ -103,10 +104,16 @@ function dragended(e){
 function dropped(e){
   console.log("dropped");
   console.log(e);
-  var dropPoint = mouseEventToLatLng(e);
+  var dropPoint = map.mouseEventToLatLng(e);
   console.log(dropPoint);
   // fake a click at that point
   cartodb.interaction.click(e, { x: e.clientX || e.pageX, y: e.clientY || e.pageY });
+  cartodb.interaction.screen_feature({ x: e.clientX || e.pageX, y: e.clientY || e.pageY }, function(f){
+    var id = f.cartodb_id;
+    dragtype = dragtype.replace("marker_", "");
+    setStatus(id, dragtype);
+    dragtype = null;
+  });
 }
 function checkForEnter(e){
   if(e.keyCode == 13){

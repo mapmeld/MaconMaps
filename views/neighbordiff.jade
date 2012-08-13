@@ -20,7 +20,11 @@ body(onload='init()', style='padding:6px;')
       .span12
         h3 NeighborDiff
         strong Click a building to change its status or make a note
-        img#dragmarker(src='http://www.roche.com/blue-dot.gif', draggable='true', ondragstart='dragstarted(event)', style='vertical-align:middle')
+        img#marker_Demolished(src='http://www.roche.com/red-dot.gif', draggable='true', ondragstart='dragstarted(event)', style='vertical-align:middle')
+        img#marker_Moved(src='http://www.roche.com/blue-dot.gif', draggable='true', ondragstart='dragstarted(event)', style='vertical-align:middle')
+        img#marker_Renovated(src='http://files.tainasplace.webnode.com/200000986-79ad77aa77/map%20marker%20green.jpg', draggable='true', ondragstart='dragstarted(event)', style='vertical-align:middle')
+        img#marker_Unchanged(src='http://library.csun.edu/images/google_maps/marker-orange.png', draggable='true', ondragstart='dragstarted(event)', style='vertical-align:middle')
+
         div(style='float:right')
           input#placesearch.span4(type='text', placeholder='1400 Coleman Ave', onkeyup='checkForEnter(event)')
           a.btn.btn-info(onclick='searchAddress()', style='vertical-align:top') Search
