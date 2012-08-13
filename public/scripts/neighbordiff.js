@@ -15,7 +15,7 @@ function init(){
     table_name: 'collegeplusintown',
     query: "SELECT * FROM collegeplusintown",
     tile_style: "collegeplusintown{polygon-fill:orange;polygon-opacity:0.3;} collegeplusintown[status='Demolished']{polygon-fill:red;} collegeplusintown[status='Renovated']{polygon-fill:green;} collegeplusintown[status='Moved']{polygon-fill:blue;}",
-    interactivity: "cartodb_id",
+    interactivity: "cartodb_id, status",
     featureClick: function(ev, latlng, pos, data){
       //console.log(data);
       building_pop.setLatLng(latlng).setContent("<h3>ID: " + data.cartodb_id + "</h3>" + addDropdown(data));
