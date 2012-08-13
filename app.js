@@ -74,7 +74,7 @@ var init = exports.init = function (config) {
       address += ",Macon,GA";
     }
     var requestOptions = {
-      'uri': 'http://geocoder.us/service/csv/geocode?address=' + encodeURIComponent(address)
+      'uri': 'http://geocoder.us/service/csv/geocode?address=' + address
     };
     
     request(requestOptions, function (err, response, body) {
