@@ -1,5 +1,8 @@
-var map, building_pop, terrainLayer, satLayer;
+var map, building_pop, terrainLayer, satLayer, cartodb;
 var zoomLayers = [];
+if(!console || !console.log){
+  console = { log: function(e){ } };
+}
 function init(){
   map = new L.Map('map');
   var toner = 'http://{s}.tile.stamen.com/terrain-lines/{z}/{x}/{y}.png';
@@ -10,7 +13,7 @@ function init(){
   
   building_pop = new L.Popup();
   
-  var cartodb_leaflet = new L.CartoDBLayer({
+  cartodb = new L.CartoDBLayer({
     map: map,
     user_name:'mapmeld',
     table_name: 'collegeplusintown',
@@ -26,7 +29,7 @@ function init(){
     //featureOut: function(){},
     auto_bound: true
   });
-  map.addLayer(cartodb_leaflet);
+  map.addLayer(cartodb);
   
   map.on('zoomend', function(e){
     for(var i=0;i<zoomLayers.length;i++){
@@ -87,18 +90,23 @@ function setStatus(id, status){
   });
 }
 function dragstarted(e){
-  console.log("dragstarted: " + e);
-  this.style.opacity = "0.4"; // dim source element
+  console.log("dragstarted");
+  console.log(e);
+  e.target.style.opacity = "0.4"; // dim source element
 }
 function allowDrop(e){
   e.preventDefault();
 }
 function dragended(e){
-  console.log("dragended: " + e);
-  this.style.opacity = "1";
+  e.target.style.opacity = "1";
 }
 function dropped(e){
-  console.log("dropped: " + e);
+  console.log("dropped");
+  console.log(e);
+  var dropPoint = mouseEventToLatLng(e);
+  console.log(dropPoint);
+  // fake a click at that point
+  cartodb.interaction.click(e, { x: e.clientX || e.pageX, y: e.clientY || e.pageY });
 }
 function checkForEnter(e){
   if(e.keyCode == 13){
