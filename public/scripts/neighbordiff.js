@@ -1,4 +1,5 @@
 var map, building_pop, terrainLayer, satLayer;
+var zoomLayers = [];
 function init(){
   map = new L.Map('map');
   var toner = 'http://{s}.tile.stamen.com/terrain-lines/{z}/{x}/{y}.png';
@@ -27,6 +28,13 @@ function init(){
   });
   map.addLayer(cartodb_leaflet);
   
+  map.on('zoomend', function(e){
+    for(var i=0;i<zoomLayers.length;i++){
+      map.removeLayer(zoomLayers[i]);
+    }
+    zoomLayers = [];
+  });
+  
   var bing_key = "Arc0Uekwc6xUCJJgDA6Kv__AL_rvEh4Hcpj4nkyUmGTIx-SxMd52PPmsqKbvI_ce";
   satLayer = new L.TileLayer.Bing(bing_key, 'Aerial', {minZoom:10, maxZoom:19});
 }
@@ -54,25 +62,26 @@ function setStatus(id, status){
   $.getJSON("/changetable?id=" + id + "&status=" + status, function(data){
     console.log(data);
   });
-  $.getJSON("http://mapmeld.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT%20ST_AsGeoJSON(the_geom_webmercator)%20FROM%20collegeplusintown%20WHERE%20cartodb_id=" + id).done(function(poly){
+  $.getJSON("http://mapmeld.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT%20ST_AsGeoJSON(the_geom)%20FROM%20collegeplusintown%20WHERE%20cartodb_id=" + id).done(function(poly){
     // until zoom changes and tiles are refreshed, show polygon
     L.geoJson(JSON.parse(poly.rows[0].st_asgeojson), {
       style: function (feature) {
         if(status == "Demolished"){
-          return {color: "#f00"};
+          return {fill: "#f00"};
         }
         else if(status == "Renovated"){
-          return {color: "#0f0"};
+          return {fill: "#0f0"};
         }
         else if(status == "Moved"){
-          return {color: "#00f"};      
+          return {fill: "#00f"};      
         }
         else{
-          return {color: "orange"};
+          return {fill: "orange"};
         }
       },
       onEachFeature: function(feature, layer){
         layer.bindPopup("You updated this.<br/>Zoom map to update.");
+        zoomLayers.push(layer);
       }
     }).addTo(map);
   });
