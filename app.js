@@ -78,8 +78,7 @@ var init = exports.init = function (config) {
     };
     
     request(requestOptions, function (err, response, body) {
-      res.setHeader('Content-Type', 'application/json');
-      res.send('"' + body + '"');
+      res.send(JSON.parse('"' + body + '"'));
     });
   });
   
