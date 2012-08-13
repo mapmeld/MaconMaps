@@ -70,7 +70,7 @@ var init = exports.init = function (config) {
   
   app.get('/placesearch', function(req, res){
     var address = req.query['address'];
-    if(req.query['address'].toLowerCase.indexOf("macon") == -1){
+    if(req.query['address'].toLowerCase().indexOf("macon") == -1){
       address += ",Macon,GA";
     }
     http.get('http://geocoder.us/service/csv/geocode?address=' + encodeURIComponent(address), function(res){
