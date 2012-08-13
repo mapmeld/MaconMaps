@@ -31,4 +31,4 @@ body(onload='init()', style='padding:6px;')
           a(href="#", onclick="setMap('street')") Streets
         li#satlayer
           a(href="#", onclick="setMap('sat')") Satellite
-      #map.span12(style="height:85%;", ondragend="dragended(event)", ondrop="dropped(event)")
+      #map.span12(style="height:85%;", ondragend="dragended(event)", ondrop="dropped(event)", ondragover="allowDrop(event)")

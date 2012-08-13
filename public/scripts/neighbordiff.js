@@ -90,6 +90,9 @@ function dragstarted(e){
   console.log("dragstarted: " + e);
   this.style.opacity = "0.4"; // dim source element
 }
+function allowDrop(e){
+  e.preventDefault();
+}
 function dragended(e){
   console.log("dragended: " + e);
   this.style.opacity = "1";
