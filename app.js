@@ -11,7 +11,7 @@ var auth = require('./auth')
     , routes = require('./routes')
     , middleware = require('./middleware')
     , CartoDB = require('./cartodb/lib/cartodb')
-    , http = require('http')
+    , request = require('request')
     ;
 
 var HOUR_IN_MILLISECONDS = 3600000;
@@ -73,7 +73,11 @@ var init = exports.init = function (config) {
     if(req.query['address'].toLowerCase().indexOf("macon") == -1){
       address += ",Macon,GA";
     }
-    http.get('http://geocoder.us/service/csv/geocode?address=' + encodeURIComponent(address), function(res){
+    var requestOptions = {
+      'uri': 'http://geocoder.us/service/csv/geocode?address=' + encodeURIComponent(address)
+    };
+    
+    request(requestOptions, function (err, response, body) {
       res.setHeader('Content-Type', 'application/json');
       res.send('"' + res.body + '"');
     });
