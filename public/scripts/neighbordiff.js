@@ -11,6 +11,10 @@ function init(){
   map.addLayer(terrainLayer);
   map.setView(new L.LatLng(32.83895, -83.62913), 15);
   
+  satLayer = new L.BingLayer("Arc0Uekwc6xUCJJgDA6Kv__AL_rvEh4Hcpj4nkyUmGTIx-SxMd52PPmsqKbvI_ce");  
+  map.addLayer(satLayer);
+  satLayer.setOpacity(0);
+  
   building_pop = new L.Popup();
   
   cartodb = new L.CartoDBLayer({
@@ -37,19 +41,17 @@ function init(){
     }
     zoomLayers = [];
   });
-
-  satLayer = new L.BingLayer("Arc0Uekwc6xUCJJgDA6Kv__AL_rvEh4Hcpj4nkyUmGTIx-SxMd52PPmsqKbvI_ce");  
 }
 function setMap(lyr){
   if(lyr == "street"){
-    map.addLayer(terrainLayer);
-    map.removeLayer(satLayer);
+    terrainLayer.setOpacity(1);
+    satLayer.setOpacity(0);
     $("#streetlayer").addClass("active");
     $("#satlayer").removeClass("active");
   }
   else if(lyr == "sat"){
-    map.addLayer(satLayer);
-    map.removeLayer(terrainLayer);
+    terrainLayer.setOpacity(0);
+    satLayer.setOpacity(1);
     $("#streetlayer").removeClass("active");
     $("#satlayer").addClass("active");
   }
