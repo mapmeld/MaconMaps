@@ -26,7 +26,7 @@ function init(){
     interactivity: "cartodb_id, status",
     featureClick: function(ev, latlng, pos, data){
       //console.log(data);
-      building_pop.setLatLng(latlng).setContent("<h3>ID: " + data.cartodb_id + "</h3>" + addDropdown(data));
+      building_pop.setLatLng(latlng).setContent("<label>Name</label><br/><input id='poly_name' class='x-large' value=''/><br/><label>Add Detail</label><br/><textarea id='poly_detail' rows='6' cols='25'></textarea><br/>" + addDropdown(data));
       map.openPopup(building_pop);
     },
     //featureOver: function(){},
