@@ -4,11 +4,15 @@ The repo for MaconMaps includes our <a href="http://maconmaps.com">event page</a
 
 NeighborDiff is a simple tool to update and detail geodata. We're looking for changes a university made in their neighborhood in the 5 years since the local government collected a buildings file.
 
-This building was replaced by a parking lot. Drag and drop a red marker onto it to set it to Demolished.
+## Examples
+
+The building highlighted below was replaced by a parking lot. Drag and drop a red marker onto it to set it to Demolished.
 
 <img src="http://i.imgur.com/LtC9E.png"/>
 
-The building under construction in this photo is now a dormitory, and a journalism school is being built across the street. Drag and drop a green marker where new buildings should be added.
+<hr/>
+
+The building under construction in the photo below is now a dormitory, and a journalism school is being built across the street. Drag and drop a green marker where new buildings should be added.
 
 <img src="http://i.imgur.com/iNxUD.png"/>
 
