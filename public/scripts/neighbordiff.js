@@ -106,9 +106,10 @@ function dragended(e){
 function dropped(e){
   //console.log("dropped");
   //console.log(e);
-  var dropPoint = map.mouseEventToLatLng(e);
-  // fake a status change at that point
-  cartodb.interaction.click(e, { x: e.clientX || e.pageX, y: e.clientY || e.pageY });
+  //var dropPoint = map.mouseEventToLatLng(e);
+  //cartodb.interaction.click(e, { x: e.clientX || e.pageX, y: e.clientY || e.pageY });
+
+  // fake a click to change status of building at drop point
   cartodb.interaction.screen_feature({ x: e.clientX || e.pageX, y: e.clientY || e.pageY }, function(f){
     var id = f.cartodb_id;
     dragtype = dragtype.replace("marker_", "");
