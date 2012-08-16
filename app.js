@@ -12,6 +12,7 @@ var auth = require('./auth')
     , middleware = require('./middleware')
     , CartoDB = require('./cartodb/lib/cartodb')
     , request = require('request')
+    , specialpoint = require('./specialpoint')
     ;
 
 var HOUR_IN_MILLISECONDS = 3600000;
@@ -60,16 +61,26 @@ var init = exports.init = function (config) {
 
   app.get('/changetable', function(req, res){
     var tablename = req.query['table'] || "collegeplusintown";
-    client.on('data', function(data){
-      try{
-        res.send(data);
-      }
-      catch(e){ /* catch extra-header errors? */ }
-    });
     if(req.query['marker'] == 'newpoint'){
-      client.query("insert into " + tablename + " (status, the_geom) values ('new', ST_SetSRID(ST_Point(" + req.query['ll'] + "),4326))");
+      // CartoDB SQL API needs a properly-formatted MultiPolygon
+      //client.query("insert into " + tablename + " (status, the_geom) values ('new', ST_SetSRID(ST_MultiPolygon(((" + req.query['ll'].replace(',',' ') + "))),4326))");
+      
+      // until then, use MongoDB
+      pt = new specialpoint.SpecialPoint({
+        status: 'new',
+        ll: req.query['ll'].split(',')
+      });
+      pt.save(function(err){
+        res.send(err || 'success');
+      });
     }
     else{
+      client.on('data', function(data){
+        try{
+          res.send(data);
+        }
+        catch(e){ /* catch extra-header errors? */ }
+      });
       client.query("update " + tablename + " SET status = '" + req.query['status'] + "' WHERE cartodb_id = " + req.query['id']);
     }
   });
