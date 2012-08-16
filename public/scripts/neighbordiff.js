@@ -99,7 +99,7 @@ function dragended(e){
   allowDrop(e);
 }
 function dropped(e){
-  if(dragtype == "marker_NewMarker"){
+  if(dragtype == "marker_NewBuilding"){
     // find latitude / longitude of drop point
     var dropPoint = map.mouseEventToLatLng(e);
     // add a marker to the visible map
