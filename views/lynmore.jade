@@ -1,0 +1,40 @@
+head
+  meta(name="viewport", content="initial-scale=1.0, user-scalable=no")
+  title NeighborDiff Lynmore
+  link(rel='stylesheet', href='/carto/stylesheets/leaflet.css', type='text/css')
+  // [if lte IE 8]
+    link(rel='stylesheet', href='/carto/stylesheets/leaflet.ie.css', type='text/css')
+  link(rel='stylesheet', href='/carto/stylesheets/cartodb-leaflet.css', type='text/css')
+  link(href='/stylesheets/bootstrap-mini.css', rel='stylesheet', type='text/css')
+  link(href='/stylesheets/neighbordiff.css', rel='stylesheet', type='text/css')
+  script(type="text/javascript", src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js")
+  script(type="text/javascript", src="/carto/scripts/leaflet.js")
+  script(type="text/javascript", src="/carto/scripts/wax.leaf.min-7.0.0dev1-touched.js")
+  script(type="text/javascript", src="/carto/scripts/cartodb-leaflet-min.js")
+  script(type="text/javascript", src="/carto/scripts/cartodb-popup-min.js")
+  script(type="text/javascript", src="/carto/scripts/tilelayer.bing.js")
+  script(type="text/javascript", src="/scripts/neighbordiff2.js")
+body(onload='init()')
+  div.container
+    .row
+      .span12
+        h3 NeighborDiff
+        strong Drag a marker to a building to change its status.
+        img#marker_Demolished.marker(src='/images/redmarker.png', title='Demolished', alt='Demolished', draggable='true', ondragstart='dragstarted(event)')
+        img#marker_Moved.marker(src='/images/bluemarker.png', title='Moved', alt='Moved', draggable='true', ondragstart='dragstarted(event)')
+        img#marker_Renovated.marker(src='/images/greenmarker.png', title='Renovated', alt='Renovated', draggable='true', ondragstart='dragstarted(event)')
+        img#marker_Unchanged.marker(src='/images/orangemarker.png', title='Unchanged', alt='Unchanged', draggable='true', ondragstart='dragstarted(event)')
+        span &nbsp;|&nbsp;
+        img#marker_NewBuilding.marker(src='/images/newmarker.png', title='New Building', alt='New Building', draggable='true', ondragstart='dragstarted(event)')
+
+        div.searchbox
+          input#placesearch.span4(type='text', placeholder='1400 Coleman Ave', onkeyup='checkForEnter(event)')
+          a.btn.btn-info.searchbutton(onclick='searchAddress()') Search
+
+    .row.mainrow
+      ul.span12.nav.nav-pills
+        li#streetlayer.active
+          a(href="#", onclick="setMap('street')") Streets
+        li#satlayer
+          a(href="#", onclick="setMap('sat')") Satellite
+      #map.span12(ondragend="dragended(event)", ondrop="dropped(event)", ondragover="allowDrop(event)")

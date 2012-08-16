@@ -56,6 +56,10 @@ var init = exports.init = function (config) {
   app.get('/', function(req, res){
     res.render('neighbordiff');
   });
+  
+  app.get('/lynmore', function(req, res){
+    res.render('lynmore');
+  });
 
   client = new CartoDB({ user: "mapmeld", api_key: "a7f9c9a3ca871072545cc433be20c76aee0f9994"});
 
