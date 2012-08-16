@@ -45,7 +45,7 @@ function init(){
   // load new buildings from MongoDB
   $.getJSON('/storedbuildings', function(buildings){
     for(var b=0;b<buildings.length;b++){
-      var pt = new L.Marker(new L.LatLng(buildings[b].ll[0], buildings[b].ll[1])).bind(buildings[b].status);
+      var pt = new L.Marker(new L.LatLng(buildings[b].ll[0], buildings[b].ll[1])).bindPopup(buildings[b].status);
       map.addLayer(pt);
     }
   });
