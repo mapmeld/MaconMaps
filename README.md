@@ -12,11 +12,17 @@ The building highlighted below was replaced by a parking lot. Drag and drop a re
 
 <hr/>
 
-The building under construction in the photo below is now a dormitory, and a journalism school is being built across the street. Drag and drop a green marker where new buildings should be added.
+This former drive-thru bank has been re-opened as a pharmacy. Let's drag and drop a green marker to set it to Renovated.
+
+<img src="http://i.imgur.com/68fpv.png"/>
+
+<hr/>
+
+The building under construction in the photo below is now a dormitory, and a journalism school is being built across the street. Drag and drop a yellow marker where new buildings should be added to the data.
 
 <img src="http://i.imgur.com/iNxUD.png"/>
 
-In the future, NeighborDiff will let you add more names and information when you click on a building.
+In the future, NeighborDiff will let you add more information by clicking on interesting buildings.
 
 The output data can be added to OpenStreetMap with this site as proof of community review.
 
@@ -25,6 +31,10 @@ The output data can be added to OpenStreetMap with this site as proof of communi
 The buildings in NeighborDiff are stored on CartoDB. We use their Maps API to display and interact with the buildings, and their Node.js module + SQL API to change the status of buildings as you edit them.
 
 <a href="http://cartodb.com">CartoDB</a> is a free/freemium mapping database from Vizzuality. You can upload shapefiles and Google Earth KML data to start creating a table.
+
+## About MongoDB
+
+Individual points (the new buildings) cannot be mixed with the buildings data on CartoDB. Instead of using an INSERT command, the points are stored separately in a free MongoDB database from MongoLabs.
 
 ## Other technologies used
 
