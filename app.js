@@ -66,9 +66,12 @@ var init = exports.init = function (config) {
       //client.query("insert into " + tablename + " (status, the_geom) values ('new', ST_SetSRID(ST_MultiPolygon(((" + req.query['ll'].replace(',',' ') + "))),4326))");
       
       // until then, use MongoDB
+      var latlngarray = req.query['ll'].split(',');
+      latlngarray[0] *= 1;
+      latlngarray[1] *= 1;
       pt = new specialpoint.SpecialPoint({
         status: 'new',
-        ll: req.query['ll'].split(',')
+        ll: latlngarray
       });
       pt.save(function(err){
         res.send(err || 'success');
