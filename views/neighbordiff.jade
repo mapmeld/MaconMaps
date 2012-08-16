@@ -7,32 +7,34 @@ head
   link(rel='stylesheet', href='/carto/stylesheets/cartodb-leaflet.css', type='text/css')
   link(href='/stylesheets/bootstrap-mini.css', rel='stylesheet', type='text/css')
   link(href='/stylesheets/neighbordiff.css', rel='stylesheet', type='text/css')
-  script(type="text/javascript", src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js")
+  script(type="text/javascript", src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js")
   script(type="text/javascript", src="/carto/scripts/leaflet.js")
   script(type="text/javascript", src="/carto/scripts/wax.leaf.min-7.0.0dev1-touched.js")
   script(type="text/javascript", src="/carto/scripts/cartodb-leaflet-min.js")
   script(type="text/javascript", src="/carto/scripts/cartodb-popup-min.js")
   script(type="text/javascript", src="/carto/scripts/tilelayer.bing.js")
   script(type="text/javascript", src="/scripts/neighbordiff.js")
-body(onload='init()', style='padding:6px;')
-  div.container(style="height:100%;")
+body(onload='init()')
+  div.container
     .row
       .span12
         h3 NeighborDiff
-        strong Click a building to change its status or make a note
-        img#marker_Demolished(src='http://www.roche.com/red-dot.gif', draggable='true', ondragstart='dragstarted(event)', style='vertical-align:middle')
-        img#marker_Moved(src='http://www.roche.com/blue-dot.gif', draggable='true', ondragstart='dragstarted(event)', style='vertical-align:middle')
-        img#marker_Renovated(src='http://files.tainasplace.webnode.com/200000986-79ad77aa77/map%20marker%20green.jpg', draggable='true', ondragstart='dragstarted(event)', style='vertical-align:middle')
-        img#marker_Unchanged(src='http://library.csun.edu/images/google_maps/marker-orange.png', draggable='true', ondragstart='dragstarted(event)', style='vertical-align:middle')
+        strong Drag a marker to a building to change its status.
+        img#marker_Demolished.marker(src='/images/redmarker.png', draggable='true', ondragstart='dragstarted(event)')
+        img#marker_Moved.marker(src='/images/bluemarker.png', draggable='true', ondragstart='dragstarted(event)')
+        img#marker_Renovated.marker(src='/images/greenmarker.png', draggable='true', ondragstart='dragstarted(event)')
+        img#marker_Unchanged.marker(src='/images/orangemarker.png', draggable='true', ondragstart='dragstarted(event)')
+        span &nbsp;|&nbsp;
+        img#marker_NewBuilding.marker(src='/images/newmarker.png', draggable='true', ondragstart='dragstarted(event)')
 
-        div(style='float:right')
+        div.searchbox
           input#placesearch.span4(type='text', placeholder='1400 Coleman Ave', onkeyup='checkForEnter(event)')
-          a.btn.btn-info(onclick='searchAddress()', style='vertical-align:top') Search
+          a.btn.btn-info.searchbutton(onclick='searchAddress()') Search
 
-    .row(style="height:85%;")
-      ul.span12.nav.nav-pills(style="margin-left:20px;")
+    .row.mainrow
+      ul.span12.nav.nav-pills
         li#streetlayer.active
           a(href="#", onclick="setMap('street')") Streets
         li#satlayer
           a(href="#", onclick="setMap('sat')") Satellite
-      #map.span12(style="height:85%;", ondragend="dragended(event)", ondrop="dropped(event)", ondragover="allowDrop(event)")
+      #map.span12(ondragend="dragended(event)", ondrop="dropped(event)", ondragover="allowDrop(event)")

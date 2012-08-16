@@ -25,8 +25,8 @@ function init(){
     tile_style: "collegeplusintown{polygon-fill:orange;polygon-opacity:0.3;} collegeplusintown[status='Demolished']{polygon-fill:red;} collegeplusintown[status='Renovated']{polygon-fill:green;} collegeplusintown[status='Moved']{polygon-fill:blue;}",
     interactivity: "cartodb_id, status",
     featureClick: function(ev, latlng, pos, data){
-      //console.log(data);
-      building_pop.setLatLng(latlng).setContent("<label>Name</label><br/><input id='poly_name' class='x-large' value=''/><br/><label>Add Detail</label><br/><textarea id='poly_detail' rows='6' cols='25'></textarea><br/>" + addDropdown(data));
+      building_pop.setLatLng(latlng).setContent("<label>Name</label><br/><input id='poly_name' class='x-large' value=''/><br/><label>Add Detail</label><br/><textarea id='poly_detail' rows='6' cols='25'></textarea><br/><input class='btn' onclick='saveDetail()' style='float:right;' value='Save'/>");
+      // + addDropdown(data));
       map.openPopup(building_pop);
     },
     //featureOver: function(){},
@@ -63,9 +63,7 @@ function addDropdown(givendata){
 }
 function setStatus(id, status){
   console.log(id + " set to " + status);
-  $.getJSON("/changetable?id=" + id + "&status=" + status, function(data){
-    console.log(data);
-  });
+  $.getJSON("/changetable?id=" + id + "&status=" + status, function(data){ });
   $.getJSON("http://mapmeld.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT%20ST_AsGeoJSON(the_geom)%20FROM%20collegeplusintown%20WHERE%20cartodb_id=" + id).done(function(poly){
     // until zoom changes and tiles are refreshed, show polygon
     L.geoJson(JSON.parse(poly.rows[0].st_asgeojson), {
@@ -91,10 +89,7 @@ function setStatus(id, status){
   });
 }
 function dragstarted(e){
-  console.log("dragstarted");
   dragtype = e.target.id;
-  //console.log(e);
-  //e.target.style.opacity = "0.4"; // dim source element
 }
 function allowDrop(e){
   e.preventDefault();
@@ -104,18 +99,24 @@ function dragended(e){
   allowDrop(e);
 }
 function dropped(e){
-  //console.log("dropped");
-  //console.log(e);
-  //var dropPoint = map.mouseEventToLatLng(e);
-  //cartodb.interaction.click(e, { x: e.clientX || e.pageX, y: e.clientY || e.pageY });
-
-  // fake a click to change status of building at drop point
-  cartodb.interaction.screen_feature({ x: e.clientX || e.pageX, y: e.clientY || e.pageY }, function(f){
-    var id = f.cartodb_id;
-    dragtype = dragtype.replace("marker_", "");
-    setStatus(id, dragtype);
-    dragtype = null;
-  });
+  if(dragtype == "marker_NewMarker"){
+    // find latitude / longitude of drop point
+    var dropPoint = map.mouseEventToLatLng(e);
+    // add a marker to the visible map
+    var dropMarker = new L.Marker( dropPoint );
+    map.addLayer(dropMarker);
+    // add a marker to the CartoDB table
+    $.getJSON("/changetable?marker=newpoint&ll=" + dropPoint.lng.toFixed(6) + "," + dropPoint.lat.toFixed(6), function(data){ console.log(data) });
+  }
+  else{
+    // fake a click to change status of building at drop point
+    cartodb.interaction.screen_feature({ x: e.clientX || e.pageX, y: e.clientY || e.pageY }, function(f){
+      var id = f.cartodb_id;
+      dragtype = dragtype.replace("marker_", "");
+      setStatus(id, dragtype);
+      dragtype = null;
+    });
+  }
   allowDrop(e);
 }
 function checkForEnter(e){
@@ -128,4 +129,7 @@ function searchAddress(){
   $.getJSON("/placesearch?address=" + address, function(data){
     map.setView(new L.LatLng(data.position.split(',')[0], data.position.split(',')[1]), 17);
   });
+}
+function saveDetail(){
+
 }

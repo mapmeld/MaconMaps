@@ -59,13 +59,19 @@ var init = exports.init = function (config) {
   client = new CartoDB({ user: "mapmeld", api_key: "a7f9c9a3ca871072545cc433be20c76aee0f9994"});
 
   app.get('/changetable', function(req, res){
+    var tablename = req.query['table'] || "collegeplusintown";
     client.on('data', function(data){
       try{
         res.send(data);
       }
       catch(e){ /* catch extra-header errors? */ }
     });
-    client.query("update collegeplusintown SET status = '" + req.query['status'] + "' WHERE cartodb_id = " + req.query['id']);
+    if(req.query['marker'] == 'newpoint'){
+      client.query("insert into " + tablename + " (status, the_geom) values ('new', ST_SetSRID(ST_Point(" + req.query['ll'] + "),4326))");
+    }
+    else{
+      client.query("update " + tablename + " SET status = '" + req.query['status'] + "' WHERE cartodb_id = " + req.query['id']);
+    }
   });
   
   app.get('/placesearch', function(req, res){
