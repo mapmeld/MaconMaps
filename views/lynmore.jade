@@ -29,7 +29,7 @@ body(onload='init()')
 
         div.searchbox
           input#placesearch.span4(type='text', placeholder='4162 Roy Ave', onkeyup='checkForEnter(event)')
-          a.btn.btn-info.#searchbutton(onclick='searchAddress()') Search
+          a#searchbutton.btn.btn-info(onclick='searchAddress()') Search
 
     .row.mainrow
       ul.span12.nav.nav-pills
