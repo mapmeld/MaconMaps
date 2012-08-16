@@ -29,7 +29,7 @@ body(onload='init()')
 
         div.searchbox
           input#placesearch.span4(type='text', placeholder='1400 Coleman Ave', onkeyup='checkForEnter(event)')
-          a.btn.btn-info.searchbutton(onclick='searchAddress()') Search
+          a.btn.btn-info#searchbutton(onclick='searchAddress()') Search
 
     .row.mainrow
       ul.span12.nav.nav-pills
