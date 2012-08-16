@@ -4,6 +4,7 @@ var mongoose = require('mongoose'),
 
 var SpecialPointSchema = new Schema({
   status: String,
+  tablematch: String,
   ll: {lat: Number, lng: Number},
   created: {type: Date, default: Date.now}
 });

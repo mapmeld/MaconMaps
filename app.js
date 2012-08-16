@@ -71,6 +71,7 @@ var init = exports.init = function (config) {
       latlngarray[1] *= 1;
       pt = new specialpoint.SpecialPoint({
         status: 'new',
+        tablematch: tablename,
         ll: latlngarray
       });
       pt.save(function(err){
@@ -99,6 +100,13 @@ var init = exports.init = function (config) {
     
     request(requestOptions, function (err, response, body) {
       res.send({ position: body });
+    });
+  });
+  
+  app.get('/storedbuildings', function(req, res){
+    var tablename = req.query['table'] || "collegeplusintown";
+    specialpoint.SpecialPoint.find({ tablematch: tablename }).exec(function(err, buildings){
+      res.send(buildings);
     });
   });
   
