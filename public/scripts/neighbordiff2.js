@@ -175,7 +175,7 @@ function saveDetail(){
         }
       },
       onEachFeature: function(feature, layer){
-        layer.bindPopup("<label>Name</label><br/><strong>" + replaceAll(replaceAll(name,"<","&lt;"),">","&gt;") + "</strong><br><label>Description</label><br/><strong>" + replaceAll(replaceAll(detail,"<","&lt;"),">","&gt;") + "</strong>");
+        layer.bindPopup("<label><em>Name: </em></label><strong>" + replaceAll(replaceAll(name,"<","&lt;"),">","&gt;") + "</strong><br/><label><em>Description: </em></label><strong>" + replaceAll(replaceAll(detail,"<","&lt;"),">","&gt;") + "</strong>");
         zoomLayers.push(layer);
       }
     }).addTo(map);
