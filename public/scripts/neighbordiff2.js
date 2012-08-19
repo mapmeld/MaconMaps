@@ -153,6 +153,8 @@ function saveDetail(){
   var id = $('#selectid').val();
   var name = $('#poly_name').val();
   var detail = $('#poly_detail').html();
+  console.log("Name: " + name);
+  console.log("Detail: " + detail);
   $.getJSON("/detailtable?table=lynmore&id=" + id + "&name=" + encodeURIComponent(name) + "&detail=" + encodeURIComponent(detail), function(data){
     console.log(data);
   });

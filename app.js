@@ -80,7 +80,7 @@ function replaceAll(src, oldr, newr){
       }
       catch(e){ /* catch extra-header errors? */ }
     });
-    client.query("update " + tablename + " SET (name, description) = ('" + name + "','" + description + "') WHERE cartodb_id = " + req.query['id']);
+    client.query("UPDATE " + tablename + " SET (name,description) = ('" + name + "','" + detail + "') WHERE cartodb_id = " + req.query['id']);
   });
 
   app.get('/changetable', function(req, res){
