@@ -27,9 +27,9 @@ function init(){
     table_name: 'lynmore',
     query: "SELECT * FROM lynmore",
     tile_style: "lynmore{polygon-fill:orange;polygon-opacity:0.3;} lynmore[status='Demolished']{polygon-fill:red;} lynmore[status='Renovated']{polygon-fill:green;} lynmore[status='Moved']{polygon-fill:blue;}",
-    interactivity: "cartodb_id, status",
+    interactivity: "cartodb_id, status, name, description",
     featureClick: function(ev, latlng, pos, data){
-      building_pop.setLatLng(latlng).setContent("<label>Name</label><br/><input id='poly_name' class='x-large' value=''/><br/><label>Add Detail</label><br/><textarea id='poly_detail' rows='6' cols='25'></textarea><br/><input class='btn btn-info' onclick='saveDetail()' style='width:40%;' value='Save'/>");
+      building_pop.setLatLng(latlng).setContent("<input type='hidden' id='selectedid' value='" + data.cartodb_id + "'/><label>Name</label><br/><input id='poly_name' class='x-large' value='" + data.name + "'/><br/><label>Add Detail</label><br/><textarea id='poly_detail' rows='6' cols='25'>" + replaceAll(replaceAll(data.description,"<","&lt;"),">","&gt;") + "</textarea><br/><input class='btn btn-info' onclick='saveDetail()' style='width:40%;' value='Save'/>");
       // + addDropdown(data));
       map.openPopup(building_pop);
     },
@@ -67,6 +67,12 @@ function setMap(lyr){
     $("#streetlayer").removeClass("active");
     $("#satlayer").addClass("active");
   }
+}
+function replaceAll(src, oldr, newr){
+  while(src.indexOf(oldr) > -1){
+    src = src.replace(oldr, newr);
+  }
+  return src;
 }
 function addDropdown(givendata){
   var full = '<select onchange="setStatus(\'' + givendata.cartodb_id + '\',this.value);"><option>Unchanged</option><option>Demolished</option><option>Renovated</option><option>Moved</option></select><br/>';
@@ -143,5 +149,11 @@ function searchAddress(){
   });
 }
 function saveDetail(){
-
+  var id = $('#selectid').val();
+  var name = $('#poly_name').val();
+  var detail = $('#poly_detail').html();
+  $.getJSON("/detailtable?table=lynmore&id=" + id + "&name=" + encodeURIComponent(name) + "&detail=" + encodeURIComponent(detail), function(data){
+    console.log(data);
+  });
+  map.closePopup();
 }

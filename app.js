@@ -60,8 +60,28 @@ var init = exports.init = function (config) {
   app.get('/lynmore', function(req, res){
     res.render('lynmore');
   });
+  
+function replaceAll(src, oldr, newr){
+  while(src.indexOf(oldr) > -1){
+    src = src.replace(oldr, newr);
+  }
+  return src;
+}
 
   client = new CartoDB({ user: "mapmeld", api_key: "a7f9c9a3ca871072545cc433be20c76aee0f9994"});
+
+  app.get('/detailtable', function(req, res){
+    var tablename = req.query['table'] || "collegeplusintown";
+    var name = replaceAll(req.query['name'],"'","\\'");
+    var detail = replaceAll(req.query['detail'],"'","\\'");
+    client.on('data', function(data){
+      try{
+        res.send(data);
+      }
+      catch(e){ /* catch extra-header errors? */ }
+    });
+    client.query("update " + tablename + " SET (name, description) = ('" + name + "','" + description + "') WHERE cartodb_id = " + req.query['id']);
+  });
 
   app.get('/changetable', function(req, res){
     var tablename = req.query['table'] || "collegeplusintown";
