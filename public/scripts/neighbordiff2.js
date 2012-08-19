@@ -5,7 +5,10 @@ if(!console || !console.log){
   alert("Try running this in Firefox or Chrome");
 }
 function init(){
-  map = new L.Map('map');
+  map = new L.Map('map', { zoomControl: false, panControl: false });
+  L.control.pan().addTo(map);
+  L.control.zoom().addTo(map);
+  
   var toner = 'http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png';
   var tonerAttrib = 'Map data &copy; 2012 OpenStreetMap contributors, Tiles &copy; 2012 Stamen Design';
   terrainLayer = new L.TileLayer(toner, {maxZoom: 18, attribution: tonerAttrib});
