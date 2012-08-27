@@ -154,9 +154,7 @@ function saveDetail(){
   var id = $('#selectedid').val();
   var name = $('#poly_name').val();
   var detail = $('#poly_detail').val();
-  $.getJSON("/detailtable?table=lynmore&id=" + id + "&name=" + encodeURIComponent(name) + "&detail=" + encodeURIComponent(detail), function(data){
-    console.log(data);
-  });
+  $.getJSON("/detailtable?table=lynmore&id=" + id + "&name=" + encodeURIComponent(name) + "&detail=" + encodeURIComponent(detail), function(data){ });
   $.getJSON("http://mapmeld.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT%20ST_AsGeoJSON(the_geom)%20FROM%20lynmore%20WHERE%20cartodb_id=" + id).done(function(poly){
     // until zoom changes and tiles are refreshed, show polygon with this name and description
     L.geoJson(JSON.parse(poly.rows[0].st_asgeojson), {
