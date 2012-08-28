@@ -20,7 +20,7 @@ function CoordMapType(tileSize) {
 CoordMapType.prototype.getTile = function(coord, zoom, ownerDocument) {
   console.log(coord);
   var img = ownerDocument.createElement('img');
-  img.src = "http://mapmeld.cartodb.com/tiles/collegeplusintown/" + zoom + "/" + coord.x + "/" + coord.y + ".png?sql=SELECT%20*%20FROM%20collegeplusintown&style=collegeplusintown{line-color:orange;} collegeplusintown[status='Demolished']{line-opacity:0;} collegeplusintown[status='Renovated']{polygon-fill:green;polygon-opacity:0.3;line-color:green;}";
+  img.src = "http://mapmeld.cartodb.com/tiles/collegehill/" + zoom + "/" + coord.x + "/" + coord.y + ".png?sql=SELECT%20*%20FROM%20collegehill&style=collegehill{line-color:orange;} collegehill[status='Demolished']{line-opacity:0;} collegehill[status='Renovated']{polygon-fill:green;polygon-opacity:0.3;line-color:green;}";
   img.style.width = this.tileSize.width + 'px';
   img.style.height = this.tileSize.height + 'px';
   return img;

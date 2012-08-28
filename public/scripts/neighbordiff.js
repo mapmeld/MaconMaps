@@ -74,7 +74,7 @@ function addDropdown(givendata){
 }
 function setStatus(id, status){
   console.log(id + " set to " + status);
-  $.getJSON("/changetable?id=" + id + "&status=" + status, function(data){ });
+  $.getJSON("/changetable?table=collegehill&id=" + id + "&status=" + status, function(data){ });
   $.getJSON("http://mapmeld.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT%20ST_AsGeoJSON(the_geom)%20FROM%20collegehill%20WHERE%20cartodb_id=" + id).done(function(poly){
     // until zoom changes and tiles are refreshed, show polygon
     L.geoJson(JSON.parse(poly.rows[0].st_asgeojson), {
@@ -117,7 +117,7 @@ function dropped(e){
     var dropMarker = new L.Marker( dropPoint );
     map.addLayer(dropMarker);
     // add a marker to the CartoDB table
-    $.getJSON("/changetable?marker=newpoint&ll=" + dropPoint.lng.toFixed(6) + "," + dropPoint.lat.toFixed(6), function(data){ console.log(data) });
+    $.getJSON("/changetable?table=collegehill&marker=newpoint&ll=" + dropPoint.lng.toFixed(6) + "," + dropPoint.lat.toFixed(6), function(data){ console.log(data) });
   }
   else{
     // fake a click to change status of building at drop point
