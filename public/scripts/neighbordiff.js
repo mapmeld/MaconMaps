@@ -23,9 +23,9 @@ function init(){
   cartodb = new L.CartoDBLayer({
     map: map,
     user_name:'mapmeld',
-    table_name: 'collegeplusintown',
-    query: "SELECT * FROM collegeplusintown",
-    tile_style: "collegeplusintown{polygon-fill:orange;polygon-opacity:0.3;} collegeplusintown[status='Demolished']{polygon-fill:red;} collegeplusintown[status='Renovated']{polygon-fill:green;} collegeplusintown[status='Moved']{polygon-fill:blue;}",
+    table_name: 'collegehill',
+    query: "SELECT * FROM collegehill",
+    tile_style: "collegehill{polygon-fill:orange;polygon-opacity:0.3;} collegehill[status='Demolished']{polygon-fill:red;} collegehill[status='Renovated']{polygon-fill:green;} collegehill[status='Moved']{polygon-fill:blue;}",
     interactivity: "cartodb_id, status",
     featureClick: function(ev, latlng, pos, data){
       building_pop.setLatLng(latlng).setContent("<label>Name</label><br/><input id='poly_name' class='x-large' value=''/><br/><label>Add Detail</label><br/><textarea id='poly_detail' rows='6' cols='25'></textarea><br/><input class='btn btn-info' onclick='saveDetail()' style='width:40%;' value='Save'/>");
@@ -75,7 +75,7 @@ function addDropdown(givendata){
 function setStatus(id, status){
   console.log(id + " set to " + status);
   $.getJSON("/changetable?id=" + id + "&status=" + status, function(data){ });
-  $.getJSON("http://mapmeld.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT%20ST_AsGeoJSON(the_geom)%20FROM%20collegeplusintown%20WHERE%20cartodb_id=" + id).done(function(poly){
+  $.getJSON("http://mapmeld.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT%20ST_AsGeoJSON(the_geom)%20FROM%20collegehill%20WHERE%20cartodb_id=" + id).done(function(poly){
     // until zoom changes and tiles are refreshed, show polygon
     L.geoJson(JSON.parse(poly.rows[0].st_asgeojson), {
       style: function (feature) {
