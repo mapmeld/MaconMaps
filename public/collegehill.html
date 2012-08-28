@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>College Hill Impact Map</title>
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript">
+var map;
+function init(){
+  var mapOptions = {
+    zoom: 17,
+    center: new google.maps.LatLng(32.834,-83.645),
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+  map = new google.maps.Map(document.getElementById('map'), mapOptions);
+  map.overlayMapTypes.insertAt(0, new CoordMapType(new google.maps.Size(256, 256)));
+}
+function CoordMapType(tileSize) {
+  this.tileSize = tileSize;
+}
+CoordMapType.prototype.getTile = function(coord, zoom, ownerDocument) {
+  console.log(coord);
+  var img = ownerDocument.createElement('img');
+  img.src = "http://mapmeld.cartodb.com/tiles/collegeplusintown/" + zoom + "/" + coord.x + "/" + coord.y + ".png?sql=SELECT%20*%20FROM%20collegeplusintown&style=collegeplusintown{line-color:orange;} collegeplusintown[status='Demolished']{line-opacity:0;} collegeplusintown[status='Renovated']{polygon-fill:green;polygon-opacity:0.3;line-color:green;}";
+  img.style.width = this.tileSize.width + 'px';
+  img.style.height = this.tileSize.height + 'px';
+  return img;
+};
+    </script>
+    <style type="text/css">
+html, body, #map{
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: verdana, sansserif;
+}
+    </style>
+  </head>
+  <body onload="init()">
+    <div id="map"></div>
+  </body>
+</html>
