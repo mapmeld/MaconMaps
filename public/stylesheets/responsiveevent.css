@@ -1,0 +1,23 @@
+#eventpiece{
+  background: url("../images/MaconTiltShadow.png");
+  text-align: right;
+  padding-right: 10%;
+  background-repeat: no-repeat;
+  background-size: 500px;
+  height: 220px;
+}
+#backupimg{
+  display: none;
+}
+
+@media only screen and (max-width: 480px), only screen and (max-device-width: 480px)  {
+  #eventpiece{
+    background: none;
+  }
+  #backupimg{
+    display: block;
+  }
+  .sidebar-nav{
+    display: none;
+  }
+}
