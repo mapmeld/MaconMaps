@@ -11,7 +11,9 @@
 }
 
 @media only screen and (max-width: 1000px), only screen and (max-device-width: 1000px)  {
-  background-size: 250px;
+  #eventpiece{
+    background-size: 250px;
+  }
 }
 
 @media only screen and (max-width: 480px), only screen and (max-device-width: 480px)  {
