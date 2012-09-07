@@ -26,7 +26,7 @@ function init(){
     user_name:'mapmeld',
     table_name: 'lynmore',
     query: "SELECT * FROM lynmore",
-    tile_style: "lynmore{polygon-fill:orange;polygon-opacity:0.3;} lynmore[status='Demolished']{polygon-fill:red;} lynmore[status='Renovated']{polygon-fill:green;} lynmore[status='Moved']{polygon-fill:blue;}",
+    tile_style: "%23lynmore{polygon-fill:orange;polygon-opacity:0.3;} %23lynmore[status='Demolished']{polygon-fill:red;} %23lynmore[status='Renovated']{polygon-fill:green;} %23lynmore[status='Moved']{polygon-fill:blue;}",
     interactivity: "cartodb_id, status, name, description",
     featureClick: function(ev, latlng, pos, data){
       console.log(data);
