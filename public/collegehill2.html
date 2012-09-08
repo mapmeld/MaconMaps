@@ -33,10 +33,6 @@ function init(){
     interactivity: "cartodb_id,name,description",
     featureClick: function(feature, latlng, pos, data){
       infowindow.close();
-      console.log(feature);
-      console.log(data);
-      console.log(latlng);
-      console.log(pos);
       infowindow.setContent( "<h3>" + (data.name || data.cartodb_id) + "</h3>" + describe(data.description) );
       infowindow.setPosition( latlng );
       infowindow.open(map);
@@ -52,14 +48,24 @@ function describe(description){
   // allow link:http://example.com
   while(description.indexOf("link:") > -1){
     description = description.split("link:");
-    description[1] = "<a href='" + description[1].split(" ")[0] + '">' + description[1].split(" ")[0] + '</a> ' + description[1].split(" ")[1];
+    if(description[1].indexOf(" ") > -1){
+      description[1] = "<a href='" + description[1].split(" ")[0] + '">' + description[1].split(" ")[0] + '</a> ' + description[1].split(" ")[1];
+    }
+    else{
+      description[1] = "<a href='" + description[1] + '">' + description[1] + '</a>';
+    }
     description = description.join("link:");
     description = description.replace("link:","");
   }
   // allow photo:http://example.com/image.jpg
   while(description.indexOf("photo:") > -1){
     description = description.split("photo:");
-    description[1] = "<img src='" + description[1].split(" ")[0] + ' width="250"/> ' + description[1].split(" ")[1];
+    if(description[1].indexOf(" ") > -1){
+      description[1] = "<br/><img src='" + description[1].split(" ")[0] + ' width="250"/><br/>' + description[1].split(" ")[1];
+    }
+    else{
+      description[1] = "<br/><img src='" + description[1] + ' width="250"/>';
+    }
     description = description.join("photo:");
     description = description.replace("photo:","");
   }
