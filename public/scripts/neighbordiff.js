@@ -28,7 +28,7 @@ function init(){
     tile_style: "#collegehill{polygon-fill:orange;polygon-opacity:0.3;} #collegehill[status='Demolished']{polygon-fill:red;} #collegehill[status='Renovated']{polygon-fill:green;} #collegehill[status='Moved']{polygon-fill:blue;}",
     interactivity: "cartodb_id, status",
     featureClick: function(ev, latlng, pos, data){
-      building_pop.setLatLng(latlng).setContent("<label>Name</label><br/><input id='poly_name' class='x-large' value=''/><br/><label>Add Detail</label><br/><textarea id='poly_detail' rows='6' cols='25'></textarea><br/><a class='btn btn-info' onclick='saveDetail()' style='width:40%;'>Save</a>");
+      building_pop.setLatLng(latlng).setContent("<label>Name</label><br/><input id='poly_name' class='x-large' value=''/><br/><label>Add Detail</label><br/><textarea id='poly_detail' rows='6' cols='25'></textarea><br/><a class='btn' onclick='saveDetail()' style='width:40%;'>Save</a>");
       // + addDropdown(data));
       map.openPopup(building_pop);
     },
@@ -142,5 +142,33 @@ function searchAddress(){
   });
 }
 function saveDetail(){
-
+  // popup save
+  var id = $('#selectedid').val();
+  var name = $('#poly_name').val();
+  var detail = $('#poly_detail').val();
+  $.getJSON("/detailtable?table=collegehill&id=" + id + "&name=" + encodeURIComponent(name) + "&detail=" + encodeURIComponent(detail), function(data){ });
+  $.getJSON("http://mapmeld.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT%20ST_AsGeoJSON(the_geom)%20FROM%20collegehill%20WHERE%20cartodb_id=" + id).done(function(poly){
+    // until zoom changes and tiles are refreshed, show polygon with this name and description
+    L.geoJson(JSON.parse(poly.rows[0].st_asgeojson), {
+      style: function (feature) {
+        if(status == "Demolished"){
+          return {color: "#f00", opacity: 1};
+        }
+        else if(status == "Renovated"){
+          return {color: "#0f0", opacity: 1};
+        }
+        else if(status == "Moved"){
+          return {color: "#00f", opacity: 1};      
+        }
+        else{
+          return {color: "orange", opacity: 1};
+        }
+      },
+      onEachFeature: function(feature, layer){
+        layer.bindPopup("<label><em>Name: </em></label><strong>" + replaceAll(replaceAll(name,"<","&lt;"),">","&gt;") + "</strong><br/><label><em>Description: </em></label><strong>" + replaceAll(replaceAll(detail,"<","&lt;"),">","&gt;") + "</strong>");
+        zoomLayers.push(layer);
+      }
+    }).addTo(map);
+  });
+  map.closePopup();
 }
