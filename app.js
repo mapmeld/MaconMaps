@@ -78,7 +78,9 @@ function replaceAll(src, oldr, newr){
       try{
         res.send(data);
       }
-      catch(e){ /* catch extra-header errors? */ }
+      catch(e){
+        res.send(e);
+      }
     });
     client.query("UPDATE " + tablename + " SET (name,description) = ('" + name + "','" + detail + "') WHERE cartodb_id = " + req.query['id']);
   });
