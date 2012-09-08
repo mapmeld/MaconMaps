@@ -49,10 +49,10 @@ function describe(description){
   while(description.indexOf("link:") > -1){
     description = description.split("link:");
     if(description[1].indexOf(" ") > -1){
-      description[1] = "<a href='" + description[1].split(" ")[0] + '">' + description[1].split(" ")[0] + '</a> ' + description[1].split(" ")[1];
+      description[1] = "<a href='" + description[1].split(" ")[0] + "'>" + description[1].split(" ")[0] + "</a> " + description[1].split(" ")[1];
     }
     else{
-      description[1] = "<a href='" + description[1] + '">' + description[1] + '</a>';
+      description[1] = "<a href='" + description[1] + "'>" + description[1] + "</a>";
     }
     description = description.join("link:");
     description = description.replace("link:","");
@@ -61,10 +61,10 @@ function describe(description){
   while(description.indexOf("photo:") > -1){
     description = description.split("photo:");
     if(description[1].indexOf(" ") > -1){
-      description[1] = "<br/><img src='" + description[1].split(" ")[0] + ' width="250"/><br/>' + description[1].split(" ")[1];
+      description[1] = "<br/><img src='" + description[1].split(" ")[0] + "' width='250'/><br/>" + description[1].split(" ")[1];
     }
     else{
-      description[1] = "<br/><img src='" + description[1] + ' width="250"/>';
+      description[1] = "<br/><img src='" + description[1] + "' width='250'/>";
     }
     description = description.join("photo:");
     description = description.replace("photo:","");
