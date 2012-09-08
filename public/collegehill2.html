@@ -35,9 +35,11 @@ function init(){
       infowindow.close();
       console.log(feature);
       console.log(data);
+      console.log(latlng);
+      console.log(pos);
       infowindow.setContent( "<h3>" + data.name + "</h3>" + data.description );
       infowindow.setPosition( latlng );
-      infowindow.open();
+      infowindow.open(map);
     },
     auto_bound: false
   });
