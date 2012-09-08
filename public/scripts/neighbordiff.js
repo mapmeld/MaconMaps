@@ -83,7 +83,7 @@ function setStatus(id, status){
   $.getJSON("/changetable?table=collegehill&id=" + id + "&status=" + status, function(data){ });
   $.getJSON("http://mapmeld.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT%20the_geom%20FROM%20collegehill%20WHERE%20cartodb_id=" + id).done(function(poly){
     // until zoom changes and tiles are refreshed, show polygon
-    L.geoJson(JSON.parse(poly.rows[0].st_asgeojson), {
+    L.geoJson(JSON.parse(poly), {
       style: function (feature) {
         if(status == "Demolished"){
           return {color: "#f00", opacity: 1};
@@ -155,7 +155,7 @@ function saveDetail(){
   $.getJSON("/detailtable?table=collegehill&id=" + id + "&name=" + encodeURIComponent(name) + "&detail=" + encodeURIComponent(detail), function(data){ });
   $.getJSON("http://mapmeld.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT%20the_geom%20FROM%20collegehill%20WHERE%20cartodb_id=" + id).done(function(poly){
     // until zoom changes and tiles are refreshed, show polygon with this name and description
-    L.geoJson(JSON.parse(poly.rows[0].st_asgeojson), {
+    L.geoJson(JSON.parse(poly), {
       style: function (feature) {
         if(status == "Demolished"){
           return {color: "#f00", opacity: 1};
