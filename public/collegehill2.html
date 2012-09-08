@@ -30,14 +30,14 @@ function init(){
     query: "SELECT * FROM {{table_name}}",
     layer_order: "top",
     tile_style: "#collegehill{line-color:orange;polygon-fill:orange;polygon-opacity:0;} #collegehill[status='Demolished']{line-opacity:0;} #collegehill[status='Renovated']{polygon-fill:green;polygon-opacity:0.3;line-color:green;}",
-    interactivity: "name,description",
+    interactivity: "cartodb_id,name,description",
     featureClick: function(feature, latlng, pos, data){
       infowindow.close();
       console.log(feature);
       console.log(data);
       console.log(latlng);
       console.log(pos);
-      infowindow.setContent( "<h3>" + data.name + "</h3>" + data.description );
+      infowindow.setContent( "<h3>" + (data.name || data.cartodb_id) + "</h3>" + (data.description || "No description") );
       infowindow.setPosition( latlng );
       infowindow.open(map);
     },
