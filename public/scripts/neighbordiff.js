@@ -28,7 +28,7 @@ function init(){
     tile_style: "#collegehill{polygon-fill:orange;polygon-opacity:0.3;} #collegehill[status='Demolished']{polygon-fill:red;} #collegehill[status='Renovated']{polygon-fill:green;} #collegehill[status='Moved']{polygon-fill:blue;}",
     interactivity: "cartodb_id, status",
     featureClick: function(ev, latlng, pos, data){
-      building_pop.setLatLng(latlng).setContent("<label>Name</label><br/><input id='poly_name' class='x-large' value=''/><br/><label>Add Detail</label><br/><textarea id='poly_detail' rows='6' cols='25'></textarea><br/><input class='btn btn-info' onclick='saveDetail()' style='width:40%;' value='Save'/>");
+      building_pop.setLatLng(latlng).setContent("<label>Name</label><br/><input id='poly_name' class='x-large' value=''/><br/><label>Add Detail</label><br/><textarea id='poly_detail' rows='6' cols='25'></textarea><br/><a class='btn btn-info' onclick='saveDetail()' style='width:40%;'>Save</a>");
       // + addDropdown(data));
       map.openPopup(building_pop);
     },
