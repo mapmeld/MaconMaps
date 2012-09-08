@@ -3,6 +3,12 @@ var zoomLayers = [];
 if(!console || !console.log){
   console = { log: function(e){ } };
 }
+function replaceAll(src, oldr, newr){
+  while(src.indexOf(oldr) > -1){
+    src = src.replace(oldr, newr);
+  }
+  return src;
+}
 function init(){
   map = new L.Map('map', { zoomControl: false, panControl: false });
   L.control.pan().addTo(map);
