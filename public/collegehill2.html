@@ -7,7 +7,10 @@
     <script type="text/javascript" src="/carto/scripts/wax.g.min.js"></script>
     <script type="text/javascript" src="/carto/scripts/cartodb-gmapsv3-min.js"></script>
     <script type="text/javascript">
-var map;
+var map, infowindow;
+if(typeof console === 'undefined'){
+  console = { log: function(a){ } };
+}
 function init(){
   var mapOptions = {
     zoom: 17,
@@ -18,15 +21,24 @@ function init(){
   map = new google.maps.Map(document.getElementById('map'), mapOptions);
   //map.overlayMapTypes.insertAt(0, new CoordMapType(new google.maps.Size(256, 256)));
 
+  infowindow = new google.maps.InfoWindow();
+
   var cartodb_gmapsv3 = new CartoDBLayer({
     map: map,
     user_name: 'mapmeld',
     table_name: 'collegehill',
-    query: "SELECT * FROM {{table_name}}",
+    query: "SELECT the_geom_webmercator,status FROM {{table_name}}",
     layer_order: "top",
     tile_style: "#collegehill{line-color:orange;polygon-fill:orange;polygon-opacity:0;} #collegehill[status='Demolished']{line-opacity:0;} #collegehill[status='Renovated']{polygon-fill:green;polygon-opacity:0.3;line-color:green;}",
     interactivity: "cartodb_id, name, description",
-    featureClick: function(feature, latlng, pos, data) {console.log(feature)},
+    featureClick: function(feature, latlng, pos, data){
+      infowindow.close();
+      console.log(feature);
+      console.log(data);
+      infowindow.setContent( "<h3>" + data.name + "</h3>" + data.description );
+      infowindow.setPosition( latlng );
+      infowindow.open();
+    },
     auto_bound: true
   });
 }
