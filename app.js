@@ -160,7 +160,31 @@ function replaceAll(src, oldr, newr){
       'uri': 'http://mapmeld.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT%20name,description,status,the_geom%20FROM%20' + tablename + '%20WHERE%20status%20!=\'Unchanged\''
     };
     request(requestOptions, function (err, response, body) {
-      res.json( JSON.parse(body) );
+      //res.json( JSON.parse(body) );
+      var features = JSON.parse(body).features;
+      res.setHeader('Content-Type', 'application/kml');
+      var kmlintro = '<?xml version="1.0" encoding="UTF-8"?>\n<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">\n<Document>\n	<name>POI Dough API</name>\n	<Folder id="KMLAPI">\n		<name>KML API Download</name>\n';
+      var kmldocs = '';
+      var kmlend = '	</Folder>\n</Document>\n</kml>';
+      for(var f=0;f<features.length;f++){
+        kmldocs += '<Placemark>\n';
+        if(features[f].properties.name){
+          kmldocs += '	<name>' + features[f].properties.name + '</name>\n';
+        }
+        if(features[f].properties.description){
+          kmldocs += '	<Description>' + features[f].properties.description + '</Description>\n';
+        }
+        kmldocs += '	<Polygon>\n';
+        kmldocs += '		<extrude>1</extrude>\n';
+        kmldocs += '		<altitudeMode>relativeToGround</altitudeMode>\n';
+        kmldocs += '		<outerBoundaryIs><LinearRing><coordinates>\n';
+        for(var pt=0;pt<features[f].geometry.coordinates[0][0].length;pt++){
+          kmldocs += features[f].geometry.coordinates[0][0][pt][0] + ',' + features[f].geometry.coordinates[0][0][pt][1] + ',0';
+        }
+        kmldocs += '		</coordinates></LinearRing></outerBoundaryIs>\n';
+        kmldocs += '	</Polygon>\n';
+      }
+      res.send(kmlintro + kmldocs + kmlend);
     });
   });
   
