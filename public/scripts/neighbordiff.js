@@ -51,7 +51,7 @@ function init(){
     zoomLayers = [];
   });
   
-  // load new buildings from MongoDB
+  // load special markers from MongoDB
   $.getJSON('/storedbuildings', function(buildings){
     for(var b=0;b<buildings.length;b++){
       var pt = new L.Marker(new L.LatLng(buildings[b].ll[1], buildings[b].ll[0])).bindPopup("<input type='hidden' id='selectedid' value='stored:" + buildings[b]._id + "'/><label>Name</label><br/><input id='poly_name' class='x-large' value='" + replaceAll((buildings[b].name || ""),"'","\\'") + "'/><br/><label>Add Detail</label><br/><textarea id='poly_detail' rows='6' cols='25'>" + replaceAll(replaceAll((buildings[b].description || ""),"<","&lt;"),">","&gt;") + "</textarea><br/><a class='btn' onclick='saveDetail()' style='width:40%;'>Save</a>");
@@ -154,6 +154,7 @@ function saveDetail(){
   var detail = $('#poly_detail').val();
   if(id.indexOf("stored:") > -1){
     // editing a stored point
+    id = id.replace("stored:","");
     $.getJSON("/storedbuildings/edit?id=" + id + "&name=" + encodeURIComponent(name) + "&detail=" + encodeURIComponent(detail), function(data){ });
   }
   else{

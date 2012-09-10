@@ -147,6 +147,9 @@ function replaceAll(src, oldr, newr){
           res.send(err || 'success');
         });
       }
+      else{
+        res.send('no marker');
+      }
     });
   });
   

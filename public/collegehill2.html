@@ -4,6 +4,7 @@
     <title>College Hill Impact Map</title>
     <link href="/carto/stylesheets/cartodb-gmapsv3.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script type="text/javascript" src="/carto/scripts/wax.g.min.js"></script>
     <script type="text/javascript" src="/carto/scripts/cartodb-gmapsv3-min.js"></script>
     <script type="text/javascript">
@@ -18,7 +19,7 @@ function init(){
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     mapTypeControl: false
   };
-  map = new google.maps.Map(document.getElementById('map'), mapOptions);
+  map = new google.maps.Map($('#map')[0], mapOptions);
   //map.overlayMapTypes.insertAt(0, new CoordMapType(new google.maps.Size(256, 256)));
 
   infowindow = new google.maps.InfoWindow();
@@ -39,6 +40,25 @@ function init(){
     },
     auto_bound: false
   });
+
+  // load special markers from MongoDB
+  $.getJSON('/storedbuildings', function(buildings){
+    for(var b=0;b<buildings.length;b++){
+      var ll = new google.maps.LatLng(buildings[b].ll[1], buildings[b].ll[0]);
+      var marker = new google.maps.Marker({
+        map: map,
+        title: buildings[b].name || "",
+        position: ll
+      });
+      google.maps.event.addListener(marker, 'click', function(){
+        infowindow.close();
+        infowindow.setContent( "<h3>" + (buildings[b].name || buildings[b]._id) + "</h3>" + describe(buildings[b].description || "") );
+        infowindow.setPosition( ll );
+        infowindow.open(map);
+      });
+    }
+  });
+
 }
 
 function describe(description){
@@ -71,18 +91,6 @@ function describe(description){
   }
   return description;
 }
-
-/*function CoordMapType(tileSize) {
-  this.tileSize = tileSize;
-}
-CoordMapType.prototype.getTile = function(coord, zoom, ownerDocument) {
-  console.log(coord);
-  var img = ownerDocument.createElement('img');
-  img.src = "http://mapmeld.cartodb.com/tiles/collegehill/" + zoom + "/" + coord.x + "/" + coord.y + ".png?sql=SELECT%20*%20FROM%20collegehill&style=#collegehill{line-color:orange;} #collegehill[status='Demolished']{line-opacity:0;} #collegehill[status='Renovated']{polygon-fill:green;polygon-opacity:0.3;line-color:green;}";
-  img.style.width = this.tileSize.width + 'px';
-  img.style.height = this.tileSize.height + 'px';
-  return img;
-};*/
     </script>
     <style type="text/css">
 html, body, #map{
