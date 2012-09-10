@@ -163,7 +163,7 @@ function replaceAll(src, oldr, newr){
       //res.json( JSON.parse(body) );
       var features = JSON.parse(body).features;
       res.setHeader('Content-Type', 'application/kml');
-      var kmlintro = '<?xml version="1.0" encoding="UTF-8"?>\n<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">\n<Document>\n	<name>POI Dough API</name>\n	<Folder id="KMLAPI">\n		<name>KML API Download</name>\n';
+      var kmlintro = '<?xml version="1.0" encoding="UTF-8"?>\n<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">\n<Document>\n	<name>NeighborDiff API</name>\n	<Folder id="KMLAPI">\n		<name>NeighborDiff API Download</name>\n';
       var kmldocs = '';
       var kmlend = '	</Folder>\n</Document>\n</kml>';
       for(var f=0;f<features.length;f++){
@@ -172,10 +172,10 @@ function replaceAll(src, oldr, newr){
           kmldocs += '	<name>' + features[f].properties.name + '</name>\n';
         }
         if(features[f].properties.description){
-          kmldocs += '	<Description>' + features[f].properties.description + '</Description>\n';
+          kmldocs += '	<description>' + features[f].properties.description + '</description>\n';
         }
         kmldocs += '	<Polygon>\n';
-        kmldocs += '		<extrude>1</extrude>\n';
+//        kmldocs += '		<extrude>1</extrude>\n';
         kmldocs += '		<altitudeMode>relativeToGround</altitudeMode>\n';
         kmldocs += '		<outerBoundaryIs><LinearRing><coordinates>\n';
         for(var pt=0;pt<features[f].geometry.coordinates[0][0].length;pt++){
