@@ -63,7 +63,7 @@ function bindPopup(mark, name, description){
   google.maps.event.addListener(mark, 'click', function(){
     infowindow.close();
     infowindow.setContent( "<h3>" + name + "</h3>" + describe(description) );
-    infowindow.setPosition( ll );
+    infowindow.setPosition( mark.getPosition() );
     infowindow.open(map);
   });
 }
