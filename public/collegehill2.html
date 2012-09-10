@@ -44,6 +44,10 @@ function init(){
   // load special markers from MongoDB
   $.getJSON('/storedbuildings', function(buildings){
     for(var b=0;b<buildings.length;b++){
+      if(!buildings[b].name && !buildings[b].description){
+        // no info on this marker, so don't display it
+        continue;
+      }
       var ll = new google.maps.LatLng(buildings[b].ll[1], buildings[b].ll[0]);
       var marker = new google.maps.Marker({
         map: map,

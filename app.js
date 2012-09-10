@@ -100,7 +100,7 @@ function replaceAll(src, oldr, newr){
         tablematch: tablename,
         ll: latlngarray,
         name: req.query['name'],
-        description: req.query['description']
+        description: req.query['detail']
       });
       pt.save(function(err){
         res.send(err || 'success');
@@ -142,7 +142,7 @@ function replaceAll(src, oldr, newr){
     specialpoint.SpecialPoint.findOne({'_id': req.query['id']}, function(err, pt){
       if(pt){
         pt.name = req.query['name'];
-        pt.description = req.query['description'];
+        pt.description = req.query['detail'];
         pt.save(function(err){
           res.send(err || 'success');
         });
