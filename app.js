@@ -153,6 +153,17 @@ function replaceAll(src, oldr, newr){
     });
   });
   
+  app.get('/tokml', function(req, res){
+    // returns all changed polygons from the CartoDB table
+    var tablename = req.query['table'] || 'collegehill';
+    var requestOptions = {
+      'uri': 'http://mapmeld.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT%20name,description,status,the_geom%20FROM%' + tablename + '%20WHERE%20status%20!=\'Unchanged\''
+    };
+    request(requestOptions, function (err, response, body) {
+      res.json( JSON.parse(body) );
+    });
+  });
+  
   app.get('/event', function(req, res){
     res.render('mapsevent');
   });
