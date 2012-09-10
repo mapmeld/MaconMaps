@@ -54,15 +54,18 @@ function init(){
         title: buildings[b].name || "",
         position: ll
       });
-      google.maps.event.addListener(marker, 'click', function(){
-        infowindow.close();
-        infowindow.setContent( "<h3>" + (buildings[b].name || buildings[b]._id) + "</h3>" + describe(buildings[b].description || "") );
-        infowindow.setPosition( ll );
-        infowindow.open(map);
-      });
+      bindPopup(marker, buildings[b].name || buildings[b]._id, buildings[b].description || "");
     }
   });
+}
 
+function bindPopup(mark, name, description){
+  google.maps.event.addListener(mark, 'click', function(){
+    infowindow.close();
+    infowindow.setContent( "<h3>" + name + "</h3>" + describe(description) );
+    infowindow.setPosition( ll );
+    infowindow.open(map);
+  });
 }
 
 function describe(description){
