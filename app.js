@@ -164,6 +164,8 @@ function replaceAll(src, oldr, newr){
       var features = JSON.parse(body).features;
       res.setHeader('Content-Type', 'application/kml');
       var kmlintro = '<?xml version="1.0" encoding="UTF-8"?>\n<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">\n<Document>\n	<name>NeighborDiff API</name>\n	<Folder id="KMLAPI">\n		<name>NeighborDiff API Download</name>\n';
+      var kmlstyles = '<Style id="Renovated">\n<PolyStyle>\n<color>00ff00cc</color>\n<fill>1</fill>\n</PolyStyle>\n</Style>\n';
+      kmlstyles += '<Style id="Demolished">\n<PolyStyle>\n<color>ff0000cc</color>\n<fill>1</fill>\n</PolyStyle>\n</Style>\n';
       var kmldocs = '';
       var kmlend = '	</Folder>\n</Document>\n</kml>';
       for(var f=0;f<features.length;f++){
@@ -174,9 +176,15 @@ function replaceAll(src, oldr, newr){
         if(features[f].properties.description){
           kmldocs += '	<description>' + features[f].properties.description + '</description>\n';
         }
+        if(features[f].properties.status == "Demolished"){
+          kmldocs += '	<styleUrl>#Demolished</styleUrl>\n';
+        }
+        else if(features[f].properties.status == "Renovated"){
+          kmldocs += '	<styleUrl>#Renovated</styleUrl>\n';
+        }
         kmldocs += '	<Polygon>\n';
-//        kmldocs += '		<extrude>1</extrude>\n';
-        kmldocs += '		<altitudeMode>relativeToGround</altitudeMode>\n';
+        kmldocs += '		<extrude>1</extrude>\n';
+        kmldocs += '		<altitudeMode>clampToGround</altitudeMode>\n';
         kmldocs += '		<outerBoundaryIs><LinearRing><coordinates>\n';
         for(var pt=0;pt<features[f].geometry.coordinates[0][0].length;pt++){
           kmldocs += features[f].geometry.coordinates[0][0][pt][0] + ',' + features[f].geometry.coordinates[0][0][pt][1] + ',0 ';
@@ -185,7 +193,7 @@ function replaceAll(src, oldr, newr){
         kmldocs += '	</Polygon>\n';
         kmldocs += '</Placemark>\n';
       }
-      res.send(kmlintro + kmldocs + kmlend);
+      res.send(kmlintro + kmlstyles + kmldocs + kmlend);
     });
   });
   
