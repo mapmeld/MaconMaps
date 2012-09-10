@@ -153,7 +153,7 @@ function replaceAll(src, oldr, newr){
     });
   });
   
-  app.get('/tokml', function(req, res){
+  app.get('/tokml.kml', function(req, res){
     // returns all changed polygons from the CartoDB table
     var tablename = req.query['table'] || 'collegehill';
     var requestOptions = {
@@ -183,6 +183,7 @@ function replaceAll(src, oldr, newr){
         }
         kmldocs += '		</coordinates></LinearRing></outerBoundaryIs>\n';
         kmldocs += '	</Polygon>\n';
+        kmldocs += '</Placemark>\n';
       }
       res.send(kmlintro + kmldocs + kmlend);
     });
