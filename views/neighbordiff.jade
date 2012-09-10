@@ -41,21 +41,5 @@ body(onload='init()')
           a(href="#", onclick="setMap('street')") Streets
         li#satlayer
           a(href="#", onclick="setMap('sat')") Satellite
-        li(style="float:right;")
-          a(href="#", onclick="embedCodes()") Embed
 
       #map.span12(ondragend="dragended(event)", ondrop="dropped(event)", ondragover="allowDrop(event)")
-      
-    div#embedmodal.modal.hide
-      div.modal-header
-        button(type="button", class="close", data-dismiss="modal") x
-        h3 Embed Map
-      div.modal-body
-        p
-          h4 Choose Theme
-          ul
-            li(href="/collegehill2.html", target="_blank") The Final
-            li(href="/diffmap.html", target="_blank") Impact
-            li(href="/everything.html", target="_blank") Everything
-      div.modal-footer
-        a.btn(href="#", data-dismiss="modal") Close

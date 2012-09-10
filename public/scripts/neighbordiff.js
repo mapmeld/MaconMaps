@@ -75,9 +75,6 @@ function setMap(lyr){
     $("#satlayer").addClass("active");
   }
 }
-function embedCodes(){
-  $('#embedmodal').modal('toggle');
-}
 function addDropdown(givendata){
   var full = '<select onchange="setStatus(\'' + givendata.cartodb_id + '\',this.value);"><option>Unchanged</option><option>Demolished</option><option>Renovated</option><option>Moved</option></select><br/>';
   full = full.replace('<option>' + givendata.status,'<option selected="selected">' + givendata.status);
