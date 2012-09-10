@@ -164,8 +164,8 @@ function replaceAll(src, oldr, newr){
       var features = JSON.parse(body).features;
       res.setHeader('Content-Type', 'application/kml');
       var kmlintro = '<?xml version="1.0" encoding="UTF-8"?>\n<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">\n<Document>\n	<name>NeighborDiff API</name>\n	<Folder id="KMLAPI">\n		<name>NeighborDiff API Download</name>\n';
-      var kmlstyles = '<Style id="Renovated">\n<PolyStyle>\n<color>00ff00cc</color>\n<fill>1</fill>\n</PolyStyle>\n</Style>\n';
-      kmlstyles += '<Style id="Demolished">\n<PolyStyle>\n<color>ff0000cc</color>\n<fill>1</fill>\n</PolyStyle>\n</Style>\n';
+      var kmlstyles = '<Style id="Renovated">\n<PolyStyle>\n<color>cc00ff00</color>\n<fill>1</fill>\n</PolyStyle>\n</Style>\n';
+      kmlstyles += '<Style id="Demolished">\n<PolyStyle>\n<color>cc0000ff</color>\n<fill>1</fill>\n</PolyStyle>\n</Style>\n';
       var kmldocs = '';
       var kmlend = '	</Folder>\n</Document>\n</kml>';
       for(var f=0;f<features.length;f++){
