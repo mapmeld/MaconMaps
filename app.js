@@ -179,7 +179,7 @@ function replaceAll(src, oldr, newr){
         kmldocs += '		<altitudeMode>relativeToGround</altitudeMode>\n';
         kmldocs += '		<outerBoundaryIs><LinearRing><coordinates>\n';
         for(var pt=0;pt<features[f].geometry.coordinates[0][0].length;pt++){
-          kmldocs += features[f].geometry.coordinates[0][0][pt][0] + ',' + features[f].geometry.coordinates[0][0][pt][1] + ',0';
+          kmldocs += features[f].geometry.coordinates[0][0][pt][0] + ',' + features[f].geometry.coordinates[0][0][pt][1] + ',0 ';
         }
         kmldocs += '		</coordinates></LinearRing></outerBoundaryIs>\n';
         kmldocs += '	</Polygon>\n';
