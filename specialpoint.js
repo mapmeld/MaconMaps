@@ -6,7 +6,9 @@ var SpecialPointSchema = new Schema({
   status: String,
   tablematch: String,
   ll: {lat: Number, lng: Number},
-  created: {type: Date, default: Date.now}
+  created: {type: Date, default: Date.now},
+  name: String,
+  description: String
 });
 
 SpecialPointSchema.index({

@@ -54,7 +54,7 @@ function init(){
   // load new buildings from MongoDB
   $.getJSON('/storedbuildings', function(buildings){
     for(var b=0;b<buildings.length;b++){
-      var pt = new L.Marker(new L.LatLng(buildings[b].ll[1], buildings[b].ll[0])).bindPopup(buildings[b].status);
+      var pt = new L.Marker(new L.LatLng(buildings[b].ll[1], buildings[b].ll[0])).bindPopup("<input type='hidden' id='selectedid' value='stored:" + buildings[b]._id + "'/><label>Name</label><br/><input id='poly_name' class='x-large' value='" + replaceAll((buildings[b].name || ""),"'","\\'") + "'/><br/><label>Add Detail</label><br/><textarea id='poly_detail' rows='6' cols='25'>" + replaceAll(replaceAll((buildings[b].description || ""),"<","&lt;"),">","&gt;") + "</textarea><br/><a class='btn' onclick='saveDetail()' style='width:40%;'>Save</a>");
       map.addLayer(pt);
     }
   });
@@ -152,29 +152,35 @@ function saveDetail(){
   var id = $('#selectedid').val();
   var name = $('#poly_name').val();
   var detail = $('#poly_detail').val();
-  $.getJSON("/detailtable?table=collegehill&id=" + id + "&name=" + encodeURIComponent(name) + "&detail=" + encodeURIComponent(detail), function(data){ });
-  $.getJSON("http://mapmeld.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT%20the_geom%20FROM%20collegehill%20WHERE%20cartodb_id=" + id).done(function(poly){
-    // until zoom changes and tiles are refreshed, show polygon with this name and description
-    L.geoJson(poly, {
-      style: function (feature) {
-        if(status == "Demolished"){
-          return {color: "#f00", opacity: 1};
+  if(id.indexOf("stored:") > -1){
+    // editing a stored point
+    $.getJSON("/storedbuildings/edit?id=" + id + "&name=" + encodeURIComponent(name) + "&detail=" + encodeURIComponent(detail), function(data){ });
+  }
+  else{
+    $.getJSON("/detailtable?table=collegehill&id=" + id + "&name=" + encodeURIComponent(name) + "&detail=" + encodeURIComponent(detail), function(data){ });
+    $.getJSON("http://mapmeld.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT%20the_geom%20FROM%20collegehill%20WHERE%20cartodb_id=" + id).done(function(poly){
+      // until zoom changes and tiles are refreshed, show polygon with this name and description
+      L.geoJson(poly, {
+        style: function (feature) {
+          if(status == "Demolished"){
+            return {color: "#f00", opacity: 1};
+          }
+          else if(status == "Renovated"){
+            return {color: "#0f0", opacity: 1};
+          }
+          else if(status == "Moved"){
+            return {color: "#00f", opacity: 1};      
+          }
+          else{
+            return {color: "orange", opacity: 1};
+          }
+        },
+        onEachFeature: function(feature, layer){
+          layer.bindPopup("<label><em>Name: </em></label><strong>" + replaceAll(replaceAll(name,"<","&lt;"),">","&gt;") + "</strong><br/><label><em>Description: </em></label><strong>" + replaceAll(replaceAll(detail,"<","&lt;"),">","&gt;") + "</strong>");
+          zoomLayers.push(layer);
         }
-        else if(status == "Renovated"){
-          return {color: "#0f0", opacity: 1};
-        }
-        else if(status == "Moved"){
-          return {color: "#00f", opacity: 1};      
-        }
-        else{
-          return {color: "orange", opacity: 1};
-        }
-      },
-      onEachFeature: function(feature, layer){
-        layer.bindPopup("<label><em>Name: </em></label><strong>" + replaceAll(replaceAll(name,"<","&lt;"),">","&gt;") + "</strong><br/><label><em>Description: </em></label><strong>" + replaceAll(replaceAll(detail,"<","&lt;"),">","&gt;") + "</strong>");
-        zoomLayers.push(layer);
-      }
-    }).addTo(map);
-  });
+      }).addTo(map);
+    });
+  }
   map.closePopup();
 }

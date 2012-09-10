@@ -98,7 +98,9 @@ function replaceAll(src, oldr, newr){
       pt = new specialpoint.SpecialPoint({
         status: 'new',
         tablematch: tablename,
-        ll: latlngarray
+        ll: latlngarray,
+        name: req.query['name'],
+        description: req.query['description']
       });
       pt.save(function(err){
         res.send(err || 'success');
@@ -133,6 +135,18 @@ function replaceAll(src, oldr, newr){
     var tablename = req.query['table'] || "collegeplusintown";
     specialpoint.SpecialPoint.find({ tablematch: tablename }).exec(function(err, buildings){
       res.send(buildings);
+    });
+  });
+  
+  app.get('/storedbuildings/edit', function(req, res){
+    specialpoint.SpecialPoint.findOne({'_id': req.query['id']}, function(err, pt){
+      if(pt){
+        pt.name = req.query['name'];
+        pt.description = req.query['description'];
+        pt.save(function(err){
+          res.send(err || 'success');
+        });
+      }
     });
   });
   
