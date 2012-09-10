@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>College Hill Impact Map</title>
+    <link href="/carto/stylesheets/cartodb-gmapsv3.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="/carto/scripts/wax.g.min.js"></script>
+    <script type="text/javascript" src="/carto/scripts/cartodb-gmapsv3-min.js"></script>
+    <script type="text/javascript">
+var map, infowindow;
+if(typeof console === 'undefined'){
+  console = { log: function(a){ } };
+}
+function init(){
+  var mapOptions = {
+    zoom: 17,
+    center: new google.maps.LatLng(32.833,-83.647),
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    mapTypeControl: false
+  };
+  map = new google.maps.Map($('#map')[0], mapOptions);
+  //map.overlayMapTypes.insertAt(0, new CoordMapType(new google.maps.Size(256, 256)));
+
+  infowindow = new google.maps.InfoWindow();
+
+  var cartodb_gmapsv3 = new CartoDBLayer({
+    map: map,
+    user_name: 'mapmeld',
+    table_name: 'collegehill',
+    query: "SELECT * FROM {{table_name}}",
+    layer_order: "top",
+    tile_style: "#collegehill{polygon-opacity:0.4;polygon-fill:orange;} #collegehill[status='Demolished']{polygon-fill:red;} #collegehill[status='Renovated']{polygon-fill:green;} #collegehill[status='Moved']{polygon-fill:blue;}",
+    interactivity: "cartodb_id,name,description",
+    featureClick: function(feature, latlng, pos, data){
+      if(!data.name && !data.description){
+        // no info was stored on this feature. No need for a popup.
+        return;
+      }
+      infowindow.close();
+      infowindow.setContent( "<h3>" + (data.name || data.cartodb_id) + "</h3>" + describe(data.description) );
+      infowindow.setPosition( latlng );
+      infowindow.open(map);
+    },
+    auto_bound: false
+  });
+
+  // load special markers from MongoDB
+  $.getJSON('/storedbuildings', function(buildings){
+    for(var b=0;b<buildings.length;b++){
+      if(!buildings[b].name && !buildings[b].description){
+        // no info on this marker, so don't display it
+        continue;
+      }
+      var ll = new google.maps.LatLng(buildings[b].ll[1], buildings[b].ll[0]);
+      var marker = new google.maps.Marker({
+        map: map,
+        title: buildings[b].name || "",
+        position: ll
+      });
+      bindPopup(marker, buildings[b].name || buildings[b]._id, buildings[b].description || "");
+    }
+  });
+}
+
+function bindPopup(mark, name, description){
+  google.maps.event.addListener(mark, 'click', function(){
+    infowindow.close();
+    infowindow.setContent( "<h3>" + name + "</h3>" + describe(description) );
+    infowindow.setPosition( mark.getPosition() );
+    infowindow.open(map);
+  });
+}
+
+function describe(description){
+  if((typeof description === 'undefined') || (!description)){
+    return "No description";
+  }
+  // allow link:http://example.com
+  while(description.indexOf("link:") > -1){
+    description = description.split("link:");
+    if(description[1].indexOf(" ") > -1){
+      description[1] = "<a href='" + description[1].split(" ")[0] + "'>" + description[1].split(" ")[0] + "</a> " + description[1].split(" ")[1];
+    }
+    else{
+      description[1] = "<a href='" + description[1] + "'>" + description[1] + "</a>";
+    }
+    description = description.join("link:");
+    description = description.replace("link:","");
+  }
+  // allow photo:http://example.com/image.jpg
+  while(description.indexOf("photo:") > -1){
+    description = description.split("photo:");
+    if(description[1].indexOf(" ") > -1){
+      description[1] = "<br/><img src='" + description[1].split(" ")[0] + "' width='250'/><br/>" + description[1].split(" ")[1];
+    }
+    else{
+      description[1] = "<br/><img src='" + description[1] + "' width='250'/>";
+    }
+    description = description.join("photo:");
+    description = description.replace("photo:","");
+  }
+  return description;
+}
+    </script>
+    <style type="text/css">
+html, body, #map{
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: verdana, sansserif;
+}
+    </style>
+  </head>
+  <body onload="init()">
+    <div id="map"></div>
+  </body>
+</html>

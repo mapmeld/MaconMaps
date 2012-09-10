@@ -16,6 +16,7 @@ head
   script(type="text/javascript", src="/carto/scripts/cartodb-popup-min.js")
   script(type="text/javascript", src="/carto/scripts/tilelayer.bing.js")
   script(type="text/javascript", src="/pancontrol/scripts/L.Control.Pan.js")
+  script(type="text/javascript", src="/scripts/bootstrap-dropdown.js")
   script(type="text/javascript", src="/scripts/neighbordiff.js")
 body(onload='init()')
   div.container
@@ -40,4 +41,18 @@ body(onload='init()')
           a(href="#", onclick="setMap('street')") Streets
         li#satlayer
           a(href="#", onclick="setMap('sat')") Satellite
+        li#embedmaps(style="float:right")
+          div.btn-toolbar
+            div.btn-group
+              a.btn.dropdown-toggle(data-toggle="dropdown" href="#")
+                span Embed Map
+                span.caret
+              ul.dropdown-menu
+                li
+                  a(href="/collegehill2.html") TheFinal
+                li
+                  a(href="/diffmap.html") ChangeMix
+                li
+                  a(href="/everything.html") Everything
+
       #map.span12(ondragend="dragended(event)", ondrop="dropped(event)", ondragover="allowDrop(event)")

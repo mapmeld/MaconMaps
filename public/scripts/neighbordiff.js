@@ -60,6 +60,9 @@ function init(){
       markers[ buildings[b]._id ] = pt;
     }
   });
+  
+  // add dropdown embed menu
+  $('#embedmaps').dropdown()
 }
 function setMap(lyr){
   if(lyr == "street"){
