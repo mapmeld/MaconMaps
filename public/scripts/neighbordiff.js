@@ -60,9 +60,6 @@ function init(){
       markers[ buildings[b]._id ] = pt;
     }
   });
-  
-  // add dropdown embed menu
-  $('#embedmaps').dropdown()
 }
 function setMap(lyr){
   if(lyr == "street"){
@@ -77,6 +74,9 @@ function setMap(lyr){
     $("#streetlayer").removeClass("active");
     $("#satlayer").addClass("active");
   }
+}
+function embedCodes(){
+  $('#embedmodal').modal('toggle');
 }
 function addDropdown(givendata){
   var full = '<select onchange="setStatus(\'' + givendata.cartodb_id + '\',this.value);"><option>Unchanged</option><option>Demolished</option><option>Renovated</option><option>Moved</option></select><br/>';
