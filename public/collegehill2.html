@@ -66,7 +66,7 @@ function init(){
 function bindPopup(mark, name, description){
   google.maps.event.addListener(mark, 'click', function(){
     infowindow.close();
-    infowindow.setContent( "<h3>" + name + "</h3>" + describe(description) );
+    infowindow.setContent( "<div style='text-align:center;padding:3px;'><h4>" + name + "</h4>" + describe(description) + "</div>" );
     infowindow.setPosition( mark.getPosition() );
     infowindow.open(map);
   });
