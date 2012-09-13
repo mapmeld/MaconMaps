@@ -60,6 +60,16 @@ function init(){
       markers[ buildings[b]._id ] = pt;
     }
   });
+
+  // popup showing embeddable maps
+  $('#embedlink').avgrund({			
+	width: 380,
+	height: 280,
+	showClose: true,
+	closeByEscape: true,
+	closeByDocument: true,
+	template: '<ul><li>The Final</li><li>Changes</li><li>Everything</li></ul>'
+  });
 }
 function setMap(lyr){
   if(lyr == "street"){
