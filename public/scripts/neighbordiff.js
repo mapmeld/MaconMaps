@@ -63,12 +63,12 @@ function init(){
 
   // popup showing embeddable maps
   $('#embedlink').avgrund({			
-	width: 380,
-	height: 280,
+	width: 400,
+	height: 400,
 	showClose: true,
 	closeByEscape: true,
 	closeByDocument: true,
-	template: '<ul><li>The Final</li><li>Changes</li><li>Everything</li></ul>'
+	template: $('#modal').html()
   });
 }
 function setMap(lyr){

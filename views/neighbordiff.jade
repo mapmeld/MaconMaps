@@ -42,7 +42,31 @@ body(onload='init()')
           a(href="#", onclick="setMap('street')") Streets
         li#satlayer
           a(href="#", onclick="setMap('sat')") Satellite
-        li
-          a#embedlink(href="#", style="float:right;") Embed Maps
+        li(style="float:right;")
+          a#embedlink(href="#") Embed Maps
 
       #map.span12(ondragend="dragended(event)", ondrop="dropped(event)", ondragover="allowDrop(event)")
+
+  div.modal(style="display:none;")
+    h3 Choose a map style:
+    ul
+      li
+        a(href="/collegehill2.html?table=collegehill&message=true", target="_blank")
+          img(src="http://i.imgur.com/2DxH7.png", style="float:left;width:130px;")
+          h4 The Final
+          span Highlights renovated buildings, hides demolished ones
+      li
+        a(href="/diffmap.html?table=collegehill&message=true", target="_blank")
+          img(src="http://i.imgur.com/c33Oh.png", style="float:left;width:130px;")
+          h4 Change Map
+          span Shows only the renovated and demolished buildings
+      li
+        a(href="/everything.html?table=collegehill&message=true", target="_blank")
+          img(src="http://i.imgur.com/RsJ1J.png", style="float:left;width:130px;")
+          h4 Kitchen Sink
+          span Shades in all buildings using same style as this map editor
+      li
+        a(href="/tokml.kml?table=collegehill", target="_blank")
+          img(src="http://i.imgur.com/LwW9n.png", style="float:left;width:130px;")
+          h4 Google Earth KML
+          span Highlights the renovated and demolished buildings
