@@ -206,6 +206,7 @@ function replaceAll(src, oldr, newr){
           kmldocs += '</Placemark>\n';
         }
         for(var p=0;p<points.length;p++){
+          console.log(points[p]);
           if(points[p].name || points[p].description){
             kmldocs += '<Placemark>\n';
             if(points[p].name){
