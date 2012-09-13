@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>College Hill Impact Map</title>
+    <title>Impact Map</title>
     <link href="/carto/stylesheets/cartodb-gmapsv3.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
@@ -9,9 +9,12 @@
     <script type="text/javascript" src="/carto/scripts/cartodb-gmapsv3-min.js"></script>
     <script type="text/javascript">
 var map, infowindow;
+var user_name = gup("user") || "mapmeld";
+var table_name = gup("table") || "collegehill";
 if(typeof console === 'undefined'){
   console = { log: function(a){ } };
 }
+function gup(nm){nm=nm.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");var rxS="[\\?&]"+nm+"=([^&#]*)";var rx=new RegExp(rxS);var rs=rx.exec(window.location.href);if(!rs){return null;}else{return rs[1];}}
 function init(){
   var mapOptions = {
     zoom: 17,
@@ -26,11 +29,11 @@ function init(){
 
   var cartodb_gmapsv3 = new CartoDBLayer({
     map: map,
-    user_name: 'mapmeld',
-    table_name: 'collegehill',
+    user_name: user_name,
+    table_name: table_name,
     query: "SELECT * FROM {{table_name}}",
     layer_order: "top",
-    tile_style: "#collegehill{line-color:orange;polygon-fill:orange;polygon-opacity:0;} #collegehill[status='Demolished']{line-opacity:0;} #collegehill[status='Renovated']{polygon-fill:green;polygon-opacity:0.3;line-color:green;}",
+    tile_style: "#" + table_name + "{line-color:orange;polygon-fill:orange;polygon-opacity:0;} #" + table_name + "[status='Demolished']{line-opacity:0;} #" + table_name + "[status='Renovated']{polygon-fill:green;polygon-opacity:0.3;line-color:green;}",
     interactivity: "cartodb_id,name,description",
     featureClick: function(feature, latlng, pos, data){
       if(!data.name && !data.description){
@@ -42,11 +45,11 @@ function init(){
       infowindow.setPosition( latlng );
       infowindow.open(map);
     },
-    auto_bound: false
+    auto_bound: true
   });
 
   // load special markers from MongoDB
-  $.getJSON('/storedbuildings?table=collegehill', function(buildings){
+  $.getJSON('/storedbuildings?table=' + table_name, function(buildings){
     for(var b=0;b<buildings.length;b++){
       if(!buildings[b].name && !buildings[b].description){
         // no info on this marker, so don't display it
