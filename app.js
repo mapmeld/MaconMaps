@@ -165,7 +165,7 @@ function replaceAll(src, oldr, newr){
       wherecondition = '';
     }
     var requestOptions = {
-      'uri': 'http://mapmeld.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT%20name,description,status,the_geom%20FROM%20' + tablename + wherecondition;
+      'uri': 'http://mapmeld.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT%20name,description,status,the_geom%20FROM%20' + tablename + wherecondition
     };
     request(requestOptions, function (err, response, body) {
       
