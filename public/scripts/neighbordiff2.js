@@ -60,6 +60,16 @@ function init(){
       markers[ buildings[b]._id ] = pt;
     }
   });
+  
+  // popup showing embeddable maps
+  $('#embedlink').avgrund({			
+	width: 500,
+	height: 280,
+	showClose: true,
+	closeByEscape: true,
+	closeByDocument: true,
+	template: $('#modal').html()
+  });
 }
 function setMap(lyr){
   if(lyr == "street"){

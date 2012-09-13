@@ -40,6 +40,9 @@ body(onload='init()')
           a(href="#", onclick="setMap('street')") Streets
         li#satlayer
           a(href="#", onclick="setMap('sat')") Satellite
+        li(style="float:right;")
+          a#embedlink(href="#") Embed Maps
+
       #map.span12(ondragend="dragended(event)", ondrop="dropped(event)", ondragover="allowDrop(event)")
 
   div#modal(style="display:none;")
