@@ -64,7 +64,7 @@ function init(){
   // popup showing embeddable maps
   $('#embedlink').avgrund({			
 	width: 500,
-	height: 350,
+	height: 280,
 	showClose: true,
 	closeByEscape: true,
 	closeByDocument: true,
