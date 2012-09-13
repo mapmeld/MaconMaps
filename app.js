@@ -214,7 +214,7 @@ function replaceAll(src, oldr, newr){
             if(points[p].description){
               kmldocs += '	<description>' + points[p].description + '</description>\n';
             }
-            kmldocs += '	<Point>\n		<coordinates>' + points[p].ll.lng + "," + points[p].ll.lat + ',0</coordinates>\n	</Point>\n';
+            kmldocs += '	<Point>\n		<coordinates>' + points[p].ll[0] + "," + points[p].ll[1] + ',0</coordinates>\n	</Point>\n';
             kmldocs += '</Placemark>\n';
           }
     	}
