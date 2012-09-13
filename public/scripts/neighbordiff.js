@@ -49,6 +49,19 @@ function init(){
       map.removeLayer(zoomLayers[i]);
     }
     zoomLayers = [];
+    // update embed links when map moves or zooms
+    var position = "&lat=" + map.getCenter().lat.toFixed(6) + "&lng=" + map.getCenter().lng.toFixed(6) + "&z=" + map.getZoom();
+    $("#thefinal")[0].href="/collegehill2.html?table=collegehill&user=mapmeld&message=true" + position;
+    $("#changemap")[0].href="/diffmap.html?table=collegehill&user=mapmeld&message=true" + position;
+    $("#kitchensink")[0].href="/everything.html?table=collegehill&user=mapmeld&message=true" + position;
+  });
+  
+  // update embed links when map moves or zooms
+  map.on('moveend', function(e){
+    var position = "&lat=" + map.getCenter().lat.toFixed(6) + "&lng=" + map.getCenter().lng.toFixed(6) + "&z=" + map.getZoom();
+    $("#thefinal")[0].href="/collegehill2.html?table=collegehill&user=mapmeld&message=true" + position;
+    $("#changemap")[0].href="/diffmap.html?table=collegehill&user=mapmeld&message=true" + position;
+    $("#kitchensink")[0].href="/everything.html?table=collegehill&user=mapmeld&message=true" + position;
   });
   
   // load special markers from MongoDB

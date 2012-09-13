@@ -17,8 +17,8 @@ if(typeof console === 'undefined'){
 function gup(nm){nm=nm.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");var rxS="[\\?&]"+nm+"=([^&#]*)";var rx=new RegExp(rxS);var rs=rx.exec(window.location.href);if(!rs){return null;}else{return rs[1];}}
 function init(){
   var mapOptions = {
-    zoom: 17,
-    center: new google.maps.LatLng(32.833,-83.647),
+    zoom: gup("z") || 17,
+    center: new google.maps.LatLng(gup("lat") || 32.833, gup("lng") || -83.647),
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     mapTypeControl: false
   };
@@ -45,7 +45,7 @@ function init(){
       infowindow.setPosition( latlng );
       infowindow.open(map);
     },
-    auto_bound: true
+    auto_bound: !(!(!(gup("lat"))))
   });
 
   // load special markers from MongoDB
