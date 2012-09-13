@@ -54,6 +54,10 @@ var init = exports.init = function (config) {
   
   // Routes
   app.get('/', function(req, res){
+    res.render('mapsevent');
+  });
+  
+  app.get('/collegehill', function(req, res){
     res.render('neighbordiff');
   });
   
@@ -155,46 +159,67 @@ function replaceAll(src, oldr, newr){
   
   app.get('/tokml.kml', function(req, res){
     // returns all changed polygons from the CartoDB table
-    var tablename = req.query['table'] || 'collegehill';
+    var tablename = req.query['table'] || 'collegeplusintown';
+    var wherecondition = '%20WHERE%20status%20!=\'Unchanged\'';
+    if(req.query['where'] && req.query['where'] == "all"){
+      wherecondition = '';
+    }
     var requestOptions = {
-      'uri': 'http://mapmeld.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT%20name,description,status,the_geom%20FROM%20' + tablename + '%20WHERE%20status%20!=\'Unchanged\''
+      'uri': 'http://mapmeld.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT%20name,description,status,the_geom%20FROM%20' + tablename + wherecondition;
     };
     request(requestOptions, function (err, response, body) {
-      //res.json( JSON.parse(body) );
-      var features = JSON.parse(body).features;
-      res.setHeader('Content-Type', 'application/kml');
-      var kmlintro = '<?xml version="1.0" encoding="UTF-8"?>\n<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">\n<Document>\n	<name>NeighborDiff API</name>\n	<Folder id="KMLAPI">\n		<name>NeighborDiff API Download</name>\n';
-      var kmlstyles = '<Style id="Renovated">\n<PolyStyle>\n<color>cc00ff00</color>\n<fill>1</fill>\n</PolyStyle>\n</Style>\n';
-      kmlstyles += '<Style id="Demolished">\n<PolyStyle>\n<color>cc0000ff</color>\n<fill>1</fill>\n</PolyStyle>\n</Style>\n';
-      kmlstyles += '<Style id="Moved">\n<PolyStyle>\n<color>ccff0000</color>\n<fill>1</fill>\n</PolyStyle>\n</Style>\n';
-      var kmldocs = '';
-      var kmlend = '	</Folder>\n</Document>\n</kml>';
-      for(var f=0;f<features.length;f++){
-        kmldocs += '<Placemark>\n';
-        if(features[f].properties.name){
-          kmldocs += '	<name>' + features[f].properties.name + '</name>\n';
+      
+      // return special points from this map, too
+      specialpoint.SpecialPoint.find({ tablematch: tablename }).exec(function(err, points){
+      
+        var features = JSON.parse(body).features;
+        res.setHeader('Content-Type', 'application/kml');
+        var kmlintro = '<?xml version="1.0" encoding="UTF-8"?>\n<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">\n<Document>\n	<name>NeighborDiff API</name>\n	<Folder id="KMLAPI">\n		<name>NeighborDiff API Download</name>\n';
+        var kmlstyles = '<Style id="Renovated">\n<PolyStyle>\n<color>cc00ff00</color>\n<fill>1</fill>\n</PolyStyle>\n</Style>\n';
+        kmlstyles += '<Style id="Demolished">\n<PolyStyle>\n<color>cc0000ff</color>\n<fill>1</fill>\n</PolyStyle>\n</Style>\n';
+        kmlstyles += '<Style id="Moved">\n<PolyStyle>\n<color>ccff0000</color>\n<fill>1</fill>\n</PolyStyle>\n</Style>\n';
+        var kmldocs = '';
+        var kmlend = '	</Folder>\n</Document>\n</kml>';
+        for(var f=0;f<features.length;f++){
+          kmldocs += '<Placemark>\n';
+          if(features[f].properties.name){
+            kmldocs += '	<name>' + features[f].properties.name + '</name>\n';
+          }
+          if(features[f].properties.description){
+            kmldocs += '	<description>' + features[f].properties.description + '</description>\n';
+          }
+          if(features[f].properties.status == "Demolished"){
+            kmldocs += '	<styleUrl>#Demolished</styleUrl>\n';
+          }
+          else if(features[f].properties.status == "Renovated"){
+            kmldocs += '	<styleUrl>#Renovated</styleUrl>\n';
+          }
+          kmldocs += '	<Polygon>\n';
+          kmldocs += '		<extrude>1</extrude>\n';
+          kmldocs += '		<altitudeMode>clampToGround</altitudeMode>\n';
+          kmldocs += '		<outerBoundaryIs><LinearRing><coordinates>\n';
+          for(var pt=0;pt<features[f].geometry.coordinates[0][0].length;pt++){
+            kmldocs += features[f].geometry.coordinates[0][0][pt][0] + ',' + features[f].geometry.coordinates[0][0][pt][1] + ',0 ';
+          }
+          kmldocs += '		</coordinates></LinearRing></outerBoundaryIs>\n';
+          kmldocs += '	</Polygon>\n';
+          kmldocs += '</Placemark>\n';
         }
-        if(features[f].properties.description){
-          kmldocs += '	<description>' + features[f].properties.description + '</description>\n';
-        }
-        if(features[f].properties.status == "Demolished"){
-          kmldocs += '	<styleUrl>#Demolished</styleUrl>\n';
-        }
-        else if(features[f].properties.status == "Renovated"){
-          kmldocs += '	<styleUrl>#Renovated</styleUrl>\n';
-        }
-        kmldocs += '	<Polygon>\n';
-        kmldocs += '		<extrude>1</extrude>\n';
-        kmldocs += '		<altitudeMode>clampToGround</altitudeMode>\n';
-        kmldocs += '		<outerBoundaryIs><LinearRing><coordinates>\n';
-        for(var pt=0;pt<features[f].geometry.coordinates[0][0].length;pt++){
-          kmldocs += features[f].geometry.coordinates[0][0][pt][0] + ',' + features[f].geometry.coordinates[0][0][pt][1] + ',0 ';
-        }
-        kmldocs += '		</coordinates></LinearRing></outerBoundaryIs>\n';
-        kmldocs += '	</Polygon>\n';
-        kmldocs += '</Placemark>\n';
-      }
-      res.send(kmlintro + kmlstyles + kmldocs + kmlend);
+        for(var p=0;p<points.length;p++){
+          if(points[p].name || points[p].description){
+            kmldocs += '<Placemark>\n';
+            if(points[p].name){
+              kmldocs += '	<name>' + points[p].name + '</name>\n';
+            }
+            if(points[p].description){
+              kmldocs += '	<description>' + points[p].description + '</description>\n';
+            }
+            kmldocs += '	<Point>\n		<coordinates>' + points[p].ll.lng + "," + points[p].ll.lat + ',0</coordinates>\n	</Point>\n';
+            kmldocs += '</Placemark>\n';
+          }
+    	}
+        res.send(kmlintro + kmlstyles + kmldocs + kmlend);
+      });
     });
   });
   

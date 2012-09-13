@@ -46,7 +46,7 @@ function init(){
   });
 
   // load special markers from MongoDB
-  $.getJSON('/storedbuildings', function(buildings){
+  $.getJSON('/storedbuildings?table=collegehill', function(buildings){
     for(var b=0;b<buildings.length;b++){
       if(!buildings[b].name && !buildings[b].description){
         // no info on this marker, so don't display it
