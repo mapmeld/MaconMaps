@@ -51,17 +51,17 @@ function init(){
     zoomLayers = [];
     // update embed links when map moves or zooms
     var position = "&lat=" + map.getCenter().lat.toFixed(6) + "&lng=" + map.getCenter().lng.toFixed(6) + "&z=" + map.getZoom();
-    $("#thefinal")[1].href="/collegehill2.html?table=collegehill&user=mapmeld&message=true" + position;
-    $("#changemap")[1].href="/diffmap.html?table=collegehill&user=mapmeld&message=true" + position;
-    $("#kitchensink")[1].href="/everything.html?table=collegehill&user=mapmeld&message=true" + position;
+    $(".thefinal").attr("href","/collegehill2.html?table=collegehill&user=mapmeld&message=true" + position);
+    $(".changemap").attr("href","/diffmap.html?table=collegehill&user=mapmeld&message=true" + position);
+    $(".kitchensink").attr("href","/everything.html?table=collegehill&user=mapmeld&message=true" + position);
   });
   
   // update embed links when map moves or zooms
   map.on('moveend', function(e){
     var position = "&lat=" + map.getCenter().lat.toFixed(6) + "&lng=" + map.getCenter().lng.toFixed(6) + "&z=" + map.getZoom();
-    $("#thefinal")[1].href="/collegehill2.html?table=collegehill&user=mapmeld&message=true" + position;
-    $("#changemap")[1].href="/diffmap.html?table=collegehill&user=mapmeld&message=true" + position;
-    $("#kitchensink")[1].href="/everything.html?table=collegehill&user=mapmeld&message=true" + position;
+    $(".thefinal").attr("href","/collegehill2.html?table=collegehill&user=mapmeld&message=true" + position);
+    $(".changemap").attr("href","/diffmap.html?table=collegehill&user=mapmeld&message=true" + position);
+    $(".kitchensink").attr("href","/everything.html?table=collegehill&user=mapmeld&message=true" + position);
   });
   
   // load special markers from MongoDB
