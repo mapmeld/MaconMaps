@@ -18,7 +18,7 @@ function init(){
   var tonerAttrib = 'Map data &copy; 2012 OpenStreetMap contributors, Tiles &copy; 2012 Stamen Design';
   terrainLayer = new L.TileLayer(toner, {maxZoom: 18, attribution: tonerAttrib});
   map.addLayer(terrainLayer);
-  map.setView(new L.LatLng(32.831788, -83.648228), 17);
+  map.setView(new L.LatLng(32.789692, -83.644152), 17);
   
   satLayer = new L.BingLayer("Arc0Uekwc6xUCJJgDA6Kv__AL_rvEh4Hcpj4nkyUmGTIx-SxMd52PPmsqKbvI_ce");  
   map.addLayer(satLayer);
