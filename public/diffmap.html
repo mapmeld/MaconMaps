@@ -64,6 +64,12 @@ function init(){
       bindPopup(marker, buildings[b].name || buildings[b]._id, buildings[b].description || "");
     }
   });
+
+  // if embed message, give embed code
+  if(gup("message") == "true"){
+    var maplink = (window.location + "").replace("&message=true","").replace("?message=true&","?");
+    alert('Embed the map with\n <iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="' + maplink + '"></iframe><br /><small><a href="' + maplink + '" style="color:#0000FF;text-align:left">View Larger Map</a></small>');
+  }
 }
 
 function bindPopup(mark, name, description){
