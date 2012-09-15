@@ -78,6 +78,7 @@ function init(){
 	width: 500,
 	height: 280,
 	showClose: true,
+	showCloseText: 'x',
 	closeByEscape: true,
 	closeByDocument: true,
 	template: $('#modal').html()
