@@ -218,7 +218,7 @@ function replaceAll(src, oldr, newr){
             kmldocs += '	<name>' + features[f].properties.name + '</name>\n';
           }
           if(features[f].properties.description){
-            kmldocs += '	<description>' + describe(features[f].properties.description) + '</description>\n';
+            kmldocs += '	<description><![CDATA[' + describe(features[f].properties.description) + ']]></description>\n';
           }
           if(features[f].properties.status == "Demolished"){
             kmldocs += '	<styleUrl>#Demolished</styleUrl>\n';
@@ -250,7 +250,7 @@ function replaceAll(src, oldr, newr){
               kmldocs += '	<name>' + points[p].name + '</name>\n';
             }
             if(points[p].description){
-              kmldocs += '	<description>' + describe(points[p].description) + '</description>\n';
+              kmldocs += '	<description><![CDATA[' + describe(points[p].description) + ']]></description>\n';
             }
             console.log(points[p].ll);
             kmldocs += '	<Point>\n		<coordinates>' + points[p].ll[0] + "," + points[p].ll[1] + ',0</coordinates>\n	</Point>\n';
