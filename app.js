@@ -172,9 +172,39 @@ function replaceAll(src, oldr, newr){
       
       // return special points from this map, too
       specialpoint.SpecialPoint.find({ tablematch: tablename }).exec(function(err, points){
-      
         var features = JSON.parse(body).features;
         res.setHeader('Content-Type', 'application/kml');
+        var describe = function(description){
+          if((typeof description === 'undefined') || (!description)){
+            return "No description";
+          }
+          // allow link:http://example.com
+          while(description.indexOf("link:") > -1){
+            description = description.split("link:");
+            if(description[1].indexOf(" ") > -1){
+              description[1] = "<a href='" + description[1].split(" ")[0] + "'>" + description[1].split(" ")[0] + "</a> " + description[1].split(" ")[1];
+            }
+            else{
+              description[1] = "<a href='" + description[1] + "'>" + description[1] + "</a>";
+            }
+            description = description.join("link:");
+            description = description.replace("link:","");
+          }
+          // allow photo:http://example.com/image.jpg
+          while(description.indexOf("photo:") > -1){
+            description = description.split("photo:");
+            if(description[1].indexOf(" ") > -1){
+              description[1] = "<br/><img src='" + description[1].split(" ")[0] + "' width='250'/><br/>" + description[1].split(" ")[1];
+            }
+            else{
+              description[1] = "<br/><img src='" + description[1] + "' width='250'/>";
+            }
+            description = description.join("photo:");
+            description = description.replace("photo:","");
+          }
+          return description;
+        };
+        
         var kmlintro = '<?xml version="1.0" encoding="UTF-8"?>\n<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">\n<Document>\n	<name>NeighborDiff API</name>\n	<Folder id="KMLAPI">\n		<name>NeighborDiff API Download</name>\n';
         var kmlstyles = '<Style id="Renovated">\n<PolyStyle>\n<color>cc00ff00</color>\n<fill>1</fill>\n</PolyStyle>\n</Style>\n';
         kmlstyles += '<Style id="Demolished">\n<PolyStyle>\n<color>cc0000ff</color>\n<fill>1</fill>\n</PolyStyle>\n</Style>\n';
@@ -188,7 +218,7 @@ function replaceAll(src, oldr, newr){
             kmldocs += '	<name>' + features[f].properties.name + '</name>\n';
           }
           if(features[f].properties.description){
-            kmldocs += '	<description>' + features[f].properties.description + '</description>\n';
+            kmldocs += '	<description>' + describe(features[f].properties.description) + '</description>\n';
           }
           if(features[f].properties.status == "Demolished"){
             kmldocs += '	<styleUrl>#Demolished</styleUrl>\n';
@@ -220,7 +250,7 @@ function replaceAll(src, oldr, newr){
               kmldocs += '	<name>' + points[p].name + '</name>\n';
             }
             if(points[p].description){
-              kmldocs += '	<description>' + points[p].description + '</description>\n';
+              kmldocs += '	<description>' + describe(points[p].description) + '</description>\n';
             }
             console.log(points[p].ll);
             kmldocs += '	<Point>\n		<coordinates>' + points[p].ll[0] + "," + points[p].ll[1] + ',0</coordinates>\n	</Point>\n';
