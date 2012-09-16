@@ -160,12 +160,13 @@ function replaceAll(src, oldr, newr){
   app.get('/tokml.kml', function(req, res){
     // returns all changed polygons from the CartoDB table
     var tablename = req.query['table'] || 'collegeplusintown';
+    var username = req.query['user'] || 'mapmeld';
     var wherecondition = '%20WHERE%20status%20!=\'Unchanged\'';
     if(req.query['where'] && req.query['where'] == "all"){
       wherecondition = '';
     }
     var requestOptions = {
-      'uri': 'http://mapmeld.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT%20name,description,status,the_geom%20FROM%20' + tablename + wherecondition
+      'uri': 'http://' + username + '.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT%20name,description,status,the_geom%20FROM%20' + tablename + wherecondition
     };
     request(requestOptions, function (err, response, body) {
       
@@ -178,6 +179,7 @@ function replaceAll(src, oldr, newr){
         var kmlstyles = '<Style id="Renovated">\n<PolyStyle>\n<color>cc00ff00</color>\n<fill>1</fill>\n</PolyStyle>\n</Style>\n';
         kmlstyles += '<Style id="Demolished">\n<PolyStyle>\n<color>cc0000ff</color>\n<fill>1</fill>\n</PolyStyle>\n</Style>\n';
         kmlstyles += '<Style id="Moved">\n<PolyStyle>\n<color>ccff0000</color>\n<fill>1</fill>\n</PolyStyle>\n</Style>\n';
+        kmlstyles += '<Style id="Unchanged">\n<PolyStyle>\n<color>cc0088ff</color>\n<fill>1</fill>\n</PolyStyle>\n</Style>\n';
         var kmldocs = '';
         var kmlend = '	</Folder>\n</Document>\n</kml>';
         for(var f=0;f<features.length;f++){
@@ -193,6 +195,12 @@ function replaceAll(src, oldr, newr){
           }
           else if(features[f].properties.status == "Renovated"){
             kmldocs += '	<styleUrl>#Renovated</styleUrl>\n';
+          }
+          else if(features[f].properties.status == "Unchanged"){
+            kmldocs += '	<styleUrl>#Unchanged</styleUrl>\n';
+          }
+          else if(features[f].properties.status == "Moved"){
+            kmldocs += '	<styleUrl>#Moved</styleUrl>\n';
           }
           kmldocs += '	<Polygon>\n';
           kmldocs += '		<extrude>1</extrude>\n';

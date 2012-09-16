@@ -1,8 +1,9 @@
-var map, building_pop, terrainLayer, satLayer, cartodb, dragtype, markers;
+var map, building_pop, terrainLayer, satLayer, cartodb, dragtype, markers, user_name, table_name;
 var zoomLayers = [];
 if(!console || !console.log){
   console = { log: function(e){ } };
 }
+function gup(nm){nm=nm.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");var rxS="[\\?&]"+nm+"=([^&#]*)";var rx=new RegExp(rxS);var rs=rx.exec(window.location.href);if(!rs){return null;}else{return rs[1];}}
 function replaceAll(src, oldr, newr){
   while(src.indexOf(oldr) > -1){
     src = src.replace(oldr, newr);
@@ -10,6 +11,9 @@ function replaceAll(src, oldr, newr){
   return src;
 }
 function init(){
+  user_name = gup("user") || "mapmeld";
+  table_name = gup("table") || "collegehill";
+
   map = new L.Map('map', { zoomControl: false, panControl: false });
   L.control.pan().addTo(map);
   L.control.zoom().addTo(map);
@@ -28,18 +32,15 @@ function init(){
   
   cartodb = new L.CartoDBLayer({
     map: map,
-    user_name:'mapmeld',
-    table_name: 'collegehill',
-    query: "SELECT * FROM collegehill",
-    tile_style: "#collegehill{polygon-fill:orange;polygon-opacity:0.3;} #collegehill[status='Demolished']{polygon-fill:red;} #collegehill[status='Renovated']{polygon-fill:green;} #collegehill[status='Moved']{polygon-fill:blue;}",
+    user_name: user_name,
+    table_name: table_name,
+    query: "SELECT * FROM " + table_name,
+    tile_style: "#" + table_name + "{polygon-fill:orange;polygon-opacity:0.3;} #" + table_name + "[status='Demolished']{polygon-fill:red;} #" + table_name + "[status='Renovated']{polygon-fill:green;} #" + table_name + "[status='Moved']{polygon-fill:blue;}",
     interactivity: "cartodb_id, status, name, description",
     featureClick: function(ev, latlng, pos, data){
       building_pop.setLatLng(latlng).setContent("<input type='hidden' id='selectedid' value='" + data.cartodb_id + "'/><label>Name</label><br/><input id='poly_name' class='x-large' value='" + replaceAll((data.name || ""),"'","\\'") + "'/><br/><label>Add Detail</label><br/><textarea id='poly_detail' rows='6' cols='25'>" + replaceAll(replaceAll((data.description || ""),"<","&lt;"),">","&gt;") + "</textarea><br/><a class='btn' onclick='saveDetail()' style='width:40%;'>Save</a>");
-      // + addDropdown(data));
       map.openPopup(building_pop);
     },
-    //featureOver: function(){},
-    //featureOut: function(){},
     auto_bound: true
   });
   map.addLayer(cartodb);
@@ -51,22 +52,24 @@ function init(){
     zoomLayers = [];
     // update embed links when map moves or zooms
     var position = "&lat=" + map.getCenter().lat.toFixed(6) + "&lng=" + map.getCenter().lng.toFixed(6) + "&z=" + map.getZoom();
-    $(".thefinal").attr("href","/collegehill2.html?table=collegehill&user=mapmeld&message=true" + position);
-    $(".changemap").attr("href","/diffmap.html?table=collegehill&user=mapmeld&message=true" + position);
-    $(".kitchensink").attr("href","/everything.html?table=collegehill&user=mapmeld&message=true" + position);
+    $(".thefinal").attr("href","/collegehill2.html?table=" + table_name + "&user=" + user_name + "&message=true" + position);
+    $(".changemap").attr("href","/diffmap.html?table=" + table_name + "&user=" + user_name + "&message=true" + position);
+    $(".kitchensink").attr("href","/everything.html?table=" + table_name + "&user=" + user_name + "&message=true" + position);
   });
   
   // update embed links when map moves or zooms
   map.on('moveend', function(e){
     var position = "&lat=" + map.getCenter().lat.toFixed(6) + "&lng=" + map.getCenter().lng.toFixed(6) + "&z=" + map.getZoom();
-    $(".thefinal").attr("href","/collegehill2.html?table=collegehill&user=mapmeld&message=true" + position);
-    $(".changemap").attr("href","/diffmap.html?table=collegehill&user=mapmeld&message=true" + position);
-    $(".kitchensink").attr("href","/everything.html?table=collegehill&user=mapmeld&message=true" + position);
+    $(".thefinal").attr("href","/collegehill2.html?table=" + table_name + "&user=" + user_name + "&message=true" + position);
+    $(".changemap").attr("href","/diffmap.html?table=" + table_name + "&user=" + user_name + "&message=true" + position);
+    $(".kitchensink").attr("href","/everything.html?table=" + table_name + "&user=" + user_name + "&message=true" + position);
   });
+  
+  $(".kmllink").attr("href", "/tokml.kml?table=" + table_name + "&user=" + user_name);
   
   // load special markers from MongoDB
   markers = {};
-  $.getJSON('/storedbuildings?table=collegehill', function(buildings){
+  $.getJSON('/storedbuildings?table=' + table_name + '&user=' + user_name, function(buildings){
     for(var b=0;b<buildings.length;b++){
       var pt = new L.Marker(new L.LatLng(buildings[b].ll[1], buildings[b].ll[0])).bindPopup("<input type='hidden' id='selectedid' value='stored:" + buildings[b]._id + "'/><label>Name</label><br/><input id='poly_name' class='x-large' value='" + replaceAll((buildings[b].name || ""),"'","\\'") + "'/><br/><label>Add Detail</label><br/><textarea id='poly_detail' rows='6' cols='25'>" + replaceAll(replaceAll((buildings[b].description || ""),"<","&lt;"),">","&gt;") + "</textarea><br/><a class='btn' onclick='saveDetail()' style='width:40%;'>Save</a>");
       map.addLayer(pt);
@@ -106,8 +109,8 @@ function addDropdown(givendata){
 }
 function setStatus(id, status){
   console.log(id + " set to " + status);
-  $.getJSON("/changetable?table=collegehill&id=" + id + "&status=" + status, function(data){ });
-  $.getJSON("http://mapmeld.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT%20the_geom%20FROM%20collegehill%20WHERE%20cartodb_id=" + id).done(function(poly){
+  $.getJSON("/changetable?table=" + table_name + "&id=" + id + "&status=" + status + "&user=" + user_name, function(data){ });
+  $.getJSON("http://" + user_name + ".cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT%20the_geom%20FROM%20" + table_name + "%20WHERE%20cartodb_id=" + id).done(function(poly){
     // until zoom changes and tiles are refreshed, show polygon
     L.geoJson(poly, {
       style: function (feature) {
@@ -149,7 +152,7 @@ function dropped(e){
     var dropMarker = new L.Marker( dropPoint );
     map.addLayer(dropMarker);
     // add a marker to the CartoDB table
-    $.getJSON("/changetable?table=collegehill&marker=newpoint&ll=" + dropPoint.lng.toFixed(6) + "," + dropPoint.lat.toFixed(6), function(data){ console.log(data) });
+    $.getJSON("/changetable?table=" + table_name + "&user=" + user_name + "&marker=newpoint&ll=" + dropPoint.lng.toFixed(6) + "," + dropPoint.lat.toFixed(6), function(data){ console.log(data) });
   }
   else{
     // fake a click to change status of building at drop point
@@ -186,8 +189,8 @@ function saveDetail(){
     markers[ id ].bindPopup("<input type='hidden' id='selectedid' value='stored:" + id + "'/><label>Name</label><br/><input id='poly_name' class='x-large' value='" + name + "'/><br/><label>Add Detail</label><br/><textarea id='poly_detail' rows='6' cols='25'>" + detail + "</textarea><br/><a class='btn' onclick='saveDetail()' style='width:40%;'>Save</a>");
   }
   else{
-    $.getJSON("/detailtable?table=collegehill&id=" + id + "&name=" + encodeURIComponent(name) + "&detail=" + encodeURIComponent(detail), function(data){ });
-    $.getJSON("http://mapmeld.cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT%20the_geom%20FROM%20collegehill%20WHERE%20cartodb_id=" + id).done(function(poly){
+    $.getJSON("/detailtable?table=" + table_name + "&user=" + user_name + "&id=" + id + "&name=" + encodeURIComponent(name) + "&detail=" + encodeURIComponent(detail), function(data){ });
+    $.getJSON("http://" + user_name + ".cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT%20the_geom%20FROM%20" + table_name + "%20WHERE%20cartodb_id=" + id).done(function(poly){
       // until zoom changes and tiles are refreshed, show polygon with this name and description
       L.geoJson(poly, {
         style: function (feature) {
