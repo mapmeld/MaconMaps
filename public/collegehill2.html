@@ -73,7 +73,9 @@ function init(){
   }
   
   // credit Bibb County
-  $($(".gmnoprint")[0].children[0].children[1]).append(" - Buildings Bibb County");
+  setTimeout(function(){
+    $($(".gmnoprint")[0].children[0].children[1]).append(" - Buildings Bibb County");
+  }, 500);
 }
 
 function bindPopup(mark, name, description){
