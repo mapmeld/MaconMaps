@@ -91,7 +91,7 @@ function bindPopup(mark, name, description){
 
 function describe(description){
   if((typeof description === 'undefined') || (!description)){
-    return "No description";
+    return "";
   }
   // allow link:http://example.com
   while(description.indexOf("link:") > -1){

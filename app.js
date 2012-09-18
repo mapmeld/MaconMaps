@@ -164,7 +164,7 @@ function replaceAll(src, oldr, newr){
         res.setHeader('Content-Type', 'application/kml');
         var describe = function(description){
           if((typeof description === 'undefined') || (!description)){
-            return "No description";
+            return "";
           }
           // allow link:http://example.com
           while(description.indexOf("link:") > -1){
