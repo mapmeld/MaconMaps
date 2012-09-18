@@ -78,14 +78,7 @@ function replaceAll(src, oldr, newr){
     var tablename = req.query['table'] || "collegeplusintown";
     var name = replaceAll(req.query['name'],"'","\\'");
     var detail = replaceAll(req.query['detail'],"'","\\'");
-    client.on('data', function(data){
-      try{
-        res.send(data);
-      }
-      catch(e){
-        res.send(e);
-      }
-    });
+    client.on('data', function(data){ });
     client.query("UPDATE " + tablename + " SET (name,description) = ('" + name + "','" + detail + "') WHERE cartodb_id = " + req.query['id']);
   });
 
@@ -111,12 +104,7 @@ function replaceAll(src, oldr, newr){
       });
     }
     else{
-      client.on('data', function(data){
-        try{
-          res.send(data);
-        }
-        catch(e){ /* catch extra-header errors? */ }
-      });
+      client.on('data', function(data){ });
       client.query("update " + tablename + " SET status = '" + req.query['status'] + "' WHERE cartodb_id = " + req.query['id']);
     }
   });
