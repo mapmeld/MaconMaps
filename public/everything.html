@@ -25,7 +25,9 @@ function init(){
   map = new google.maps.Map($('#map')[0], mapOptions);
   //map.overlayMapTypes.insertAt(0, new CoordMapType(new google.maps.Size(256, 256)));
 
-  infowindow = new google.maps.InfoWindow();
+  infowindow = new google.maps.InfoWindow({
+    maxWidth: 300
+  });
 
   var cartodb_gmapsv3 = new CartoDBLayer({
     map: map,
@@ -127,7 +129,7 @@ html, body, #map{
   font-family: verdana, arial, sansserif;
 }
 strong{
-  font-size: 140%;
+  font-size: 120%;
 }
     </style>
   </head>
