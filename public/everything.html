@@ -3,7 +3,6 @@
   <head>
     <title>Impact Map</title>
     <link href="/carto/stylesheets/cartodb-gmapsv3.css" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Nixie+One" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script type="text/javascript" src="/carto/scripts/wax.g.min.js"></script>
@@ -42,7 +41,7 @@ function init(){
         return;
       }
       infowindow.close();
-      infowindow.setContent( "<h3>" + (data.name || data.cartodb_id) + "</h3>" + describe(data.description) );
+      infowindow.setContent( "<strong>" + (data.name || data.cartodb_id) + "</strong><br/>" + describe(data.description) );
       infowindow.setPosition( latlng );
       infowindow.open(map);
     },
@@ -60,7 +59,8 @@ function init(){
       var marker = new google.maps.Marker({
         map: map,
         title: buildings[b].name || "",
-        position: ll
+        position: ll,
+        image: "/carto/scripts/images/marker-icon.png"
       });
       bindPopup(marker, buildings[b].name || buildings[b]._id, buildings[b].description || "");
     }
@@ -79,7 +79,7 @@ function init(){
 function bindPopup(mark, name, description){
   google.maps.event.addListener(mark, 'click', function(){
     infowindow.close();
-    infowindow.setContent( "<h3>" + name + "</h3>" + describe(description) );
+    infowindow.setContent( "<strong>" + name + "</strong><br/>" + describe(description) );
     infowindow.setPosition( mark.getPosition() );
     infowindow.open(map);
   });
@@ -122,7 +122,10 @@ html, body, #map{
   width: 100%;
   margin: 0;
   padding: 0;
-  font-family: 'Nixie One', verdana, arial, sansserif;
+  font-family: verdana, arial, sansserif;
+}
+strong{
+  font-size: 140%;
 }
     </style>
   </head>
