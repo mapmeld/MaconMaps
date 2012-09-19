@@ -32,16 +32,12 @@
   text-decoration:none;
   display: none;
 }
-#timeline #controls {
-  position:absolute;
-  top:15px;
-  right:15px;
-  }
 #timeline #controls a {
   font-size:20px;
   color:#DC1438;
   margin-left:10px;
-  }
+  display: block;
+}
 #timeline a.ui-slider-handle{
   display: block;
 }
@@ -52,9 +48,10 @@ a.year-active {
 
 <div id='sidebar'>
   <div id='timeline'>
-    <div id='controls' style='display:none;'></div>
     <h2>Code Enforcement <small>inside College Hill</small></h2>
     <div id="filter"></div>
+    <div id='controls'></div>
+    <h4 id='mydate'>Jan1997</h4>
   </div>
 </div>
 <div id='map'></div>
@@ -90,6 +87,7 @@ a.year-active {
       // event handler and run manually.
       click_year = function(y) {
           return function() {
+              $("#mydate").html( codeToTime(y) );
               var active = document.getElementsByClassName('year-active');
               if (active.length) active[0].className = '';
               document.getElementById('y' + y).className = 'year-active';
@@ -131,6 +129,7 @@ a.year-active {
           playStep = window.setInterval(function() {
               if (step < yearlist.length) {
                   click_year(yearlist[step])();
+                  $("#filter").slider('value', step);
                   step++;
               } else {
                   window.clearInterval(playStep);
