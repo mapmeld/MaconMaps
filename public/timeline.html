@@ -3,7 +3,10 @@
 <head>
   <title>Code Enforcement in College Hill</title>
   <script src='/scripts/mapbox.js'></script>
+  <script src='/scripts/jquery-1.6.2.min.js'></script>
+  <script src='/scripts/jquery-ui-slider.min.js'></script>
   <link href='/stylesheets/mapbox.css' rel='stylesheet' />
+  <link href='/stylesheets/jquery-ui-slider.css' rel='stylesheet' />
   <style>
     body { margin:0; padding:0; }
     #map { position:absolute; top:0; bottom:0; width:100%; }
@@ -27,7 +30,8 @@
 #timeline a {
   font-size:10px;
   text-decoration:none;
-  }
+  display: none;
+}
 #timeline #controls {
   position:absolute;
   top:15px;
@@ -45,8 +49,9 @@ a.year-active {
 
 <div id='sidebar'>
   <div id='timeline'>
-      <div id='controls'></div>
+    <div id='controls' style='display:none;'></div>
     <h2>Code Enforcement <small>inside College Hill</small></h2>
+    <div id="filter"></div>
   </div>
 </div>
 <div id='map'></div>
@@ -134,6 +139,19 @@ a.year-active {
       };
 
       click_year(2000)();
+  });
+  
+  $(document).ready(function(){
+    $("#filter").slider({
+      orientation: "horizontal",
+      range: "min",
+      min: 2000,
+      max: 2185,
+      value: 2000,
+      slide: function (event, ui) {
+        click_year(yearlist[ui.value]);
+      }
+    });
   });
 
   map.addLayer(markerLayer);
