@@ -38,8 +38,14 @@
   margin-left:10px;
   display: inline;
 }
+#controls{
+  margin-top: 18px;
+}
 #timeline a.ui-slider-handle{
   display: block;
+}
+.icon-white{
+  margin-top: 4px !important;
 }
 </style>
 
@@ -48,7 +54,7 @@
     <h2>Code Enforcement <small>inside College Hill</small></h2>
     <div id="filter"></div>
     <div id='controls'></div>
-    <h4 id='mydate'>Jan1997</h4>
+    <img src="http://homestatus.herokuapp.com/images/loading-gif.gif" id="loading"/>
   </div>
 </div>
 <div id='map'></div>
@@ -113,6 +119,13 @@
       var play = controls.appendChild(document.createElement('a')),
             stop = controls.appendChild(document.createElement('a')),
             playStep;
+    
+      var myd = document.createElement("strong");
+      myd.id = "mydate";
+      myd.style.fontSize = "16pt";
+      myd.innerHTML = "Jan 1997";
+      controls.appendChild( myd );
+      $("#loading").css({ display: "none" });
 
       stop.innerHTML = '<a class="btn btn-inverse"><i class="icon-stop icon-white"></i> Stop</a>';
       play.innerHTML = '<a class="btn btn-success"><i class="icon-play-circle icon-white"></i> Play</a>';
