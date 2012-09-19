@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Code Enforcement in College Hill</title>
+  <script src='/scripts/mapbox.js'></script>
+  <script src='/scripts/jquery-1.6.2.min.js'></script>
+  <script src='/scripts/jquery-ui-slider.min.js'></script>
+  <link href='/stylesheets/mapbox.css' rel='stylesheet' />
+  <link href='/stylesheets/jquery-ui-slider.css' rel='stylesheet' />
+  <style>
+    body { margin:0; padding:0; font-family: arial, sansserif; }
+    #map { position:absolute; top:0; bottom:0; width:100%; }
+  </style>
+</head>
+<body>
+<style>
+#sidebar {
+  position:absolute;
+  top:0px;
+  left:0px;
+  background:#fff;
+  z-index:999;
+  overflow:auto;
+  }
+#timeline {
+  padding:10px;
+  }
+#timeline a {
+  font-size:10px;
+  text-decoration:none;
+  display: none;
+}
+#timeline #controls a {
+  font-size:20px;
+  color:#DC1438;
+  margin-left:10px;
+  display: inline;
+}
+#timeline a.ui-slider-handle{
+  display: block;
+}
+a.year-active {
+  color:#DC1438;
+  }
+</style>
+
+<div id='sidebar'>
+  <div id='timeline'>
+    <h2>Code Enforcement <small>inside College Hill</small></h2>
+    <div id="filter"></div>
+    <div id='controls'></div>
+    <h4 id='mydate'>Jan1997</h4>
+  </div>
+</div>
+<div id='map'></div>
+
+<script>
+  var years = {},
+    yearlist = [],
+    year_links = [],
+    click_year;
+
+  var map = mapbox.map('map');
+  map.addLayer(mapbox.layer().id('mapmeld.map-mdcfyamo'));
+  
+  var codeToTime = function(yearCode){
+    yearCode -= 2000;
+    var year = 1997 + (yearCode - (yearCode % 12)) / 12;
+    var month = yearCode % 12;
+    var monthNames = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    return monthNames[month] + " " + year;
+  };
+
+  var timeline = document.getElementById('timeline'),
+      controls = document.getElementById('controls');
+
+  var markerLayer = mapbox.markers.layer()
+      // this is a quick optimization - otherwise all markers are briefly displayed
+      // before filtering to 2001
+      .filter(function() { return false })
+      .url('/anycases.geojson', function(err, features) {
+
+      // A closure for clicking years. You give it a year, and it returns a function
+      // that, when run, clicks that year. It's this way in order to be used as both an
+      // event handler and run manually.
+      click_year = function(y) {
+          return function() {
+              $("#mydate").html( codeToTime(y) );
+              var active = document.getElementsByClassName('year-active');
+              if (active.length) active[0].className = '';
+              document.getElementById('y' + y).className = 'year-active';
+              markerLayer.filter(function(f) {
+                  return f.properties.year == y;
+              });
+              return false;
+          };
+      }
+
+      for (var i = 0; i < features.length; i++) {
+          years[features[i].properties.year] = true;
+      }
+
+      for (var y in years) yearlist.push(y);
+      yearlist.sort();
+
+      for (var i = 0; i < yearlist.length; i++) {
+          var a = timeline.appendChild(document.createElement('a'));
+          a.innerHTML = codeToTime(yearlist[i]) + ' ';
+          a.id = 'y' + yearlist[i];
+          a.href = '#';
+          a.onclick = click_year(yearlist[i]);
+      }
+
+      var play = controls.appendChild(document.createElement('a')),
+            stop = controls.appendChild(document.createElement('a')),
+            playStep;
+
+      stop.innerHTML = '<img src="/images/button_stop.jpeg" width="40"/>';
+      play.innerHTML = '<img src="/images/play_button_1.jpeg" width="40"/>';
+
+      play.onclick = function() {
+          var step = $("#filter").slider('value') - 2000;
+          // Every quarter-second (250 ms) increment the year
+          // we're looking at and show a new year. When
+          // the end is reached, call clearInterval to stop
+          // the animation.
+          playStep = window.setInterval(function() {
+              if (step < yearlist.length) {
+                  click_year(yearlist[step])();
+                  $("#filter").slider('value', yearlist[step]);
+                  step++;
+              } else {
+                  window.clearInterval(playStep);
+              }
+          }, 500);
+      };
+
+      stop.onclick = function() {
+          window.clearInterval(playStep);
+      };
+
+      click_year(2000)();
+  });
+  
+  $(document).ready(function(){
+    $("#filter").slider({
+      orientation: "horizontal",
+      range: "min",
+      min: 2000,
+      max: 2185,
+      value: 2000,
+      slide: function (event, ui) {
+        click_year(ui.value)();
+      }
+    });
+  });
+
+  map.addLayer(markerLayer);
+  map.zoom(15).center({ lat: 32.8336, lon: -83.645654 });
+</script>
+</body>
+</html>
