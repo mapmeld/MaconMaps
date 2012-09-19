@@ -35,16 +35,12 @@
 }
 #timeline #controls a {
   font-size:20px;
-  color:#DC1438;
   margin-left:10px;
   display: inline;
 }
 #timeline a.ui-slider-handle{
   display: block;
 }
-a.year-active {
-  color:#DC1438;
-  }
 </style>
 
 <div id='sidebar'>
@@ -118,8 +114,8 @@ a.year-active {
             stop = controls.appendChild(document.createElement('a')),
             playStep;
 
-      stop.innerHTML = '<a class="btn btn-inverse"><i class="icon-stop"></i> Stop</a>';
-      play.innerHTML = '<a class="btn btn-success"><i class="icon-play-circle"></i> Play</a>';
+      stop.innerHTML = '<a class="btn btn-inverse"><i class="icon-stop icon-white"></i> Stop</a>';
+      play.innerHTML = '<a class="btn btn-success"><i class="icon-play-circle icon-white"></i> Play</a>';
 
       play.onclick = function() {
           var step = $("#filter").slider('value') - 2000;
