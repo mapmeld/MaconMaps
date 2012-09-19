@@ -5,6 +5,7 @@
   <script src='/scripts/mapbox.js'></script>
   <script src='/scripts/jquery-1.6.2.min.js'></script>
   <script src='/scripts/jquery-ui-slider.min.js'></script>
+  <link href='http://twitter.github.com/bootstrap/assets/css/bootstrap.css' rel='stylesheet'/>
   <link href='/stylesheets/mapbox.css' rel='stylesheet' />
   <link href='/stylesheets/jquery-ui-slider.css' rel='stylesheet' />
   <style>
@@ -16,9 +17,11 @@
 <style>
 #sidebar {
   position:absolute;
-  top:0px;
-  left:0px;
-  background:#fff;
+  top:10px;
+  left:10px;
+  border-radius: 10px;
+  background:#fafafa;
+  padding: 0px 10px;
   z-index:999;
   overflow:auto;
   }
@@ -115,8 +118,8 @@ a.year-active {
             stop = controls.appendChild(document.createElement('a')),
             playStep;
 
-      stop.innerHTML = '<img src="/images/button_stop.jpeg" width="40"/>';
-      play.innerHTML = '<img src="/images/play_button_1.jpeg" width="40"/>';
+      stop.innerHTML = '<a class="btn btn-inverse"><i class="icon-stop"></i> Stop</a>';
+      play.innerHTML = '<a class="btn btn-success"><i class="icon-play-circle"></i> Play</a>';
 
       play.onclick = function() {
           var step = $("#filter").slider('value') - 2000;
