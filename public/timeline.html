@@ -121,7 +121,7 @@ a.year-active {
       play.innerHTML = 'PLAY';
 
       play.onclick = function() {
-          var step = 0;
+          var step = $("#filter").slider('value') - 2000;
           // Every quarter-second (250 ms) increment the year
           // we're looking at and show a new year. When
           // the end is reached, call clearInterval to stop
@@ -129,7 +129,7 @@ a.year-active {
           playStep = window.setInterval(function() {
               if (step < yearlist.length) {
                   click_year(yearlist[step])();
-                  $("#filter").slider('value', step);
+                  $("#filter").slider('value', yearlist[step]);
                   step++;
               } else {
                   window.clearInterval(playStep);
