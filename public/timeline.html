@@ -34,7 +34,7 @@
   font-size:20px;
   color:#DC1438;
   margin-left:10px;
-  display: block;
+  display: inline;
 }
 #timeline a.ui-slider-handle{
   display: block;
@@ -111,12 +111,12 @@ a.year-active {
           a.onclick = click_year(yearlist[i]);
       }
 
-      var stop = controls.appendChild(document.createElement('a')),
-            play = controls.appendChild(document.createElement('a')),
+      var play = controls.appendChild(document.createElement('a')),
+            stop = controls.appendChild(document.createElement('a')),
             playStep;
 
       stop.innerHTML = '<img src="/images/button_stop.jpeg" width="40"/>';
-      play.innerHTML = '<img src="/images/play_button_1.jpg" width="40"/>';
+      play.innerHTML = '<img src="/images/play_button_1.jpeg" width="40"/>';
 
       play.onclick = function() {
           var step = $("#filter").slider('value') - 2000;
