@@ -45,7 +45,7 @@ a.year-active {
 <div id='sidebar'>
   <div id='timeline'>
       <div id='controls'></div>
-    <h2>US Earthquakes <small>from the U.S. Geological Survey</small></h2>
+    <h2>Code Enforcement <small>inside College Hill</small></h2>
   </div>
 </div>
 <div id='map'></div>
@@ -61,7 +61,7 @@ a.year-active {
       // this is a quick optimization - otherwise all markers are briefly displayed
       // before filtering to 2001
       .filter(function() { return false })
-      .url('../../data/historical_earthquakes.geojson', function(err, features) {
+      .url('/historical_earthquakes.geojson', function(err, features) {
 
       // A closure for clicking years. You give it a year, and it returns a function
       // that, when run, clicks that year. It's this way in order to be used as both an
