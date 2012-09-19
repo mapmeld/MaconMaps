@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <title>Code Enforcement in College Hill</title>
   <script src='/scripts/mapbox.js'></script>
   <link href='/stylesheets/mapbox.css' rel='stylesheet' />
   <style>
@@ -61,7 +62,7 @@ a.year-active {
       // this is a quick optimization - otherwise all markers are briefly displayed
       // before filtering to 2001
       .filter(function() { return false })
-      .url('/historical_earthquakes.geojson', function(err, features) {
+      .url('/collegehillcases.geojson', function(err, features) {
 
       // A closure for clicking years. You give it a year, and it returns a function
       // that, when run, clicks that year. It's this way in order to be used as both an
@@ -128,7 +129,7 @@ a.year-active {
   });
 
   map.addLayer(markerLayer);
-  map.zoom(15).center({ lat: 32.833533, lon: -83.645654 });
+  map.zoom(15).center({ lat: 32.8336, lon: -83.645654 });
 </script>
 </body>
 </html>
