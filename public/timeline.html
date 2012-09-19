@@ -21,13 +21,13 @@
   left:10px;
   border-radius: 10px;
   background:#fafafa;
-  padding: 0px 10px;
+  padding: 15px;
   z-index:999;
   overflow:auto;
   }
 #timeline {
   padding:10px;
-  }
+}
 #timeline a {
   font-size:10px;
   text-decoration:none;
@@ -123,6 +123,7 @@
       var myd = document.createElement("strong");
       myd.id = "mydate";
       myd.style.fontSize = "16pt";
+      myd.style.marginLeft = "50px";
       myd.innerHTML = "Jan 1997";
       controls.appendChild( myd );
       $("#loading").css({ display: "none" });
