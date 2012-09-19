@@ -80,7 +80,10 @@
       controls = document.getElementById('controls');
       
   var neighborLayer = mapbox.markers.layer()
-      .url('/collegehillborder.geojson', function(err, features){ });
+      .url('/collegehillborder.geojson', function(err, features){
+        console.log(err);
+        console.log(features);
+      });
 
   var markerLayer = mapbox.markers.layer()
       // this is a quick optimization - otherwise all markers are briefly displayed
