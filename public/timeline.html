@@ -54,6 +54,14 @@ a.year-active {
 <script>
   var map = mapbox.map('map');
   map.addLayer(mapbox.layer().id('mapmeld.map-mdcfyamo'));
+  
+  var codeToTime = function(yearCode){
+    yearCode -= 2000;
+    var year = 1997 + (yearCode - (yearCode % 12)) / 12;
+    var month = yearCode % 12;
+    var monthNames = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    return monthNames[month] + year;
+  };
 
   var timeline = document.getElementById('timeline'),
       controls = document.getElementById('controls');
@@ -92,7 +100,7 @@ a.year-active {
 
       for (var i = 0; i < yearlist.length; i++) {
           var a = timeline.appendChild(document.createElement('a'));
-          a.innerHTML = yearlist[i] + ' ';
+          a.innerHTML = codeToTime(yearlist[i]) + ' ';
           a.id = 'y' + yearlist[i];
           a.href = '#';
           a.onclick = click_year(yearlist[i]);
@@ -125,7 +133,7 @@ a.year-active {
           window.clearInterval(playStep);
       };
 
-      click_year(2001)();
+      click_year(1990)();
   });
 
   map.addLayer(markerLayer);
