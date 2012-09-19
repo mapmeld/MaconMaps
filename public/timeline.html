@@ -57,6 +57,10 @@ a.year-active {
 <div id='map'></div>
 
 <script>
+  var years = {},
+    yearlist = [],
+    year_links = [];
+
   var map = mapbox.map('map');
   map.addLayer(mapbox.layer().id('mapmeld.map-mdcfyamo'));
   
@@ -91,10 +95,6 @@ a.year-active {
               return false;
           };
       }
-
-      var years = {},
-          yearlist = [],
-          year_links = [];
 
       for (var i = 0; i < features.length; i++) {
           years[features[i].properties.year] = true;
@@ -147,7 +147,7 @@ a.year-active {
       range: "min",
       min: 2000,
       max: 2185,
-      value: 2000,
+      value: 2001,
       slide: function (event, ui) {
         click_year(yearlist[ui.value]);
       }
