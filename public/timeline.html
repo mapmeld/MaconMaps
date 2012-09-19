@@ -21,9 +21,7 @@
   background:#fff;
   z-index:999;
   overflow:auto;
-  opacity:0.6;
   }
-#sidebar:hover { opacity:1; }
 #timeline {
   padding:10px;
   }
@@ -70,7 +68,7 @@ a.year-active {
     var year = 1997 + (yearCode - (yearCode % 12)) / 12;
     var month = yearCode % 12;
     var monthNames = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-    return monthNames[month] + year;
+    return monthNames[month] + " " + year;
   };
 
   var timeline = document.getElementById('timeline'),
@@ -117,8 +115,8 @@ a.year-active {
             play = controls.appendChild(document.createElement('a')),
             playStep;
 
-      stop.innerHTML = 'STOP';
-      play.innerHTML = 'PLAY';
+      stop.innerHTML = '<img src="/images/button_stop.jpeg" width="40"/>';
+      play.innerHTML = '<img src="/images/play_button_1.jpg" width="40"/>';
 
       play.onclick = function() {
           var step = $("#filter").slider('value') - 2000;
