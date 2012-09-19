@@ -59,7 +59,8 @@ a.year-active {
 <script>
   var years = {},
     yearlist = [],
-    year_links = [];
+    year_links = [],
+    click_year;
 
   var map = mapbox.map('map');
   map.addLayer(mapbox.layer().id('mapmeld.map-mdcfyamo'));
@@ -84,7 +85,7 @@ a.year-active {
       // A closure for clicking years. You give it a year, and it returns a function
       // that, when run, clicks that year. It's this way in order to be used as both an
       // event handler and run manually.
-      function click_year(y) {
+      click_year = function(y) {
           return function() {
               var active = document.getElementsByClassName('year-active');
               if (active.length) active[0].className = '';
@@ -147,9 +148,9 @@ a.year-active {
       range: "min",
       min: 2000,
       max: 2185,
-      value: 2001,
+      value: 2000,
       slide: function (event, ui) {
-        click_year(yearlist[ui.value]);
+        click_year(yearlist[ui.value])();
       }
     });
   });
