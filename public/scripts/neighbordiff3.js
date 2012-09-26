@@ -22,7 +22,7 @@ function init(){
   var tonerAttrib = 'Map data &copy; 2012 OpenStreetMap contributors, Tiles &copy; 2012 Stamen Design';
   terrainLayer = new L.TileLayer(toner, {maxZoom: 18, attribution: tonerAttrib});
   map.addLayer(terrainLayer);
-  map.setView(new L.LatLng(32.789692, -83.644152), 14);
+  map.setView(new L.LatLng(32.828881, -83.652627), 16);
   
   satLayer = new L.BingLayer("Arc0Uekwc6xUCJJgDA6Kv__AL_rvEh4Hcpj4nkyUmGTIx-SxMd52PPmsqKbvI_ce");  
   map.addLayer(satLayer);
@@ -35,7 +35,7 @@ function init(){
     user_name: user_name,
     table_name: table_name,
     query: "SELECT * FROM " + table_name,
-    tile_style: "#" + table_name + "{polygon-fill:orange;polygon-opacity:0.3;} #" + table_name + "[status='Demolished']{polygon-fill:red;} #" + table_name + "[status='Renovated']{polygon-fill:green;} #" + table_name + "[status='Moved']{polygon-fill:blue;}",
+    tile_style: "#" + table_name + "{polygon-fill:orange;polygon-opacity:0.4;} #" + table_name + "[status='Demolished']{polygon-fill:red;} #" + table_name + "[status='Renovated']{polygon-fill:green;} #" + table_name + "[status='Moved']{polygon-fill:blue;}",
     interactivity: "cartodb_id, status, name, description",
     featureClick: function(ev, latlng, pos, data){
       building_pop.setLatLng(latlng).setContent("<input type='hidden' id='selectedid' value='" + data.cartodb_id + "'/><label>Name</label><br/><input id='poly_name' class='x-large' value='" + replaceAll((data.name || ""),"'","\\'") + "'/><br/><label>Add Detail</label><br/><textarea id='poly_detail' rows='6' cols='25'>" + replaceAll(replaceAll((data.description || ""),"<","&lt;"),">","&gt;") + "</textarea><br/><a class='btn' onclick='saveDetail()' style='width:40%;'>Save</a>");
@@ -44,7 +44,7 @@ function init(){
     },
     //featureOver: function(){},
     //featureOut: function(){},
-    auto_bound: true
+    auto_bound: false
   });
   map.addLayer(cartodb);
   
