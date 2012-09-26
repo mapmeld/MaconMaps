@@ -36,7 +36,7 @@ function init(){
     table_name: table_name,
     query: "SELECT * FROM " + table_name,
     tile_style: "#" + table_name + "{polygon-fill:orange;polygon-opacity:0.5;} #" + table_name + "[status='Demolished']{polygon-fill:red;} #" + table_name + "[status='Renovated']{polygon-fill:green;} #" + table_name + "[status='Moved']{polygon-fill:blue;}",
-    interactivity: "cartodb_id, status, name, description",
+    interactivity: "*",
     featureClick: function(ev, latlng, pos, data){
       building_pop.setLatLng(latlng).setContent("<input type='hidden' id='selectedid' value='" + data.cartodb_id + "'/><label>Name</label><br/><input id='poly_name' class='x-large' value='" + replaceAll((data.name || ""),"'","\\'") + "'/><br/><label>Add Detail</label><br/><textarea id='poly_detail' rows='6' cols='25'>" + replaceAll(replaceAll((data.description || ""),"<","&lt;"),">","&gt;") + "</textarea><br/><a class='btn' onclick='saveDetail()' style='width:40%;'>Save</a>");
       // + addDropdown(data));
