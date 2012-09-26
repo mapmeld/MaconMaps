@@ -64,7 +64,11 @@ var init = exports.init = function (config) {
   app.get('/lynmore', function(req, res){
     res.render('lynmore');
   });
-  
+
+  app.get('/promise', function(req, res){
+    res.render('promise');
+  });
+
 function replaceAll(src, oldr, newr){
   while(src.indexOf(oldr) > -1){
     src = src.replace(oldr, newr);
