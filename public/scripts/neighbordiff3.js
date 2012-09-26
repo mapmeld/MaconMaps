@@ -44,7 +44,7 @@ function init(){
     },
     //featureOver: function(){},
     //featureOut: function(){},
-    auto_bound: false
+    auto_bound: true
   });
   map.addLayer(cartodb);
   
