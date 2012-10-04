@@ -84,6 +84,7 @@ function replaceAll(src, oldr, newr){
     var detail = replaceAll(req.query['detail'],"'","\\'");
     client.on('data', function(data){ });
     client.query("UPDATE " + tablename + " SET (name,description) = ('" + name + "','" + detail + "') WHERE cartodb_id = " + req.query['id']);
+    res.send({});
   });
 
   app.get('/changetable', function(req, res){
@@ -110,6 +111,7 @@ function replaceAll(src, oldr, newr){
     else{
       client.on('data', function(data){ });
       client.query("update " + tablename + " SET status = '" + req.query['status'] + "' WHERE cartodb_id = " + req.query['id']);
+      res.send({});
     }
   });
   
