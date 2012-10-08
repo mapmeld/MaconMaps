@@ -405,7 +405,7 @@ function replaceAll(src, oldr, newr){
     pt.save(function(err){
       res.send(err || 'success');
     });
-  }
+  });
   
   app.get('/timeline-maker', function(req, res){
     // show timeline editor (not yet designed)
@@ -426,7 +426,7 @@ function replaceAll(src, oldr, newr){
           }
         };
       }
-      res.send({ "type":"FeatureCollection","features": timepoints });
+      res.send({ "type":"FeatureCollection", "features": timepoints });
     });
   });
 
