@@ -13,6 +13,7 @@ var auth = require('./auth')
     , CartoDB = require('./cartodb/lib/cartodb')
     , request = require('request')
     , specialpoint = require('./specialpoint')
+    , timepoint = require('./timepoint')
     ;
 
 var HOUR_IN_MILLISECONDS = 3600000;
@@ -246,7 +247,7 @@ function replaceAll(src, oldr, newr){
             if(points[p].description){
               kmldocs += '	<description><![CDATA[<div>' + describe(points[p].description) + '</div>]]></description>\n';
             }
-            console.log(points[p].ll);
+            //console.log(points[p].ll);
             kmldocs += '	<Point>\n		<coordinates>' + points[p].ll[0] + "," + points[p].ll[1] + ',0</coordinates>\n	</Point>\n';
             kmldocs += '</Placemark>\n';
           }
@@ -387,6 +388,46 @@ function replaceAll(src, oldr, newr){
 
   app.get('/zoning', function(req, res){
     res.render('zoning');
+  });
+  
+  app.get('/timeline', function(req, res){
+    // show timeline
+    res.render('checkouttime');
+  });
+  app.post('/timeline', function(req, res){
+    // load this point into MongoDB
+    pt = new timepoint.TimePoint({
+      start: req.body['start'],
+      end: req.body['end'],
+      // use [ lng , lat ] format to be consistent with GeoJSON
+      ll: [ req.body['lng'] * 1.0, req.body['lat'] * 1.0 ]
+    });
+    pt.save(function(err){
+      res.send(err || 'success');
+    });
+  }
+  
+  app.get('/timeline-maker', function(req, res){
+    // show timeline editor (not yet designed)
+    res.render('checkouttimemaker');
+  });
+  app.post('/timeline-maker', function(req, res){
+    // do a query to return complete GeoJSON timeline
+    timepoint.TimePoint.find({ geo: "sample" }).exec(function(err, timepoints){
+      // convert all timepoints into GeoJSON format
+      for(var t=0; t<timepoints.length; t++){
+        timepoints[t] = {
+          "geometry": {
+            "coordinates": [ timepoints[t].ll[0], timepoints[t].ll[1] ]
+          },
+          "properties": {
+            "startyr": timepoints[t].start,
+            "endyr": timepoints[t].end
+          }
+        };
+      }
+      res.send({ "type":"FeatureCollection","features": timepoints });
+    });
   });
 
   app.get('/auth', middleware.require_auth_browser, routes.index);
