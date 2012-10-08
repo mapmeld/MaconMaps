@@ -10,6 +10,12 @@ $(document).ready(function(){
   terrainLayer = new L.TileLayer(toner, {maxZoom: 18, attribution: tonerAttrib});
   map.addLayer(terrainLayer);
   map.setView(new L.LatLng(32.828881, -83.652627), 14);
+  
+  // add a sample neighborhood area and make it editable
+  var wll = [ new L.LatLng(32.828881, -83.652627), new L.LatLng(32.827881, -83.652627), new L.LatLng(32.828881, -83.650627) ];
+  var footprint = new L.Polygon( wll, { color: "#00f", fillOpacity: 0.3, opacity: 0.65 } );
+  footprint.editing.enable();
+  map.addLayer(footprint);
 
   // make a jQuery slider to view code enforcement case timeline
   $("#filter").slider({
