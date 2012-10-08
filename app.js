@@ -413,7 +413,7 @@ function replaceAll(src, oldr, newr){
   });
   app.post('/timeline-maker', function(req, res){
     // do a query to return complete GeoJSON timeline
-    timepoint.TimePoint.find({ geo: "sample" }).exec(function(err, timepoints){
+    timepoint.TimePoint.find({ loc: { "$nearSphere": [ 32.837026, lon:  -83.645782 ], $maxDistance: 0.01 } }).limit(10).exec(function(err, timepoints){
       // convert all timepoints into GeoJSON format
       for(var t=0; t<timepoints.length; t++){
         timepoints[t] = {

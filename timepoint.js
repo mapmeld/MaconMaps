@@ -3,13 +3,9 @@ var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
 var TimePointSchema = new Schema({
-  ll: Array,
+  ll: { type: [Number], index: '2d' },
   start: Number,
   end: Number
-});
-
-TimePointSchema.index({
-  ll: "2d"
 });
 
 var TimePoint = mongoose.model('TimePoint', TimePointSchema);
