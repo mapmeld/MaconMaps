@@ -411,7 +411,7 @@ function replaceAll(src, oldr, newr){
     // show timeline editor (not yet designed)
     res.render('checkouttimemaker');
   });
-  app.get('/timeline-at', function(req, res){
+  app.get('/timeline-at*', function(req, res){
     // do a query to return complete GeoJSON timeline
     timepoint.TimePoint.find({ ll: { "$nearSphere": [ -83.645782, 32.837026 ], "$maxDistance": 0.01 } }).limit(1000).exec(function(err, timepoints){
       // convert all timepoints into GeoJSON format
