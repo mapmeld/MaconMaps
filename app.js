@@ -413,24 +413,58 @@ function replaceAll(src, oldr, newr){
   });
   app.get('/timeline-at', function(req, res){
     // do a query to return complete GeoJSON timeline
-    timepoint.TimePoint.find({ ll: { "$nearSphere": [ -83.645782, 32.837026 ], "$maxDistance": 0.01 } }).exec(function(err, timepoints){
+    timepoint.TimePoint.find({ ll: { "$nearSphere": [ -83.645782, 32.837026 ], "$maxDistance": 0.01 } }).limit(1000).exec(function(err, timepoints){
       // convert all timepoints into GeoJSON format
       if(err){
         res.send(err);
         return;
       }
-      for(var t=0; t<timepoints.length; t++){
-        timepoints[t] = {
-          "geometry": {
-            "coordinates": [ timepoints[t].ll[0], timepoints[t].ll[1] ]
-          },
-          "properties": {
-            "startyr": timepoints[t].start,
-            "endyr": timepoints[t].end
-          }
-        };
+      if(req.url.indexOf('kml') > -1){
+        // time-enabled KML output
+        var kmlintro = '<?xml version="1.0" encoding="UTF-8"?>\n<kml xmlns="http://earth.google.com/kml/2.2">\n	<Document>\n		<name>Time-Enabled Code Enforcement KML</name>\n		<description>Rounded locations of code enforcement cases 1997-2012</description>\n		<Style id="dot-icon">\n      <IconStyle>\n        <Icon>\n          <href>http://i.imgur.com/khmWg.png</href>\n        </Icon>\n      </IconStyle>\n    </Style>\n    <Style>\n      <ListStyle>\n        <listItemType>checkHideChildren</listItemType>\n      </ListStyle>\n    </Style>\n';
+        var kmlpts = '';
+        for(var t=0; t<timepoints.length; t++){
+          var latitude = timepoints[t].ll[1];
+          var longitude = timepoints[t].ll[0];
+          var convertToDate = function(timecode){
+            timecode -= 2000;
+            year = 1997 + Math.floor( timecode / 12 );
+            timecode -= (year - 1997) * 12;
+            month = 1 + timecode;
+            if(month < 10){
+              month = "0" + month;
+            }
+            return year + "-" + month;
+          };
+          var startstamp = convertToDate( timepoints[t].start );
+          var endstamp = convertToDate( timepoints[t].end );
+          
+          kmlpts += '	<Placemark>\n		<TimeSpan>\n';
+          kmlpts += '			<begin>' + startstamp + '</begin>\n';
+          kmlpts += '			<end>' + endstamp + '</end>\n';
+          kmlpts += '		</TimeSpan>\n		<styleUrl>#dot-icon</styleUrl>\n		<Point>\n';
+          kmlpts += '			<coordinates>' + longitude + ',' + latitude + '</coordinates>\n';
+          kmlpts += '		</Point>\n	</Placemark>\n';
+        }
+        var kmlout = '  <Document>\n</kml>';
+        res.setHeader('Content-Type', 'application/kml');
+        res.send(kmlintro + kmlpts + kmlout);
       }
-      res.send({ "type":"FeatureCollection", "features": timepoints });
+      else{
+        // GeoJSON output
+        for(var t=0; t<timepoints.length; t++){
+          timepoints[t] = {
+            "geometry": {
+              "coordinates": [ timepoints[t].ll[0], timepoints[t].ll[1] ]
+            },
+            "properties": {
+              "startyr": timepoints[t].start,
+              "endyr": timepoints[t].end
+            }
+          };
+        }
+        res.send({ "type":"FeatureCollection", "features": timepoints });
+      }
     });
   });
 
