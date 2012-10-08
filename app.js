@@ -446,7 +446,7 @@ function replaceAll(src, oldr, newr){
           kmlpts += '			<coordinates>' + longitude + ',' + latitude + '</coordinates>\n';
           kmlpts += '		</Point>\n	</Placemark>\n';
         }
-        var kmlout = '  <Document>\n</kml>';
+        var kmlout = '  </Document>\n</kml>';
         res.setHeader('Content-Type', 'application/kml');
         res.send(kmlintro + kmlpts + kmlout);
       }
