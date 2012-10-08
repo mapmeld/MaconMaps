@@ -3,11 +3,11 @@
 /**
  * Module dependencies.
  */
-var auth = require('./auth')
-    , express = require('express')
+var express = require('express')
     , mongoose = require('mongoose')
-    , mongoose_auth = require('mongoose-auth')
-    , mongoStore = require('connect-mongo')(express)
+    //, auth = require('./auth')
+    //, mongoose_auth = require('mongoose-auth')
+    //, mongoStore = require('connect-mongo')(express)
     , routes = require('./routes')
     , middleware = require('./middleware')
     , CartoDB = require('./cartodb/lib/cartodb')
@@ -38,7 +38,7 @@ var init = exports.init = function (config) {
     app.use(express.methodOverride());
     //app.use(express.session({secret: 'top secret', store: session_store,
     //  cookie: {maxAge: HOUR_IN_MILLISECONDS}}));
-    app.use(mongoose_auth.middleware());
+    //app.use(mongoose_auth.middleware());
     app.use(express.static(__dirname + '/public'));
     app.use(app.router);
 
@@ -442,7 +442,7 @@ function replaceAll(src, oldr, newr){
     res.render('doesnotexist',404);
   });
 
-  mongoose_auth.helpExpress(app);
+  //mongoose_auth.helpExpress(app);
 
   return app;
 };
