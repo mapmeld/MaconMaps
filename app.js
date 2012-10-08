@@ -421,7 +421,7 @@ function replaceAll(src, oldr, newr){
       }
       if(req.url.indexOf('kml') > -1){
         // time-enabled KML output
-        var kmlintro = '<?xml version="1.0" encoding="UTF-8"?>\n<kml xmlns="http://earth.google.com/kml/2.2">\n	<Document>\n		<name>Time-Enabled Code Enforcement KML</name>\n		<description>Rounded locations of code enforcement cases 1997-2012</description>\n		<Style id="dot-icon">\n      <IconStyle>\n        <Icon>\n          <href>http://i.imgur.com/khmWg.png</href>\n        </Icon>\n      </IconStyle>\n    </Style>\n    <Style>\n      <ListStyle>\n        <listItemType>checkHideChildren</listItemType>\n      </ListStyle>\n    </Style>\n';
+        var kmlintro = '<?xml version="1.0" encoding="UTF-8"?>\n<kml xmlns="http://earth.google.com/kml/2.2">\n	<Document>\n		<name>Time-Enabled Code Enforcement KML</name>\n		<description>Rounded locations of code enforcement cases 1997-2012</description>\n		<Style id="dot-icon">\n      <IconStyle>\n        <Icon>\n          <href>http://maps.google.com/mapfiles/kml/shapes/placemark_circle.png</href>\n        </Icon>\n      </IconStyle>\n    </Style>\n    <Style>\n      <ListStyle>\n        <listItemType>checkHideChildren</listItemType>\n      </ListStyle>\n    </Style>\n';
         var kmlpts = '';
         for(var t=0; t<timepoints.length; t++){
           var latitude = timepoints[t].ll[1];
