@@ -415,6 +415,10 @@ function replaceAll(src, oldr, newr){
     // do a query to return complete GeoJSON timeline
     timepoint.TimePoint.find({ loc: { "$near": [ 32.837026, -83.645782 ], "$maxDistance": 0.01 } }).exec(function(err, timepoints){
       // convert all timepoints into GeoJSON format
+      if(err){
+        res.send(err);
+        return;
+      }
       for(var t=0; t<timepoints.length; t++){
         timepoints[t] = {
           "geometry": {
