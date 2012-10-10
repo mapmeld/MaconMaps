@@ -33,6 +33,9 @@ body {
   margin-left:10px;
   display: inline;
 }
+#timeline a.visible{
+  display: inline;
+}
 #controls{
   margin-top: 18px;
 }

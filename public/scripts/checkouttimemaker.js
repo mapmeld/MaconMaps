@@ -40,7 +40,7 @@ function llserial(latlngs){
 }
 
 function postGeo(format){
-  var poly = llserial(footprint.poly.getLatLngs());
+  var poly = llserial(footprint.getLatLngs());
   if(format == "html"){
     $.post("/customgeo", { pts: poly }, function(data){
       window.location = "/timeline?customgeo=" + data.id;
