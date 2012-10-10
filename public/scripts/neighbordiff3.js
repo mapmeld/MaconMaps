@@ -134,6 +134,10 @@ function setStatus(id, status){
         zoomLayers[ id ] = layer;
       }
     }).addTo(map);
+    $.post("/sharegeo", { id: id, status: status, geo: poly }, function(data){
+      console.log("sent geo");
+      console.log(data);
+    });
   });
 }
 function dragstarted(e){
@@ -214,10 +218,10 @@ function saveDetail(){
           zoomLayers[id] = layer;
         }
       }).addTo(map);
-      $.post("/sharegeo", { id: id, status: status, geo: poly }, function(data){
+      /*$.post("/sharegeo", { id: id, status: status, geo: poly }, function(data){
         console.log("sent geo");
         console.log(data);
-      });
+      });*/
     });
   }
   map.closePopup();
