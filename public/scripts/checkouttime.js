@@ -79,6 +79,7 @@ var timeline = document.getElementById('timeline'),
         // When the end is reached, call clearInterval to stop the animation.
         playStep = window.setInterval(function() {
           if (step < $("#filter").slider('option', 'max')) {
+            set_time_period(step)();
             $("#filter").slider('value', step);
             step++;
           }
