@@ -17,13 +17,15 @@ head
   script(src='/scripts/checkouttimemaker.js', type='text/javascript')
 
 body
-  div#sidebar(style="left:initial;right:10px;")
+  div#sidebar(style="left:initial;right:25%;border:1px solid #000;")
     div#timeline
       h2 Code Enforcement Timeline Maker
       p
-        span Animate cases data in your neighborhood from January 1997 to June 2012!
+        span Animate cases in your neighborhood from January 1997 to May 2012!
         br
-        span Export as&nbsp;
+        span 1) Move points on the blue shape to cover your neighborhood
+        br
+        span 2) View as&nbsp;
         a.visible(href="#", onclick="postGeo('html')") HTML page,
         span &nbsp;
         a.visible(href="#", onclick="postGeo('geojson')") GeoJSON,
@@ -31,7 +33,7 @@ body
         a.visible(href="#", onclick="postGeo('kml')") Google Earth / KML.
         br
         span Locations rounded to within a few blocks. See&nbsp;
-        a(href="http://homestatus.herokuapp.com") HomeStatus
-        span &nbsp;for case data from 2009-2012.
+        a.visible(href="http://homestatus.herokuapp.com") HomeStatus
+        span &nbsp;for detailed cases from 2009-2012.
 
   div#map
