@@ -50,7 +50,7 @@ function init(){
   
   map.on('zoomend', function(e){
     $.each(zoomLayers, function(zl){
-      map.removeLayer(zl);
+      map.removeLayer( zoomLayers[zl] );
     });
     zoomLayers = {};
     var position = "&lat=" + map.getCenter().lat.toFixed(6) + "&lng=" + map.getCenter().lng.toFixed(6) + "&z=" + map.getZoom();
