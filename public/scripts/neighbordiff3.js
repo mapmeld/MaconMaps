@@ -232,6 +232,18 @@ var socket = io.connect(window.location.hostname);
 socket.on('geoupdate', function(data){
   if(zoomLayers[data.id]){
     // change status of a vector: zoomLayers[data.id].setColor(status) ?
+    if(data.status == "Demolished"){
+      zoomLayers[data.id].setStyle({ color: "#f00" });
+    }
+    else if(data.status == "Renovated"){
+      zoomLayers[data.id].setStyle({ color: "#0f0" });
+    }
+    else if(data.status == "Moved"){
+      zoomLayers[data.id].setStyle({ color: "#00f" });
+    }
+    else{
+      zoomLayers[data.id].setStyle({ color: "orange" });
+    }
   }
   else{
     // add data.geo as if it were updated by this browser
@@ -251,7 +263,7 @@ socket.on('geoupdate', function(data){
         }
       },
       onEachFeature: function(feature, layer){
-        layer.bindPopup("<label><em>Name: </em></label><strong>" + replaceAll(replaceAll(name,"<","&lt;"),">","&gt;") + "</strong><br/><label><em>Description: </em></label><strong>" + replaceAll(replaceAll(detail,"<","&lt;"),">","&gt;") + "</strong>");
+        layer.bindPopup("Status was updated.<br/>Zoom map to update.");
         zoomLayers[id] = layer;
       }
     }).addTo(map);
