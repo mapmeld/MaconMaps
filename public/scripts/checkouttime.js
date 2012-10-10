@@ -23,11 +23,11 @@ var timeline = document.getElementById('timeline'),
 
   // create map with College Hill highlighted ( generalize in future versions )
   var map = mapbox.map('map');
-  map.addLayer(mapbox.layer().id('mapmeld.map-uyl6ixjz'));
+  map.addLayer(mapbox.layer().id('mapmeld.map-ofpv1ci4'));
 
   var markerLayer = mapbox.markers.layer()
     // start with all markers disabled
-    .filter(function() { return false })
+    .filter(function(f) { console.log(f); return false })
     .url('/timeline-at.geojson?customgeo=' + getURLParameter("customgeo"), function(err, features) {
       // callback once GeoJSON is loaded
 
