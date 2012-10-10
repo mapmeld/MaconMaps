@@ -11,14 +11,14 @@ var codeToTime = function(yearCode){
   return monthNames[month] + " " + year;
 };
 
-var timeline = document.getElementById('timeline'),
-  controls = document.getElementById('controls');
-
 function getURLParameter(name) {
     return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
 }
 
 $(document).ready(function(){
+
+var timeline = document.getElementById('timeline'),
+  controls = document.getElementById('controls');
 
   // create map with College Hill highlighted ( generalize in future versions )
   var map = mapbox.map('map');
