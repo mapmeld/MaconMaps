@@ -28,6 +28,7 @@ var init = exports.init = function (config) {
   //session_store = new mongoStore({url: db_uri});
 
   var app = express.createServer();
+  var io = require('socket.io').listen(app);
 
   app.configure(function(){
     app.set('views', __dirname + '/views');
@@ -69,6 +70,12 @@ var init = exports.init = function (config) {
 
   app.get('/promise', function(req, res){
     res.render('promise');
+  });
+  
+  app.post('/sharegeo', function(req, res){
+    if(io && io.sockets){
+      io.sockets.emit('geoupdate', { id: req.body.id, geo: req.body.geo, status: req.body.status });
+    }
   });
 
 function replaceAll(src, oldr, newr){

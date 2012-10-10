@@ -1,5 +1,5 @@
 var map, building_pop, terrainLayer, satLayer, cartodb, dragtype, markers, table_name, user_name;
-var zoomLayers = [];
+var zoomLayers = {};
 if(!console || !console.log){
   console = { log: function(e){ } };
 }
@@ -49,10 +49,10 @@ function init(){
   map.addLayer(cartodb);
   
   map.on('zoomend', function(e){
-    for(var i=0;i<zoomLayers.length;i++){
-      map.removeLayer(zoomLayers[i]);
-    }
-    zoomLayers = [];
+    $.each(zoomLayers, function(zl){
+      map.removeLayer(zl);
+    });
+    zoomLayers = {};
     var position = "&lat=" + map.getCenter().lat.toFixed(6) + "&lng=" + map.getCenter().lng.toFixed(6) + "&z=" + map.getZoom();
     $(".thefinal").attr("href","/collegehill2.html?table=" + table_name + "&user=" + user_name + "&message=true" + position);
     $(".changemap").attr("href","/diffmap.html?table=" + table_name + "&user=" + user_name + "&message=true" + position);
@@ -131,7 +131,7 @@ function setStatus(id, status){
       },
       onEachFeature: function(feature, layer){
         layer.bindPopup("You updated this.<br/>Zoom map to update.");
-        zoomLayers.push(layer);
+        zoomLayers[ id ] = layer;
       }
     }).addTo(map);
   });
@@ -211,10 +211,47 @@ function saveDetail(){
         },
         onEachFeature: function(feature, layer){
           layer.bindPopup("<label><em>Name: </em></label><strong>" + replaceAll(replaceAll(name,"<","&lt;"),">","&gt;") + "</strong><br/><label><em>Description: </em></label><strong>" + replaceAll(replaceAll(detail,"<","&lt;"),">","&gt;") + "</strong>");
-          zoomLayers.push(layer);
+          zoomLayers[id] = layer;
         }
       }).addTo(map);
+      $.post("/sharegeo", { id: id, status: status, geo: poly }, function(data){
+        console.log("sent geo");
+        console.log(data);
+      });
     });
   }
   map.closePopup();
 }
+
+// socket.io experiment
+var socket = io.connect(window.location.hostname);
+socket.on('geoupdate', function(data){
+  if(zoomLayers[data.id]){
+    // change status of a vector: zoomLayers[data.id].setColor(status) ?
+  }
+  else{
+    // add data.geo as if it were updated by this browser
+    L.geoJson(data.geo, {
+      style: function (feature) {
+        if(data.status == "Demolished"){
+          return {color: "#f00", opacity: 1};
+        }
+        else if(data.status == "Renovated"){
+          return {color: "#0f0", opacity: 1};
+        }
+        else if(data.status == "Moved"){
+          return {color: "#00f", opacity: 1};      
+        }
+        else{
+          return {color: "orange", opacity: 1};
+        }
+      },
+      onEachFeature: function(feature, layer){
+        layer.bindPopup("<label><em>Name: </em></label><strong>" + replaceAll(replaceAll(name,"<","&lt;"),">","&gt;") + "</strong><br/><label><em>Description: </em></label><strong>" + replaceAll(replaceAll(detail,"<","&lt;"),">","&gt;") + "</strong>");
+        zoomLayers[id] = layer;
+      }
+    }).addTo(map);
+  }
+  console.log("rcvd geo");
+  console.log(data);
+});
