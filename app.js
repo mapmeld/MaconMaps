@@ -477,7 +477,7 @@ function replaceAll(src, oldr, newr){
           res.send(err);
           return;
         }
-        var poly = geo.split("|");
+        var poly = geo.latlngs.split("|");
         for(var pt=0;pt<poly.length;pt++){
           poly[pt] = poly[pt].split(",");
         }
