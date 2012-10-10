@@ -264,7 +264,7 @@ socket.on('geoupdate', function(data){
       },
       onEachFeature: function(feature, layer){
         layer.bindPopup("Status was updated.<br/>Zoom map to update.");
-        zoomLayers[id] = layer;
+        zoomLayers[data.id] = layer;
       }
     }).addTo(map);
   }
