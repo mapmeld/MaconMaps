@@ -20,5 +20,10 @@ body
       p(style="margin-top:18px;")
         span Make your neighborhood timeline at&nbsp;
         a.visible(href="http://maconmaps.com") MaconMaps.com
+        br
+        span Download&nbsp;
+        a.visible(href="/timeline-at.kml?customgeo=#{customgeo}") Google Earth / KML
+        span &nbsp;or&nbsp;
+        a.visible(href="/timeline-at.geojson?customgeo=#{customgeo}") GeoJSON
 
   div#map

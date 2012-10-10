@@ -401,7 +401,7 @@ function replaceAll(src, oldr, newr){
   });
   app.get('/timeline', function(req, res){
     // show timeline
-    res.render('checkouttime');
+    res.render('checkouttime', { customgeo: req.query['customgeo'] });
   });
   app.post('/timeline', function(req, res){
     // load this point into MongoDB
