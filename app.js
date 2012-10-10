@@ -481,7 +481,7 @@ function replaceAll(src, oldr, newr){
         for(var pt=0;pt<poly.length;pt++){
           poly[pt] = poly[pt].split(",");
         }
-        timepoint.TimePoint.find({ ll: { "$within": { "$polygon": poly } }).limit(5000).exec(function(err, timepoints){
+        timepoint.TimePoint.find({ ll: { "$within": { "$polygon": poly } } }).limit(5000).exec(function(err, timepoints){
           if(err){
             res.send(err);
             return;
