@@ -4,8 +4,9 @@ var years = {},
   set_time_period;
   
 var codeToTime = function(yearCode){
+  console.log(yearCode);
   yearCode -= 2000;
-  var year = 1997 + (yearCode - (yearCode % 12)) / 12;
+  var year = 1997 + Math.floor(yearCode / 12);
   var month = yearCode % 12;
   var monthNames = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
   return monthNames[month] + " " + year;
@@ -33,13 +34,6 @@ var timeline = document.getElementById('timeline'),
       set_time_period = function(y) {
         return function() {
           $("#mydate").html( codeToTime(y) );
-          var active = document.getElementsByClassName('year-active');
-          if (active.length) {
-            active[0].className = '';
-          }
-          if( document.getElementById('y' + y) ){
-            document.getElementById('y' + y).className = 'year-active';
-          }
           markerLayer.filter(function(f) {
             return (f.properties.startyr <= y && f.properties.endyr >= y);
           });
@@ -80,13 +74,12 @@ var timeline = document.getElementById('timeline'),
       play.innerHTML = '<a class="btn btn-success"><i class="icon-play-circle icon-white"></i> Play</a>';
 
       play.onclick = function() {
-        var step = $("#filter").slider('value') - 2000;
+        var step = $("#filter").slider('value');
         // Every quarter-second (250 ms) increment the time period
         // When the end is reached, call clearInterval to stop the animation.
         playStep = window.setInterval(function() {
-          if (step < yearlist.length) {
-            set_time_period(yearlist[step])();
-            $("#filter").slider('value', yearlist[step]);
+          if (step < $("#filter").slider('option', 'max')) {
+            $("#filter").slider('value', step);
             step++;
           }
           else {
