@@ -17,6 +17,7 @@ $(document).ready(function(){
   footprint.editing.enable();
   footprint.on('edit', function(e){
     $("#movetime").css({ color: "#000" });
+    $(".aftermove").removeClass("aftermove");
   });
   map.addLayer(footprint);
 
