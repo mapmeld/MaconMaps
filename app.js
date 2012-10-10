@@ -499,8 +499,8 @@ function replaceAll(src, oldr, newr){
           return;
         }
         processTimepoints(timepoints, req, res);
-      }
-    });
+      });
+    }
   });
 
   app.get('/auth', middleware.require_auth_browser, routes.index);
