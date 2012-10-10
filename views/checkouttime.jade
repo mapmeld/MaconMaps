@@ -13,17 +13,19 @@ head
 body
   div#sidebar
     div#timeline
-      h2 Code Enforcement Timeline
+      h2 Code Enforcement Timeline*
       div#filter
       div#controls
       img#loading(src="http://homestatus.herokuapp.com/images/loading-gif.gif")
       p(style="margin-top:18px;")
-        span Make your neighborhood timeline at&nbsp;
-        a.visible(href="http://maconmaps.com") MaconMaps.com
+        span Make a neighborhood timeline at&nbsp;
+        a.visible(href="http://maconmaps.com/timeline-maker") MaconMaps.com/timeline-maker
         br
         span Download&nbsp;
         a.visible(href="/timeline-at.kml?customgeo=#{customgeo}") Google Earth / KML
         span &nbsp;or&nbsp;
         a.visible(href="/timeline-at.geojson?customgeo=#{customgeo}") GeoJSON
+        br
+        span Locations are approximate
 
   div#map

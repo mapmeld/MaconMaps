@@ -15,6 +15,9 @@ $(document).ready(function(){
   var wll = [ new L.LatLng(32.828881, -83.652627), new L.LatLng(32.824881, -83.652627), new L.LatLng(32.828881, -83.648627) ];
   footprint = new L.Polygon( wll, { color: "#00f", fillOpacity: 0.3, opacity: 0.65 } );
   footprint.editing.enable();
+  footprint.on('edit', function(e){
+    $("#movetime").css({ color: "#000" });
+  });
   map.addLayer(footprint);
 
   // make a jQuery slider to view code enforcement case timeline
