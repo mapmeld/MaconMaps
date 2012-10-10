@@ -472,7 +472,7 @@ function replaceAll(src, oldr, newr){
   app.get('/timeline-at*', function(req, res){
     if(req.query['customgeo'] && req.query['customgeo'] != ""){
       // do a query to return GeoJSON inside a custom polygon
-      customgeo.CustomGeo.findById("", function(err, geo){
+      customgeo.CustomGeo.findById(req.query['customgeo'], function(err, geo){
         if(err){
           res.send(err);
           return;
