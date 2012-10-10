@@ -25,7 +25,10 @@ body
         br
         span Export as&nbsp;
         a.visible(href="#", onclick="postGeo('html')") HTML page,
-        span &nbsp;GeoJSON, or Google Earth / KML.
+        span &nbsp;
+        a.visible(href="#", onclick="postGeo('geojson')") GeoJSON,
+        span &nbsp;or&nbsp;
+        a.visible(href="#", onclick="postGeo('kml')") Google Earth / KML.
         br
         span Locations rounded to within a few blocks. See HomeStatus for up-to-date and detailed cases.
 

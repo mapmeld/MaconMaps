@@ -41,9 +41,15 @@ function llserial(latlngs){
 
 function postGeo(format){
   var poly = llserial(footprint.getLatLngs());
-  if(format == "html"){
-    $.post("/customgeo", { pts: poly }, function(data){
+  $.post("/customgeo", { pts: poly }, function(data){
+    if(format == "html"){
       window.location = "/timeline?customgeo=" + data.id;
-    });
-  }
+    }
+    else if(format == "geojson"){
+      window.location = "/timeline-at.geojson?customgeo=" + data.id;
+    }
+    else if(format == "kml"){
+      window.location = "/timeline-at.kml?customgeo=" + data.id;
+    }
+  });
 }
