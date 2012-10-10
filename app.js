@@ -483,7 +483,7 @@ function replaceAll(src, oldr, newr){
         }
         //res.send(poly);
         //return;
-        timepoint.TimePoint.find({ ll: { "$within": { "$polygon": poly } } }).limit(5000).exec(function(err, timepoints){
+        timepoint.TimePoint.find({ ll: { "$within": { "$polygon": poly } } }).limit(10000).exec(function(err, timepoints){
           if(err){
             res.send(err);
             return;
@@ -494,7 +494,7 @@ function replaceAll(src, oldr, newr){
     }
     else{
       // do a query to return GeoJSON timeline near a point
-      timepoint.TimePoint.find({ ll: { "$nearSphere": [  req.query["lng"] || -83.645782, req.query['lat'] || 32.837026 ], "$maxDistance": 0.01 } }).limit(5000).exec(function(err, timepoints){
+      timepoint.TimePoint.find({ ll: { "$nearSphere": [  req.query["lng"] || -83.645782, req.query['lat'] || 32.837026 ], "$maxDistance": 0.01 } }).limit(10000).exec(function(err, timepoints){
         // convert all timepoints into GeoJSON format
         if(err){
           res.send(err);
