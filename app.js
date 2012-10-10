@@ -479,7 +479,7 @@ function replaceAll(src, oldr, newr){
         }
         var poly = geo.latlngs;
         for(var pt=0;pt<poly.length;pt++){
-          poly[pt] = poly[pt].split(",");
+          poly[pt] = [ poly[pt].split(",")[1], poly[pt].split(",")[0] ];
         }
         timepoint.TimePoint.find({ ll: { "$within": { "$polygon": poly } } }).limit(5000).exec(function(err, timepoints){
           if(err){
