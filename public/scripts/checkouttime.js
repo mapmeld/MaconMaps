@@ -14,6 +14,10 @@ var codeToTime = function(yearCode){
 var timeline = document.getElementById('timeline'),
   controls = document.getElementById('controls');
 
+function getURLParameter(name) {
+    return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
+}
+
 $(document).ready(function(){
 
   // create map with College Hill highlighted ( generalize in future versions )
@@ -23,7 +27,7 @@ $(document).ready(function(){
   var markerLayer = mapbox.markers.layer()
     // start with all markers disabled
     .filter(function() { return false })
-    .url('/anycases.geojson', function(err, features) {
+    .url('/timeline-at.geojson?customgeo=' + getURLParameter("customgeo"), function(err, features) {
       // callback once GeoJSON is loaded
 
       set_time_period = function(y) {

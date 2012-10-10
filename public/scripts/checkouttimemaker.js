@@ -1,4 +1,4 @@
-var map;
+var map, footprint;
 
 $(document).ready(function(){
   // make a Leaflet map
@@ -13,7 +13,7 @@ $(document).ready(function(){
   
   // add a sample neighborhood area and make it editable
   var wll = [ new L.LatLng(32.828881, -83.652627), new L.LatLng(32.824881, -83.652627), new L.LatLng(32.828881, -83.648627) ];
-  var footprint = new L.Polygon( wll, { color: "#00f", fillOpacity: 0.3, opacity: 0.65 } );
+  footprint = new L.Polygon( wll, { color: "#00f", fillOpacity: 0.3, opacity: 0.65 } );
   footprint.editing.enable();
   map.addLayer(footprint);
 
@@ -30,3 +30,20 @@ $(document).ready(function(){
   });
 
 });
+
+function llserial(latlngs){
+  var llstr = [ ];
+  for(var i=0;i<latlngs.length;i++){
+    llstr.push(latlngs[i].lat.toFixed(6) + "," + latlngs[i].lng.toFixed(6));
+  }
+  return llstr.join("|");
+}
+
+function postGeo(format){
+  var poly = llserial(footprint.poly.getLatLngs());
+  if(format == "html"){
+    $.post("/customgeo", { pts: poly }, function(data){
+      window.location = "/timeline?customgeo=" + data.id;
+    });
+  }
+}
