@@ -21,13 +21,18 @@ $(document).ready(function(){
 var timeline = document.getElementById('timeline'),
   controls = document.getElementById('controls');
 
+var minlat = 1000;
+var maxlat = -1000;
+var minlng = 1000;
+var maxlng = -1000;
+
   // create map with College Hill highlighted ( generalize in future versions )
   var map = mapbox.map('map');
   map.addLayer(mapbox.layer().id('mapmeld.map-ofpv1ci4'));
 
   var markerLayer = mapbox.markers.layer()
-    // start with all markers disabled
-    .filter(function(f) { console.log(f); return false })
+    // start with all markers hidden
+    .filter(function(f) { return false })
     .url('/timeline-at.geojson?customgeo=' + getURLParameter("customgeo"), function(err, features) {
       // callback once GeoJSON is loaded
 
@@ -43,7 +48,12 @@ var timeline = document.getElementById('timeline'),
 
       for (var i = 0; i < features.length; i++) {
         years[features[i].properties.year] = true;
+        minlat = Math.min(minlat, features[i].geometry.coordinates[1]);
+        maxlat = Math.max(maxlat, features[i].geometry.coordinates[1]);
+        minlng = Math.min(minlng, features[i].geometry.coordinates[0]);
+        maxlng = Math.max(maxlng, features[i].geometry.coordinates[0]);        
       }
+      map.setExtent(new MM.Extent(maxlat, minlng, minlat, maxlng));
 
       for (var y in years) {
         yearlist.push(y);
@@ -98,7 +108,7 @@ var timeline = document.getElementById('timeline'),
 
   map.addLayer(markerLayer);
   
-  // generalize code to fit all markers, not a specific lat / lon
+  // generalize code to fit all markers
   map.zoom(15).center({ lat: 32.837026, lon:  -83.6457823 });
 
   // make a jQuery slider to view code enforcement case timeline
