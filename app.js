@@ -410,6 +410,7 @@ function replaceAll(src, oldr, newr){
     // show timeline
     res.render('checkouttime', { customgeo: req.query['customgeo'] });
   });
+  /*
   app.post('/timeline', function(req, res){
     // load this point into MongoDB
     pt = new timepoint.TimePoint({
@@ -422,6 +423,7 @@ function replaceAll(src, oldr, newr){
       res.send(err || 'success');
     });
   });
+  */
   
   app.get('/timeline-maker', function(req, res){
     // show timeline editor (not yet designed)
