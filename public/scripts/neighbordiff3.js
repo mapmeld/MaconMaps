@@ -114,6 +114,10 @@ function setStatus(id, status){
   $.getJSON("/changetable?table=" + table_name + "&user=" + user_name + "&id=" + id + "&status=" + status, function(data){ });
   $.getJSON("http://" + user_name + ".cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT%20the_geom%20FROM%20" + table_name + "%20WHERE%20cartodb_id=" + id).done(function(poly){
     // until zoom changes and tiles are refreshed, show polygon
+    if(zoomLayers[poly.id]){
+      // change status of a vector: zoomLayers[data.id].setColor(status) ?
+      map.removeLayer( zoomLayers[poly.id] );
+    }
     L.geoJson(poly, {
       style: function (feature) {
         if(status == "Demolished"){
@@ -198,6 +202,10 @@ function saveDetail(){
     $.getJSON("/detailtable?table=" + table_name + "&user=" + user_name + "&id=" + id + "&name=" + encodeURIComponent(name) + "&detail=" + encodeURIComponent(detail), function(data){ });
     $.getJSON("http://" + user_name + ".cartodb.com/api/v2/sql?format=GeoJSON&q=SELECT%20the_geom%20FROM%20" + table_name + "%20WHERE%20cartodb_id=" + id).done(function(poly){
       // until zoom changes and tiles are refreshed, show polygon with this name and description
+      if(zoomLayers[poly.id]){
+        // change status of a vector: zoomLayers[data.id].setColor(status) ?
+        map.removeLayer( zoomLayers[poly.id] );
+      }
       L.geoJson(poly, {
         style: function (feature) {
           if(status == "Demolished"){
@@ -232,42 +240,29 @@ var socket = io.connect(window.location.hostname);
 socket.on('geoupdate', function(data){
   if(zoomLayers[data.id]){
     // change status of a vector: zoomLayers[data.id].setColor(status) ?
-    if(data.status == "Demolished"){
-      zoomLayers[data.id].setStyle({ color: "#f00" });
-    }
-    else if(data.status == "Renovated"){
-      zoomLayers[data.id].setStyle({ color: "#0f0" });
-    }
-    else if(data.status == "Moved"){
-      zoomLayers[data.id].setStyle({ color: "#00f" });
-    }
-    else{
-      zoomLayers[data.id].setStyle({ color: "orange" });
-    }
+    map.removeLayer( zoomLayers[data.id] );
   }
-  else{
-    // add data.geo as if it were updated by this browser
-    L.geoJson(data.geo, {
-      style: function (feature) {
-        if(data.status == "Demolished"){
-          return {color: "#f00", opacity: 1};
-        }
-        else if(data.status == "Renovated"){
-          return {color: "#0f0", opacity: 1};
-        }
-        else if(data.status == "Moved"){
-          return {color: "#00f", opacity: 1};      
-        }
-        else{
-          return {color: "orange", opacity: 1};
-        }
-      },
-      onEachFeature: function(feature, layer){
-        layer.bindPopup("Status was updated.<br/>Zoom map to update.");
-        zoomLayers[data.id] = layer;
+  // add data.geo as if it were updated by this browser
+  L.geoJson(data.geo, {
+    style: function (feature) {
+      if(data.status == "Demolished"){
+        return {color: "#f00", opacity: 1};
       }
-    }).addTo(map);
-  }
+      else if(data.status == "Renovated"){
+        return {color: "#0f0", opacity: 1};
+      }
+      else if(data.status == "Moved"){
+        return {color: "#00f", opacity: 1};      
+      }
+      else{
+        return {color: "orange", opacity: 1};
+      }
+    },
+    onEachFeature: function(feature, layer){
+      layer.bindPopup("Status was updated.<br/>Zoom map to update.");
+      zoomLayers[data.id] = layer;
+    }
+  }).addTo(map);
   console.log("rcvd geo");
   console.log(data);
 });
