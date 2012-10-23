@@ -77,7 +77,29 @@ body(style='font-family: "Nixie One", arial;')
               li Bing Maps
               li MapBox
             div.span6.well
-              p google.maps.layer.add(osmLayer);
+              span map = new google.maps.Map(document.getElementById("map"), { mapTypeControlOptions:{ mapTypeIds:[google.maps.MapTypeId.ROADMAP, google.maps.MapTypeId.SATELLITE, 'MapQuest'] } });
+              br
+              span osmLayer = new google.maps.ImageMapType({
+              br
+              span &nbsp;&nbsp;getTileUrl: function(coord, zoom){
+              br
+              span &nbsp;&nbsp;&nbsp;&nbsp;return "http://otile1.mqcdn.com/tiles/1.0.0/osm/" + zoom + "/" + coord.x + "/" + coord.y + ".jpg";
+              br
+              span &nbsp;&nbsp;},
+              br
+              span &nbsp;&nbsp;tileSize: new google.maps.Size(256, 256),
+              br
+              span &nbsp;&nbsp;isPng: false,
+              br
+              span &nbsp;&nbsp;alt: "OpenStreetMap",
+              br
+              span &nbsp;&nbsp;name: "OpenStreetMap",
+              br
+              span &nbsp;&nbsp;maxZoom: 19
+              br
+              span });
+              br
+              span map.mapTypes.set('OpenStreetMap', osmLayer);
 
 
         .row-fluid
