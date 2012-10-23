@@ -57,7 +57,7 @@ var init = exports.init = function (config) {
   
   // Routes
   app.get('/', function(req, res){
-    res.render('mapsevent');
+    res.render('mapshome');
   });
   
   app.get('/collegehill', function(req, res){

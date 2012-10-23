@@ -1,24 +1,80 @@
 head
   title Macon Maps
-  script(src='/scripts/mapshome2.js', type='text/javascript')
-  link(href='/stylesheets/bootstrap-mini.css', rel='stylesheet', type='text/css')
-  link(href='/stylesheets/mapshome.css', rel='stylesheet', type='text/css')
-body(onload='init()')
-  h2 Macon Neighborhood Maps v0.1
-  br
-  form#frm(action='/mapbyaddress', method='GET')
-    h4 Enter an address:
-    input.x-large(type='text', name='address')
-    a.btn.btn-info(onclick='formSubmit()', style='vertical-align:top') Map It!
-    br
-    h4 Example:
-    a(href='/houses?address=975%20Inverness%20Ave&latlng=32.83827,-83.668503') 975 Inverness Ave
+  meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1")
+  link(href='/stylesheets/united.min.css', rel='stylesheet', type='text/css')
+  link(href='http://twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css', rel='stylesheet', type='text/css')
+  link(href='http://fonts.googleapis.com/css?family=Nixie+One', rel='stylesheet', type='text/css')
+  link(href='/stylesheets/responsiveevent.css', rel='stylesheet', type='text/css')
+body(style='font-family: "Nixie One", arial;')
 
-  h2 SeeClickFix Experiment
-  form#frm(action='/scfbyaddress', method='GET')
-    h4 Enter an address:
-    input.x-large(type='text', name='address')
-    a.btn.btn-info(onclick='formSubmit()', style='vertical-align:top') Map It!
-    br
-    h4 Example:
-    a(href='/scf?address=975%20Inverness%20Ave&latlng=32.83827,-83.668503') 975 Inverness Ave
+  div.container-fluid(style='padding-top:25px;')
+    .row-fluid
+      .span2
+        .well.sidebar-nav
+          ul.nav.nav-list
+            li.nav-header About
+            li.active
+              a(href="/") MaconMaps.com
+            
+            li.nav-header Datasets
+            li
+              a(href="http://datahub.io/dataset/mta-bus-tracking", target="_blank") Buses
+            li
+              a(href="http://datahub.io/dataset/macon-parks") Parks
+            li
+              a(href="http://homestatus.herokuapp.com", target="_blank") Housing
+
+            li.nav-header Created by
+            li
+              a(href="http://codeforamerica.org") Code for America
+            li
+              a(href="http://knightfoundation.org") Knight Foundation
+            li
+              a(href="http://cityofmacon.net") City of Macon
+
+        
+      .span10
+        img#backupimg(src="/images/MaconTiltShadow.png")
+        .row-fluid
+          .span12
+            .well#eventpiece
+              h1(style='font-size:30pt;') Macon Maps
+              br
+              h3 Open Data for Middle Georgia
+              br
+              h3 Brought to you by&nbsp;
+                a(href="http://codeforamerica.org") Code for America
+              br
+              div(style="clear:both;")
+
+        .row-fluid
+          .span6
+            h2 About OpenStreetMap
+            p
+              h4 Code for America is opening data to make the best map of Macon, ever.
+            p
+              span When you edit&nbsp;
+              a(href='http://www.openstreetmap.org/?lat=32.845&lon=-83.6348&zoom=14&layers=Q') OpenStreetMap
+              span &nbsp;you're making a better map for all of us.
+            p How do companies catch up to Google and release their own maps?&nbsp;
+              a(href="http://arstechnica.com/apple/2012/05/two-months-later-apple-acknowledges-use-of-openstreetmap-in-iphoto/") They use OpenStreetMap.
+            p Craigslist is&nbsp;
+              a(href="http://idealab.talkingpointsmemo.com/2012/08/craigslist-maps-test-openstreetmap.php") mapping your next apartment
+              span &nbsp;on OpenStreetMap.
+            p Foursquare uses and edits OpenStreetMap&nbsp;
+              a(href="http://foursquare.com") to map places and check-ins worldwide
+            p OpenStreetMap is even used to make&nbsp;
+              a(href="http://softcities.net/") blankets and "mapkins".
+     
+          .span6
+            h2 Build on it
+            p Add this OpenStreetMap layer on top of
+            ul
+              li Google Maps API
+              li Esri JavaScript API
+              li Leaflet.js
+              li OpenLayers
+              li Bing Maps
+              li MapBox.js
+
+  script(type="text/javascript") var _gaq = _gaq || []; _gaq.push(['_setAccount', 'UA-35749214-1']); _gaq.push(['_trackPageview']); (function() { var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s); })();
