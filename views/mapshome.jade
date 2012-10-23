@@ -1,7 +1,6 @@
 head
   title Macon Maps
   meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1")
-  link(href='http://twitter.github.com/bootstrap/assets/css/bootstrap.css', rel='stylesheet', type='text/css')
   link(href='/stylesheets/united.min.css', rel='stylesheet', type='text/css')
   link(href='http://twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css', rel='stylesheet', type='text/css')
   link(href='http://fonts.googleapis.com/css?family=Nixie+One', rel='stylesheet', type='text/css')
@@ -71,12 +70,18 @@ body(style='font-family: "Nixie One", arial;')
             h2 Build on it
             p Add this OpenStreetMap layer on top of
             ul.span10.nav.nav-tabs
-              li.active Google Maps
-              li Esri JS
-              li Leaflet
-              li OpenLayers
-              li Bing Maps
-              li MapBox
+              li.active
+                a(href="#") Google Maps
+              li
+                a(href="#") Esri JS
+              li
+                a(href="#") Leaflet
+              li
+                a(href="#") OpenLayers
+              li
+                a(href="#") Bing Maps
+              li
+                a(href="#") MapBox
             div.span10
               span map = new google.maps.Map(document.getElementById("map"), { mapTypeControlOptions:{ mapTypeIds:[google.maps.MapTypeId.ROADMAP, google.maps.MapTypeId.SATELLITE, 'MapQuest'] } });
               br
