@@ -69,13 +69,15 @@ body(style='font-family: "Nixie One", arial;')
           .span6
             h2 Build on it
             p Add this OpenStreetMap layer on top of
-            ul
-              li Google Maps API
-              li Esri JavaScript API
-              li Leaflet.js
+            ul.span6.nav.nav-tabs.nav-stacked
+              li.active Google Maps
+              li Esri JS
+              li Leaflet
               li OpenLayers
               li Bing Maps
-              li MapBox.js
+              li MapBox
+            div.span6.well
+              p google.maps.layer.add(osmLayer);
 
 
         .row-fluid
