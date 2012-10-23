@@ -71,16 +71,16 @@ body(style='font-family: "Nixie One", arial;')
             h2 Build on it
             p Add this OpenStreetMap layer on top of
             ul.span10.nav.nav-tabs
-              li.active
-                a(href="javascript:void(0);") Google Maps
-              li
-                a(href="javascript:void(0);") Esri JS
-              li
-                a(href="javascript:void(0);") Leaflet
-              li
-                a(href="javascript:void(0);") OpenLayers
-              li
-                a(href="javascript:void(0);") MapBox / MM
+              li#osmgoogletab.active
+                a(href="javascript:switchTo('osmgoogle');") Google Maps
+              li#esrijstab
+                a(href="javascript:switchTo('esrijs');") Esri JS
+              li#leaflettab
+                a(href="javascript:switchTo('leaflet');") Leaflet
+              li#openlayerstab
+                a(href="javascript:switchTo('openlayers');") OpenLayers
+              li#mapboxtab
+                a(href="javascript:switchTo('mapbox');") MapBox / MM
             div.span10#osmgoogle(style="font-family:courier;")
               span map = new google.maps.Map(document.getElementById("map"), { mapTypeControlOptions:{ mapTypeIds:[google.maps.MapTypeId.ROADMAP, google.maps.MapTypeId.SATELLITE, 'MapQuest'] } });
               br
