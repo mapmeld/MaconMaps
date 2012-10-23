@@ -79,9 +79,7 @@ body(style='font-family: "Nixie One", arial;')
               li
                 a(href="javascript:void(0);") OpenLayers
               li
-                a(href="javascript:void(0);") Bing Maps
-              li
-                a(href="javascript:void(0);") MapBox
+                a(href="javascript:void(0);") MapBox / MM
             div.span10#osmgoogle(style="font-family:courier;")
               span map = new google.maps.Map(document.getElementById("map"), { mapTypeControlOptions:{ mapTypeIds:[google.maps.MapTypeId.ROADMAP, google.maps.MapTypeId.SATELLITE, 'MapQuest'] } });
               br
@@ -129,11 +127,12 @@ body(style='font-family: "Nixie One", arial;')
               br
               span map.addLayer( osmLayer );
               br
-            div.span10#osmbing(style="display:none;")
-              span map = new google.maps.Map(document.getElementById("map"), { mapTypeControlOptions:{ mapTypeIds:[google.maps.MapTypeId.ROADMAP, google.maps.MapTypeId.SATELLITE, 'MapQuest'] } });
-              br
             div.span10#mapbox(style="display:none;")
-              span map = new google.maps.Map(document.getElementById("map"), { mapTypeControlOptions:{ mapTypeIds:[google.maps.MapTypeId.ROADMAP, google.maps.MapTypeId.SATELLITE, 'MapQuest'] } });
+              span m.addLayer(new MM.TemplatedLayer('http://otile1.mqcdn.com/tiles/1.0.0/osm/{Z}/{X}/{Y}.jpg'));
+              br
+              span m.ui.attribution.add()
+              br
+              span &nbsp;&nbsp;.content('Tiles by MapQuest Data &amp;copy; OpenStreetMap contributors.');
               br
 
         .row-fluid
