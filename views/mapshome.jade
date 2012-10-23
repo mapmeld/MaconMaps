@@ -69,14 +69,14 @@ body(style='font-family: "Nixie One", arial;')
           .span6
             h2 Build on it
             p Add this OpenStreetMap layer on top of
-            ul.span5.nav.nav-list
+            ul.span5.nav.nav-tabs
               li.active Google Maps
               li Esri JS
               li Leaflet
               li OpenLayers
               li Bing Maps
               li MapBox
-            div.span6.well
+            div.span12
               span map = new google.maps.Map(document.getElementById("map"), { mapTypeControlOptions:{ mapTypeIds:[google.maps.MapTypeId.ROADMAP, google.maps.MapTypeId.SATELLITE, 'MapQuest'] } });
               br
               span osmLayer = new google.maps.ImageMapType({
