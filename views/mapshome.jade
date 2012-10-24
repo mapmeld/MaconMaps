@@ -121,7 +121,7 @@ body(style='font-family: "Nixie One", arial;')
               span map.addLayer(osmLayer);
               br
             div.span10#leaflet(style="display:none;font-family:courier;")
-              span L.tileLayer('http://otile1.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.jpg').addTo(map);
+              span L.tileLayer( 'http://otile1.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.jpg' ).addTo(map);
               br
             div.span10#openlayers(style="display:none;font-family:courier;")
               span osmLayer = new OpenLayers.Layer.OSM( "MapQuest", ["http://otile1.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.jpg"] );
