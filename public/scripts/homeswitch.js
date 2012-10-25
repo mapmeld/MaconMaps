@@ -8,8 +8,8 @@ function switchTo(id){
 	currentTab = id;
 }
 function setTile(id){
-	document.getElementById(currentMap + "tab").className = "none";
-	document.getElementById(id + "tab").className = "active";
+	document.getElementById(currentMap + "tab").className = "span3";
+	document.getElementById(id + "tab").className = "active span3";
 	var mapurls = document.getElementsByClassName(currentMap + "url");
 	for(var m=0;m<mapurls.length;m++){
 	  mapurls[m].style.display = "none";
