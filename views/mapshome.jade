@@ -72,80 +72,87 @@ body(style='font-family: "Nixie One", arial;')
           .span6
             h2 Data Tips
             ul
-              li You can view almost any KML file in Google Maps. Paste the URL into the search bar.
               li
-                span You can download Macon and Bibb County data from OpenStreetMap at&nbsp;
+                span You can view almost any KML file in Google Maps. Paste the URL into the search bar,&nbsp;
+                a(href="https://maps.google.com/maps?q=http:%2F%2Fhistoric-macon.herokuapp.com%2Ftimeline-at.kml%3Fcustomgeo%3D5080a0bf5766800200000346%26r%3D2&hl=en&sll=32.858168,-83.677044&sspn=0.039727,0.074587&t=m&z=14") like this.
+              li
+                span You can download Macon and Bibb County from OpenStreetMap at&nbsp;
                 a(href="http://metro.teczno.com/") metro.teczno.com
-              li When building on top of OpenStreetMap, always give credit. The data is free, but the contributors have rights.
+              li When building on top of OpenStreetMap, the data is free, but always give credit.
+              li
+                span The US Census maps the entire US at&nbsp;
+                a(href="http://www.census.gov/geo/www/tiger/shp.html") TIGER.
 
         .row-fluid
           .span12
             h2 Build on it
             p Add this OpenStreetMap layer on top of
-            ul.span4.nav.nav-tabs
-              li#osmgoogletab.active
-                a(href="javascript:switchTo('osmgoogle');") Google Maps
-              li#esrijstab
-                a(href="javascript:switchTo('esrijs');") Esri JS
-              li#leaflettab
-                a(href="javascript:switchTo('leaflet');") Leaflet
-              li#openlayerstab
-                a(href="javascript:switchTo('openlayers');") OpenLayers
-              li#mapboxtab
-                a(href="javascript:switchTo('mapbox');") MapBox / MM
-            div.span8#osmgoogle(style="font-family:courier;")
-              span map = new google.maps.Map(document.getElementById("map"), { mapTypeControlOptions:{ mapTypeIds:[google.maps.MapTypeId.ROADMAP, google.maps.MapTypeId.SATELLITE, 'MapQuest'] } });
-              br
-              span osmLayer = new google.maps.ImageMapType({
-              br
-              span &nbsp;&nbsp;getTileUrl: function(coord, zoom){
-              br
-              span &nbsp;&nbsp;&nbsp;&nbsp;return "http://otile1.mqcdn.com/tiles/1.0.0/osm/" + zoom + "/" + coord.x + "/" + coord.y + ".jpg";
-              br
-              span &nbsp;&nbsp;},
-              br
-              span &nbsp;&nbsp;tileSize: new google.maps.Size(256, 256),
-              br
-              span &nbsp;&nbsp;isPng: false,
-              br
-              span &nbsp;&nbsp;alt: "OpenStreetMap",
-              br
-              span &nbsp;&nbsp;name: "OpenStreetMap",
-              br
-              span &nbsp;&nbsp;maxZoom: 19
-              br
-              span });
-              br
-              span map.mapTypes.set('OpenStreetMap', osmLayer);
-            div.span8#esrijs(style="display:none;font-family:courier;")
-              span osmLayer = new esri.layers.OpenStreetMapLayer();
-              br
-              span map.addLayer(osmLayer);
-              br
-              span OR
-              br
-              span osmLayer = new esri.layers.OpenStreetMapLayer({
-              br
-              span &nbsp;&nbsp;tileServers: [ "http://otile1.mqcdn.com/tiles/1.0.0/osm/" ]
-              br
-              span });
-              br
-              span map.addLayer(osmLayer);
-              br
-            div.span8#leaflet(style="display:none;font-family:courier;")
-              span L.tileLayer( 'http://otile1.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.jpg' ).addTo(map);
-              br
-            div.span8#openlayers(style="display:none;font-family:courier;")
-              span osmLayer = new OpenLayers.Layer.OSM( "MapQuest", ["http://otile1.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.jpg"] );
-              br
-              span map.addLayer( osmLayer );
-              br
-            div.span8#mapbox(style="display:none;")
-              span m.addLayer(new MM.TemplatedLayer('http://otile1.mqcdn.com/tiles/1.0.0/osm/{Z}/{X}/{Y}.jpg'));
-              br
-              span m.ui.attribution.add()
-              br
-              span &nbsp;&nbsp;.content('Tiles by MapQuest Data &amp;copy; OpenStreetMap contributors.');
-              br
+
+        .row-fluid
+          ul.span4.nav.nav-tabs.nav-stacked
+            li#osmgoogletab.active
+              a(href="javascript:switchTo('osmgoogle');") Google Maps
+            li#esrijstab
+              a(href="javascript:switchTo('esrijs');") Esri JS
+            li#leaflettab
+              a(href="javascript:switchTo('leaflet');") Leaflet
+            li#openlayerstab
+              a(href="javascript:switchTo('openlayers');") OpenLayers
+            li#mapboxtab
+              a(href="javascript:switchTo('mapbox');") MapBox / MM
+          div.span8#osmgoogle(style="font-family:courier;")
+            span map = new google.maps.Map(document.getElementById("map"), { mapTypeControlOptions:{ mapTypeIds:[google.maps.MapTypeId.ROADMAP, google.maps.MapTypeId.SATELLITE, 'MapQuest'] } });
+            br
+            span osmLayer = new google.maps.ImageMapType({
+            br
+            span &nbsp;&nbsp;getTileUrl: function(coord, zoom){
+            br
+            span &nbsp;&nbsp;&nbsp;&nbsp;return "http://otile1.mqcdn.com/tiles/1.0.0/osm/" + zoom + "/" + coord.x + "/" + coord.y + ".jpg";
+            br
+            span &nbsp;&nbsp;},
+            br
+            span &nbsp;&nbsp;tileSize: new google.maps.Size(256, 256),
+            br
+            span &nbsp;&nbsp;isPng: false,
+            br
+            span &nbsp;&nbsp;alt: "OpenStreetMap",
+            br
+            span &nbsp;&nbsp;name: "OpenStreetMap",
+            br
+            span &nbsp;&nbsp;maxZoom: 19
+            br
+            span });
+            br
+            span map.mapTypes.set('OpenStreetMap', osmLayer);
+          div.span8#esrijs(style="display:none;font-family:courier;")
+            span osmLayer = new esri.layers.OpenStreetMapLayer();
+            br
+            span map.addLayer(osmLayer);
+            br
+            span(style="font-family:arial;") OR
+            br
+            span osmLayer = new esri.layers.OpenStreetMapLayer({
+            br
+            span &nbsp;&nbsp;tileServers: [ "http://otile1.mqcdn.com/tiles/1.0.0/osm/" ]
+            br
+            span });
+            br
+            span map.addLayer(osmLayer);
+            br
+          div.span8#leaflet(style="display:none;font-family:courier;")
+            span L.tileLayer( 'http://otile1.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.jpg' ).addTo(map);
+            br
+          div.span8#openlayers(style="display:none;font-family:courier;")
+            span osmLayer = new OpenLayers.Layer.OSM( "MapQuest", ["http://otile1.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.jpg"] );
+            br
+            span map.addLayer( osmLayer );
+            br
+          div.span8#mapbox(style="display:none;")
+            span m.addLayer(new MM.TemplatedLayer('http://otile1.mqcdn.com/tiles/1.0.0/osm/{Z}/{X}/{Y}.jpg'));
+            br
+            span m.ui.attribution.add()
+            br
+            span &nbsp;&nbsp;.content('Tiles by MapQuest Data &amp;copy; OpenStreetMap contributors.');
+            br
 
   script(type="text/javascript") var _gaq = _gaq || []; _gaq.push(['_setAccount', 'UA-35749214-1']); _gaq.push(['_trackPageview']); (function() { var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s); })();
