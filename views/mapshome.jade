@@ -82,10 +82,40 @@ body(style='font-family: "Nixie One", arial;')
               li
                 span The US Census maps the entire US at&nbsp;
                 a(href="http://www.census.gov/geo/www/tiger/shp.html") TIGER.
+              li
+                span Make your own maps by downloading&nbsp;
+                a(href="http://mapbox.com/tilemill/") TileMill
+                span &nbsp;or using&nbsp;
+                a(href="http://cloudmade.com/products/style-editor") CloudMade
+                span &nbsp;online.
 
         .row-fluid
           .span12
             h2 Build on it
+            p Select an OpenStreetMap style
+            ul.span12.nav.nav-tabs.nav-stacked
+              li#mapquest
+                a(href="javascript:setTile('mapquest')")
+                  img.span3(src="http://otile4.mqcdn.com/tiles/1.0.0/osm/15/8771/13216.png")
+                  br
+                  span MapQuest Open
+              li#skobbler
+                a(href="javascript:setTile('skobbler')")
+                  img.span3(src="http://tiles1.skobbler.net/osm_tiles2/15/8771/13216.png")
+                  br
+                  span Skobbler
+              li#stamen
+                a(href="javascript:setTile('stamen')")
+                  img.span3(src="http://a.tile.stamen.com/toner/15/8771/13216.png")
+                  br
+                  span Stamen Toner&nbsp;
+                  a(href="http://maps.stamen.com") more from Stamen
+              li#osm
+                a(href="javascript:setTile('mapnik')")
+                  img.span3(src="http://a.tile.openstreetmap.org/15/8771/13216.png")
+                  br
+                  span Mapnik
+            
             p Add this OpenStreetMap layer on top of
 
         .row-fluid
@@ -100,7 +130,7 @@ body(style='font-family: "Nixie One", arial;')
               a(href="javascript:switchTo('openlayers');") OpenLayers
             li#mapboxtab
               a(href="javascript:switchTo('mapbox');") MapBox / MM
-          div.span8#osmgoogle(style="font-family:courier;")
+          div.span8.well#osmgoogle(style="font-family:courier;")
             span map = new google.maps.Map(document.getElementById("map"), { mapTypeControlOptions:{ mapTypeIds:[google.maps.MapTypeId.ROADMAP, google.maps.MapTypeId.SATELLITE, 'MapQuest'] } });
             br
             span osmLayer = new google.maps.ImageMapType({
@@ -124,7 +154,7 @@ body(style='font-family: "Nixie One", arial;')
             span });
             br
             span map.mapTypes.set('OpenStreetMap', osmLayer);
-          div.span8#esrijs(style="display:none;font-family:courier;")
+          div.span8.well#esrijs(style="display:none;font-family:courier;")
             span osmLayer = new esri.layers.OpenStreetMapLayer();
             br
             span map.addLayer(osmLayer);
@@ -139,15 +169,15 @@ body(style='font-family: "Nixie One", arial;')
             br
             span map.addLayer(osmLayer);
             br
-          div.span8#leaflet(style="display:none;font-family:courier;")
+          div.span8.well#leaflet(style="display:none;font-family:courier;")
             span L.tileLayer( 'http://otile1.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.jpg' ).addTo(map);
             br
-          div.span8#openlayers(style="display:none;font-family:courier;")
+          div.span8.well#openlayers(style="display:none;font-family:courier;")
             span osmLayer = new OpenLayers.Layer.OSM( "MapQuest", ["http://otile1.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.jpg"] );
             br
             span map.addLayer( osmLayer );
             br
-          div.span8#mapbox(style="display:none;")
+          div.span8.well#mapbox(style="display:none;")
             span m.addLayer(new MM.TemplatedLayer('http://otile1.mqcdn.com/tiles/1.0.0/osm/{Z}/{X}/{Y}.jpg'));
             br
             span m.ui.attribution.add()
