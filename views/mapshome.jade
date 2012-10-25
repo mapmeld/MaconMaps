@@ -93,24 +93,27 @@ body(style='font-family: "Nixie One", arial;')
           .span12
             h2 Build on it
             p Select an OpenStreetMap style
-            .row-fluid.nav-tabs
-              a.active.span3(href="javascript:setTile('mapquest')")
-                img.span12(src="http://otile4.mqcdn.com/tiles/1.0.0/osm/15/8771/13216.png")
-                br
-                span MapQuest Open
-              a.span3(href="javascript:setTile('skobbler')")
-                img.span12(src="http://tiles1.skobbler.net/osm_tiles2/15/8771/13216.png")
-                br
-                span Skobbler
-              a.span3(href="javascript:setTile('stamen')")
-                img.span12(src="http://a.tile.stamen.com/toner/15/8771/13216.png")
-                br
-                a(href="http://maps.stamen.com") Stamen
-                span &nbsp;Toner
-              a.span3(href="javascript:setTile('mapnik')")
-                img.span12(src="http://a.tile.openstreetmap.org/15/8771/13216.png")
-                br
-                span Mapnik
+            .row-fluid.nav.nav-tabs
+              li.span3.active
+                active.span3(href="javascript:setTile('mapquest')")
+                  img.span12(src="http://otile4.mqcdn.com/tiles/1.0.0/osm/15/8771/13216.png")
+                  br
+                  span MapQuest Open
+              li.span3
+                a(href="javascript:setTile('skobbler')")
+                  img.span12(src="http://tiles1.skobbler.net/osm_tiles2/15/8771/13216.png")
+                  br
+                  span Skobbler
+              li.span3
+                a(href="javascript:setTile('stamen')")
+                  img.span12(src="http://a.tile.stamen.com/toner/15/8771/13216.png")
+                  br
+                  span Stamen Toner
+              li.span3
+                a(href="javascript:setTile('mapnik')")
+                  img.span12(src="http://a.tile.openstreetmap.org/15/8771/13216.png")
+                  br
+                  span Mapnik
             
             p Add this OpenStreetMap layer on top of
 
