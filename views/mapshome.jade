@@ -72,17 +72,17 @@ body(style='font-family: "Nixie One", arial;')
           .span6
             h2 Data Tips
             ul
-              li
+              li(style="padding-bottom:10px;")
                 span You can view almost any KML file in Google Maps. Paste the URL into the search bar,&nbsp;
                 a(href="https://maps.google.com/maps?q=http:%2F%2Fhistoric-macon.herokuapp.com%2Ftimeline-at.kml%3Fcustomgeo%3D5080a0bf5766800200000346%26r%3D2&hl=en&sll=32.858168,-83.677044&sspn=0.039727,0.074587&t=m&z=14") like this.
-              li
+              li(style="padding-bottom:10px;")
                 span You can download Macon and Bibb County from OpenStreetMap at&nbsp;
                 a(href="http://metro.teczno.com/") metro.teczno.com
-              li When building on top of OpenStreetMap, the data is free, but always give credit.
-              li
+              li(style="padding-bottom:10px;") When building on top of OpenStreetMap, the data is free, but always give credit.
+              li(style="padding-bottom:10px;")
                 span The US Census maps the entire US at&nbsp;
                 a(href="http://www.census.gov/geo/www/tiger/shp.html") TIGER.
-              li
+              li(style="padding-bottom:10px;")
                 span Make your own maps by downloading&nbsp;
                 a(href="http://mapbox.com/tilemill/") TileMill
                 span &nbsp;or using&nbsp;
@@ -94,22 +94,22 @@ body(style='font-family: "Nixie One", arial;')
             h2 Build on it
             p Select an OpenStreetMap style
             .row-fluid.nav.nav-tabs
-              li.span3.active
-                active.span3(href="javascript:setTile('mapquest')")
+              li.span3.active#mapquesttab
+                a(href="javascript:setTile('mapquest')")
                   img.span12(src="http://otile4.mqcdn.com/tiles/1.0.0/osm/15/8771/13216.png")
                   br
                   span MapQuest Open
-              li.span3
+              li.span3#skobblertab
                 a(href="javascript:setTile('skobbler')")
                   img.span12(src="http://tiles1.skobbler.net/osm_tiles2/15/8771/13216.png")
                   br
                   span Skobbler
-              li.span3
+              li.span3#stamentab
                 a(href="javascript:setTile('stamen')")
                   img.span12(src="http://a.tile.stamen.com/toner/15/8771/13216.png")
                   br
                   span Stamen Toner
-              li.span3
+              li.span3#mapniktab
                 a(href="javascript:setTile('mapnik')")
                   img.span12(src="http://a.tile.openstreetmap.org/15/8771/13216.png")
                   br
@@ -136,7 +136,10 @@ body(style='font-family: "Nixie One", arial;')
             br
             span &nbsp;&nbsp;getTileUrl: function(coord, zoom){
             br
-            span &nbsp;&nbsp;&nbsp;&nbsp;return "http://otile1.mqcdn.com/tiles/1.0.0/osm/" + zoom + "/" + coord.x + "/" + coord.y + ".jpg";
+            span.mapquesturl &nbsp;&nbsp;&nbsp;&nbsp;return "http://otile1.mqcdn.com/tiles/1.0.0/osm/" + zoom + "/" + coord.x + "/" + coord.y + ".jpg";
+            span.skobblerurl(style="display:none;") &nbsp;&nbsp;&nbsp;&nbsp;return "http://tiles1.skobbler.net/osm_tiles2/" + zoom + "/" + coord.x + "/" + coord.y + ".png";
+            span.stamenurl(style="display:none;") &nbsp;&nbsp;&nbsp;&nbsp;return "http://a.tile.stamen.com/toner/" + zoom + "/" + coord.x + "/" + coord.y + ".png";
+            span.mapnikurl(style="display:none;") &nbsp;&nbsp;&nbsp;&nbsp;return "http://a.tile.openstreetmap.org/" + zoom + "/" + coord.x + "/" + coord.y + ".png";
             br
             span &nbsp;&nbsp;},
             br
@@ -162,26 +165,43 @@ body(style='font-family: "Nixie One", arial;')
             br
             span osmLayer = new esri.layers.OpenStreetMapLayer({
             br
-            span &nbsp;&nbsp;tileServers: [ "http://otile1.mqcdn.com/tiles/1.0.0/osm/" ]
+            span.mapquesturl &nbsp;&nbsp;tileServers: [ "http://otile1.mqcdn.com/tiles/1.0.0/osm/" ]
+            span.skobblerurl(style="display:none;") &nbsp;&nbsp;tileServers: [ "http://tiles1.skobbler.net/osm_tiles2/" ]
+            span.stamenurl(style="display:none;") &nbsp;&nbsp;tileServers: [ "http://a.tile.stamen.com/toner/" ]
+            span.mapnikurl(style="display:none;") &nbsp;&nbsp;tileServers: [ "http://a.tile.openstreetmap.org/" ]
             br
             span });
             br
             span map.addLayer(osmLayer);
             br
           div.span8.well#leaflet(style="display:none;font-family:courier;")
-            span L.tileLayer( 'http://otile1.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.jpg' ).addTo(map);
+            span L.tileLayer( '
+            span.mapquesturl http://otile1.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.jpg
+            span.skobblerurl(style="display:none;") http://tiles1.skobbler.net/osm_tiles2/{z}/{x}/{y}.png
+            span.stamenurl(style="display:none;") http://a.tile.stamen.com/toner/{z}/{x}/{y}.png
+            span.mapnikurl(style="display:none;") http://a.tile.openstreetmap.org/{z}/{x}/{y}.png
+            span ' ).addTo(map);
             br
           div.span8.well#openlayers(style="display:none;font-family:courier;")
-            span osmLayer = new OpenLayers.Layer.OSM( "MapQuest", ["http://otile1.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.jpg"] );
+            span.mapquesturl osmLayer = new OpenLayers.Layer.OSM( "MapQuest", ["http://otile1.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.jpg"] );
+            span.skobblerurl(style="display:none;") osmLayer = new OpenLayers.Layer.OSM( "Skobbler", ["http://tiles1.skobbler.net/osm_tiles2/${z}/${x}/${y}.png"] );
+            span.stamenurl(style="display:none;") osmLayer = new OpenLayers.Layer.OSM( "Stamen", ["http://a.tile.stamen.com/toner/${z}/${x}/${y}.png"] );
+            span.mapnikurl(style="display:none;") osmLayer = new OpenLayers.Layer.OSM( "OpenStreetMap", ["http://a.tile.openstreetmap.org/${z}/${x}/${y}.png"] );
             br
             span map.addLayer( osmLayer );
             br
           div.span8.well#mapbox(style="display:none;")
-            span m.addLayer(new MM.TemplatedLayer('http://otile1.mqcdn.com/tiles/1.0.0/osm/{Z}/{X}/{Y}.jpg'));
+            span.mapquesturl m.addLayer(new MM.TemplatedLayer('http://otile1.mqcdn.com/tiles/1.0.0/osm/{Z}/{X}/{Y}.jpg'));
+            span.skobblerurl(style="display:none;") m.addLayer(new MM.TemplatedLayer('http://tiles1.skobbler.net/osm_tiles2/{Z}/{X}/{Y}.png'));
+            span.stamenurl(style="display:none;") m.addLayer(new MM.TemplatedLayer('http://a.tile.stamen.com/toner/{Z}/{X}/{Y}.png'));
+            span.mapnikurl(style="display:none;") m.addLayer(new MM.TemplatedLayer('http://a.tile.openstreetmap.org/{Z}/{X}/{Y}.png'));
             br
             span m.ui.attribution.add()
             br
-            span &nbsp;&nbsp;.content('Tiles by MapQuest Data &amp;copy; OpenStreetMap contributors.');
+            span.mapquesturl &nbsp;&nbsp;.content('Tiles by MapQuest, Data &amp;copy; OpenStreetMap contributors.');
+            span.skobblerurl(style="display:none;") &nbsp;&nbsp;.content('Tiles by Skobbler, Data &amp;copy; OpenStreetMap contributors.');
+            span.stamenurl(style="display:none;") &nbsp;&nbsp;.content('Tiles by Stamen Design, Data &amp;copy; OpenStreetMap contributors.');
+            span.mapnikurl(style="display:none;") &nbsp;&nbsp;.content('Tiles and Data &amp;copy; OpenStreetMap contributors.');
             br
 
   script(type="text/javascript") var _gaq = _gaq || []; _gaq.push(['_setAccount', 'UA-35749214-1']); _gaq.push(['_trackPageview']); (function() { var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s); })();
