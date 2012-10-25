@@ -13,7 +13,7 @@ body(style='font-family: "Nixie One", arial;')
       .span2
         .well.sidebar-nav
           ul.nav.nav-list
-            li.nav-header About
+            li.nav-header Welcome to
             li.active
               a(href="/") MaconMaps.com
             
@@ -91,7 +91,7 @@ body(style='font-family: "Nixie One", arial;')
 
         .row-fluid
           .span12
-            h2 Build on it
+            h2 Programmers: build on it
             p Select an OpenStreetMap style
             .row-fluid.nav.nav-tabs
               li.span3.active#mapquesttab
@@ -123,6 +123,8 @@ body(style='font-family: "Nixie One", arial;')
               a(href="javascript:switchTo('osmgoogle');") Google Maps
             li#esrijstab
               a(href="javascript:switchTo('esrijs');") Esri JS
+            li#esriflextab
+              a(href="javascript:switchTo('esriflex');") Esri Flex
             li#leaflettab
               a(href="javascript:switchTo('leaflet');") Leaflet
             li#openlayerstab
@@ -157,12 +159,6 @@ body(style='font-family: "Nixie One", arial;')
             br
             span map.mapTypes.set('OpenStreetMap', osmLayer);
           div.span8.well#esrijs(style="display:none;font-family:courier;")
-            span osmLayer = new esri.layers.OpenStreetMapLayer();
-            br
-            span map.addLayer(osmLayer);
-            br
-            span(style="font-family:arial;") OR
-            br
             span osmLayer = new esri.layers.OpenStreetMapLayer({
             br
             span.mapquesturl &nbsp;&nbsp;tileServers: [ "http://otile1.mqcdn.com/tiles/1.0.0/osm/" ]
@@ -174,6 +170,25 @@ body(style='font-family: "Nixie One", arial;')
             br
             span map.addLayer(osmLayer);
             br
+          div.span8.well#esriflex(style="display:none;font-family:courier;")
+            span <esri:Map logoVisible="false" wrapAround180="true">
+            br
+            span &nbsp;&nbsp;<esri:OpenStreetMapLayer>
+            br
+            span &nbsp;&nbsp;&nbsp;&nbsp;<esri:tileServers>
+            br
+            span.mapquesturl &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<fx:String>http://otile1.mqcdn.com/tiles/1.0.0/osm/</fx:String>
+            span.skobblerurl(style="display:none;") &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<fx:String>http://tiles1.skobbler.net/osm_tiles2/</fx:String>
+            span.stamenurl(style="display:none;") &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<fx:String>http://a.tile.stamen.com/toner/</fx:String>
+            span.mapnikurl(style="display:none;") &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<fx:String>http://a.tile.openstreetmap.org/</fx:String>
+            br
+            span &nbsp;&nbsp;&nbsp;&nbsp;</esri:tileServers>
+            br
+            span &nbsp;&nbsp;</esri:OpenStreetMapLayer>
+            br
+            span </esri:Map>
+            br
+
           div.span8.well#leaflet(style="display:none;font-family:courier;")
             span L.tileLayer( '
             span.mapquesturl http://otile1.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.jpg
@@ -190,7 +205,7 @@ body(style='font-family: "Nixie One", arial;')
             br
             span map.addLayer( osmLayer );
             br
-          div.span8.well#mapbox(style="display:none;")
+          div.span8.well#mapbox(style="display:none;font-family:courier;")
             span.mapquesturl m.addLayer(new MM.TemplatedLayer('http://otile1.mqcdn.com/tiles/1.0.0/osm/{Z}/{X}/{Y}.jpg'));
             span.skobblerurl(style="display:none;") m.addLayer(new MM.TemplatedLayer('http://tiles1.skobbler.net/osm_tiles2/{Z}/{X}/{Y}.png'));
             span.stamenurl(style="display:none;") m.addLayer(new MM.TemplatedLayer('http://a.tile.stamen.com/toner/{Z}/{X}/{Y}.png'));
