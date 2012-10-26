@@ -137,22 +137,22 @@ body(style='font-family: "Nixie One", arial;')
             p(style="font-size:14pt;") Select an OpenStreetMap style
             .row-fluid.nav.nav-tabs
               li.span3.active#mapquesttab
-                a(href="javascript:setTile('mapquest')")
+                a(href="javascript:setTile('mapquest');void(0);")
                   img.span12(src="http://otile4.mqcdn.com/tiles/1.0.0/osm/15/8771/13216.png")
                   br
                   span MapQuest Open
               li.span3#skobblertab
-                a(href="javascript:setTile('skobbler')")
+                a(href="javascript:setTile('skobbler');void(0);")
                   img.span12(src="http://tiles1.skobbler.net/osm_tiles2/15/8771/13216.png")
                   br
                   span Skobbler
               li.span3#stamentab
-                a(href="javascript:setTile('stamen')")
+                a(href="javascript:setTile('stamen');void(0);")
                   img.span12(src="http://a.tile.stamen.com/toner/15/8771/13216.png")
                   br
                   span Stamen Toner
               li.span3#mapniktab
-                a(href="javascript:setTile('mapnik')")
+                a(href="javascript:setTile('mapnik');void(0);")
                   img.span12(src="http://a.tile.openstreetmap.org/15/8771/13216.png")
                   br
                   span Mapnik
@@ -162,17 +162,17 @@ body(style='font-family: "Nixie One", arial;')
         .row-fluid
           ul.span4.nav.nav-tabs.nav-stacked
             li#osmgoogletab.active
-              a(href="javascript:switchTo('osmgoogle');") Google Maps
+              a(href="javascript:switchTo('osmgoogle');void(0);") Google Maps
             li#esrijstab
-              a(href="javascript:switchTo('esrijs');") Esri JS
+              a(href="javascript:switchTo('esrijs');void(0);") Esri JS
             li#esriflextab
-              a(href="javascript:switchTo('esriflex');") Esri Flex
+              a(href="javascript:switchTo('esriflex');void(0);") Esri Flex
             li#leaflettab
-              a(href="javascript:switchTo('leaflet');") Leaflet
+              a(href="javascript:switchTo('leaflet');void(0);") Leaflet
             li#openlayerstab
-              a(href="javascript:switchTo('openlayers');") OpenLayers
+              a(href="javascript:switchTo('openlayers');void(0);") OpenLayers
             li#mapboxtab
-              a(href="javascript:switchTo('mapbox');") MapBox / MM
+              a(href="javascript:switchTo('mapbox');void(0);") MapBox / MM
           div.span8.well#osmgoogle(style="font-family:courier;")
             span map = new google.maps.Map(document.getElementById("map"), { mapTypeControlOptions:{ mapTypeIds:[google.maps.MapTypeId.ROADMAP, google.maps.MapTypeId.SATELLITE, 'MapQuest'] } });
             br
