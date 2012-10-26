@@ -90,9 +90,44 @@ body(style='font-family: "Nixie One", arial;')
                 span &nbsp;online.
 
         .row-fluid
+          .span6
+            a(name="government")
+            h2 Government: public data online
+            p The map of Macon builds on data from the City of Macon, Bibb County, the Macon Water Authority, the Middle Georgia Regional Commission, and Macon-Bibb Planning and Zoning Commission. In addition to contributing data, governments can also get data back.
+            p
+              span OpenStreetMap users have mapped historic sites, such as&nbsp;
+              a(href="http://wikimania2012.wikimedia.org/wiki/OpenStreetMap_mapping_party") Congressional Cemetery
+              span &nbsp;in Washington, DC.
+            p
+              span The USGS and National Park Service use OpenStreetMap data to build up their national maps.
+              ul
+                li
+                  a(href="http://pubs.usgs.gov/of/2011/1136/") USGS Study
+                li
+                  a(href="http://www.nps.gov/npmap/decks/choosing-the-right-tool-for-the-job/#1") NPS Presentation
+
+          .span6
+            a(name="community")
+            h2 Community Groups: 
+            p
+              a(href="http://maconhabitat.org") Habitat for Humanity in Macon
+              span &nbsp;built on the county's building footprints map to show their impact on their neighborhood.
+              a(href="http://maconmaps.herokuapp.com/everything.html?table=lynmore&user=mapmeld&lat=32.787338&lng=-83.646888&z=17") View Map
+            p
+              a(href="http://www.collegehillmacon.com/") The College Hill Alliance
+              span &nbsp;mapped housing violations in their neighborhood over the past 15 years. The code is open source, so anyone can make a timeline by drawing their neighborhood on
+              a(href="http://maconmaps.herokuapp.com/timeline-maker") this map.
+              span OpenStreetMap was the best basemap for the job.
+            p
+              a(href="http://www.historicmacon.org/") Historic Macon
+              span had their historic houses' build dates mapped over OpenStreetMap.
+              a(href="http://historic-macon.herokuapp.com/timeline?customgeo=5080a0bf5766800200000346") Timeline-Map
+
+        .row-fluid
           .span12
+            a(name="programmers")
             h2 Programmers: build on it
-            p Select an OpenStreetMap style
+            p(style="font-size:16pt;") Select an OpenStreetMap style
             .row-fluid.nav.nav-tabs
               li.span3.active#mapquesttab
                 a(href="javascript:setTile('mapquest')")
@@ -115,7 +150,7 @@ body(style='font-family: "Nixie One", arial;')
                   br
                   span Mapnik
             
-            p Add this OpenStreetMap layer on top of
+            p(style="font-size:16pt;") Display this map in
 
         .row-fluid
           ul.span4.nav.nav-tabs.nav-stacked
