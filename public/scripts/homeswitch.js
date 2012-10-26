@@ -3,7 +3,7 @@ var currentMap = "mapquest";
 function switchTo(id){
 	document.getElementById(currentTab).style.display = "none";
 	document.getElementById(currentTab + "tab").className = "";
-	document.getElementById(id).style.display = "block";
+	document.getElementById(id).style.display = "inline";
 	document.getElementById(id + "tab").className = "active";
 	currentTab = id;
 }
