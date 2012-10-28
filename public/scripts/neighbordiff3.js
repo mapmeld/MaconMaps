@@ -15,6 +15,7 @@ function init(){
   table_name = gup("table") || "promisebuildings";
 
   map = new L.Map('map', { zoomControl: false, panControl: false });
+  map.attributionControl.setPrefix('');
   L.control.pan().addTo(map);
   L.control.zoom().addTo(map);
 
