@@ -28,6 +28,7 @@ var maxlng = -1000;
 
   // create map with College Hill highlighted ( generalize in future versions )
   var map = mapbox.map('map');
+  map.ui.zoomer.add();
   map.addLayer(mapbox.layer().id('mapmeld.map-ofpv1ci4'));
 
   var markerLayer = mapbox.markers.layer()
