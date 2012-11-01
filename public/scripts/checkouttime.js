@@ -5,7 +5,7 @@ var years = {},
   map;
   
 var codeToTime = function(yearCode){
-  console.log(yearCode);
+  //console.log(yearCode);
   yearCode -= 2000;
   var year = 1997 + Math.floor(yearCode / 12);
   var month = yearCode % 12;
