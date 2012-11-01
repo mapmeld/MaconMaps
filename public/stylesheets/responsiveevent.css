@@ -30,3 +30,11 @@
     display: none;
   }
 }
+
+.nav-tabs > .active > a, .nav-tabs > .active > a:hover{
+  background-color: #dadaff;
+}
+
+.nav-tabs a:hover{
+  background-color: #eaeaff;
+}
