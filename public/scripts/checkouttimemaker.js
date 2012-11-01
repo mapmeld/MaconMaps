@@ -12,7 +12,7 @@ $(document).ready(function(){
   map.setView(new L.LatLng(32.828881, -83.652627), 14);
   
   // add a sample neighborhood area and make it editable
-  var wll = [ new L.LatLng(32.828881, -83.652627), new L.LatLng(32.824881, -83.652627), new L.LatLng(32.828881, -83.648627) ];
+  var wll = [ new L.LatLng(32.828881, -83.652627), new L.LatLng(32.820881, -83.652627), new L.LatLng(32.826, -83.646) ];
   footprint = new L.Polygon( wll, { color: "#00f", fillOpacity: 0.3, opacity: 0.65 } );
   footprint.editing.enable();
   footprint.on('edit', function(e){
