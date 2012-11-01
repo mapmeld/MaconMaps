@@ -38,3 +38,7 @@
 .nav-tabs > li > a:hover{
   background-color: #eaeaff;
 }
+
+p, li{
+  font-family: arial, verdana, sans-serif;
+}
