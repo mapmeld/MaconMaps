@@ -32,9 +32,9 @@
 }
 
 .nav-tabs > .active > a, .nav-tabs > .active > a:hover{
-  background-color: #dadaff;
+  background-color: #ffdaff;
 }
 
-.nav-tabs a:hover{
+.nav-tabs > li > a:hover{
   background-color: #eaeaff;
 }
