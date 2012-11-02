@@ -12,17 +12,23 @@ body(style="text-align:center;")
         p Brought to you by Code for America
   
     .row-fluid
-      .span5
-        a.span12(href="/timeline-maker")
-          h3 Draw your neighborhood
-          img.span6(src="/images/datacheckout.png")
       .span2
-        h2 or
-      .span5
-        h3 Choose one below
+      .span4
+        h3 Choose a neighborhood
         p
           a(href="http://datahub.io/dataset/macon-neighborhoods", target="_blank") Neighborhood boundaries
           span &nbsp;provided by Macon Police Department
+          br
+          br
+          span Map tiles by Stamen Design
+          br
+          br
+          span Street data &copy; OpenStreetMap contributors
+      .span4
+        a.span12(href="/timeline-maker")
+          h3 Draw your own:
+          img.span12(src="/images/datacheckout.png")
+      .span2
 
     .row-fluid
       .span3
