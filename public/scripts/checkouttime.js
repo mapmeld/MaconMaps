@@ -48,14 +48,19 @@ var maxlng = -1000;
         };
       };
 
-      for (var i = 0; i < features.length; i++) {
-        years[features[i].properties.year] = true;
-        minlat = Math.min(minlat, features[i].geometry.coordinates[1]);
-        maxlat = Math.max(maxlat, features[i].geometry.coordinates[1]);
-        minlng = Math.min(minlng, features[i].geometry.coordinates[0]);
-        maxlng = Math.max(maxlng, features[i].geometry.coordinates[0]);        
+      if(features.length > 0){
+        for (var i = 0; i < features.length; i++) {
+          years[features[i].properties.year] = true;
+          minlat = Math.min(minlat, features[i].geometry.coordinates[1]);
+          maxlat = Math.max(maxlat, features[i].geometry.coordinates[1]);
+          minlng = Math.min(minlng, features[i].geometry.coordinates[0]);
+          maxlng = Math.max(maxlng, features[i].geometry.coordinates[0]);        
+        }
+        map.setExtent(new MM.Extent(maxlat, minlng, minlat, maxlng));
       }
-      map.setExtent(new MM.Extent(maxlat, minlng, minlat, maxlng));
+      else{
+        alert("No cases found in this area 1997-Jun 2012");
+      }
 
       for (var y in years) {
         yearlist.push(y);
