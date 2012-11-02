@@ -426,8 +426,12 @@ function replaceAll(src, oldr, newr){
   */
   
   app.get('/timeline-maker', function(req, res){
-    // show timeline editor (not yet designed)
+    // show timeline editor
     res.render('checkouttimemaker');
+  });
+
+  app.get('/timeline-home', function(req, res){
+    res.render('checkouttimehome');
   });
   
   var processTimepoints = function(timepoints, req, res){
