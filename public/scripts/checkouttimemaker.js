@@ -5,8 +5,11 @@ $(document).ready(function(){
   map = new L.Map('map', { zoomControl: false, panControl: false });
   L.control.pan().addTo(map);
   L.control.zoom().addTo(map);
-  var toner = 'http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png';
-  var tonerAttrib = 'Map data &copy; 2012 OpenStreetMap contributors, Tiles &copy; 2012 Stamen Design';
+  //var toner = 'http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png';
+  //var tonerAttrib = 'Map data &copy; 2012 OpenStreetMap contributors, Tiles &copy; 2012 Stamen Design';
+
+var toner = 'http://otile1.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.jpg';
+var tonerAttrib = 'Map data &copy; 2012 OpenStreetMap contributors, Tiles by MapQuest';
   terrainLayer = new L.TileLayer(toner, {maxZoom: 18, attribution: tonerAttrib});
   map.addLayer(terrainLayer);
   map.setView(new L.LatLng(32.828881, -83.652627), 14);
