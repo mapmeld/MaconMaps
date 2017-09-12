@@ -1,5 +1,7 @@
 # MaconMaps
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/mapmeld/MaconMaps.svg)](https://greenkeeper.io/)
+
 The repo for MaconMaps includes our <a href="http://maconmaps.com">event page</a>, <a href="http://maconmaps.heroku.com">NeighborDiff</a>, and some experimental maps for the Macon area.
 
 NeighborDiff is a simple tool to update and detail geodata. We're looking for changes a university made in their neighborhood in the 5 years since the local government collected a buildings file.
